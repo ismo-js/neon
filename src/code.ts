@@ -108,10 +108,14 @@ export class Code {
         cedilla: 0xb8,
         super1: 0xb9,
         ordinalMan: 0xba,
+        //!,
+
         quarter: 0xbc,
         half: 0xbd,
         quarter3: 0xbe,
-        queryInv: 0xbf
+        queryInv: 0xbf,
+
+        obelus: 0xf7,
     }
 
     constructor(readonly num: number) {
