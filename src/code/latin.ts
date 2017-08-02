@@ -1,9 +1,13 @@
 export default {
     null: new Nothing(0x00),
     //control,
-    tab: new White(0x09, true),
-    feed: new White(0x0a, false),
-    return: new Nothing(0x0d),
+    tab: new White(0x09, {
+        length: 4,
+    }),
+    feed: new Line(0x0a),
+    return: new Line(0x0d, {
+        trim: true,
+    }),
 
     space: new White(0x20),
     bang: new Punc(0x21),
@@ -51,16 +55,19 @@ export default {
         r: 0x5d, //!>
     }),
     backslash: new Sign(0x5c), //!<
-    circumflex: new Sign(0x5e),
+    circumflex: new Punc(0x5e),
     lowBar: new Letter(0x5f),
 
     grave: new Punc(0x60),
-    alphabetLow: new Letter(0x61, 0x7a),
-    brace: {
+    alphabetLow: new Letter({
+        l: 0x61,
+        r: 0x7a,
+    }),
+    brace: new Punc({
         l: 0x7b,
         r: 0x7d, //!
-    },
-    vertical: 0x7c,
-    tilde: 0x7e,
+    }),
+    vertBar: new Punc(0x7c),
+    tilde: new Punc(0x7e),
     //control: delete,
 }
