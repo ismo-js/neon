@@ -1,24 +1,51 @@
 import {Between} from "./between"
 type Ob = Object
 
-export class Char {
-    readonly between :Between<number>
+export interface Chars {
+    [key: string]: Char,
+}
 
-    constructor(between :number)
-    constructor(between :Between<number>)
-    constructor(between :any) {
-        const doesImpl = !(between instanceof Number)
+export default abstract class Char {
+    readonly betweens :Between<number>[]
 
-        this.between = doesImpl
+    constructor(
+        between :number,
+        opt :Object,
+    )
+    constructor(
+        between :Between<number>[],
+        opt :Object,
+    )
+    constructor(
+        between :Between<number>,
+        opt :Object,
+    )
+    constructor(
+        between :any,
+        opt :Object,
+    ) {
+        const isNum = between instanceof Number
+        const isArray = between instanceof Array
+
+        this.betweens = isNum
+            ? [{l: between}]
+            : isArray
             ? between
-            : {l: between}
+            : [between]
     }
 
     is(num :number) {
-        const isBetween = undefined !== this.between.r
+        this.betweens.reduce((
+            bool :boolean,
+            e :Between<number>,
+        )=> {
+            const isBetween = undefined !== e.r
 
-        return isBetween
-            ? num < this.between.r && num > this.between.l
-            : num === this.between.l
+            return bool
+                || (isBetween
+                    ? num < e.r && num > e.l
+                    : num === e.l
+                )
+        }, false)
     }
 }

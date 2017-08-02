@@ -1,4 +1,6 @@
-export default {
+import {Chars, Char} from "./char"
+
+export default const latin: Chars = {
     null: new Nothing(0x00),
     //control,
     tab: new White(0x09, {
