@@ -4,8 +4,9 @@ const IT = Symbol.iterator
 
 interface Docable {}
 
+export type StrArray = string[] | TemplateStringsArray
 export function doc(
-    strs :TemplateStringsArray,
+    strs :StrArray,
     ...vals :Ob[],
 ): Doc
 export function doc(
