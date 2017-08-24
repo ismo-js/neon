@@ -1,0 +1,8 @@
+[package]
+name = "neon"
+version = "0.1.0"
+authors = [
+    "Te Standby <testandby@gmail.com>"
+]
+
+[dependencies]

@@ -1,11 +1,18 @@
-function err(strs :TemplateStringsArray, ...vals :Object[]) {
+import {doc} from "./doc"
+
+function err(
+    strs :TemplateStringsArray,
+    ...vals :Object[],
+) {
     throw new Error(doc(strs, ...vals))
 }
 
-function decode(str :string) {
+function decode(
+    str :string,
+) {
     const tokenizer = new Tokenizer()
     for (let pointChar of str) {
-        const pointNum :number = pointChar.codePointAt(pointChar)
+        const pointNum :number = pointChar.codePointAt(0)
         const code :Code = new Code(pointNum)
 
         tokenizer.emit(code)
@@ -17,8 +24,7 @@ class Tokenizer {
 
     }
 
-
-
     sym(next: number) {
         NL
     }
+}

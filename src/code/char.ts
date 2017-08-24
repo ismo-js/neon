@@ -5,8 +5,9 @@ export interface Chars {
     [key: string]: Char,
 }
 
-export default abstract class Char {
+export abstract class Char {
     readonly betweens :Between<number>[]
+    readonly opt :Object
 
     constructor(
         between :number,
@@ -22,7 +23,7 @@ export default abstract class Char {
     )
     constructor(
         between :any,
-        opt :Object,
+        opt :any,
     ) {
         const isNum = between instanceof Number
         const isArray = between instanceof Array
@@ -32,9 +33,13 @@ export default abstract class Char {
             : isArray
             ? between
             : [between]
+
+        this.opt = this.mkOpt(opt)
     }
 
-    is(num :number) {
+    abstract mkOpt(opt :Object): Object
+
+    elem(num :number) {
         this.betweens.reduce((
             bool :boolean,
             e :Between<number>,

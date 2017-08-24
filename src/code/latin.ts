@@ -1,6 +1,6 @@
 import {Chars, Char} from "./char"
 
-export default const latin: Chars = {
+export default const latin :Chars = {
     null: new Nothing(0x00),
     //control,
     tab: new White(0x09, {
@@ -21,10 +21,10 @@ export default const latin: Chars = {
     ampersand: new Sign(0x26),
     apostrophe: new Punc(0x27),
 
-    parens: new Punc({
-        l: 0x28,
-        r: 0x29,
-    }),
+    parens: new Punc([
+        {l: 0x28},
+        {l: 0x29},
+    ]),
     asterisk: new Sign(0x2a),
     plus: new Sign(0x2b),
 
@@ -40,10 +40,10 @@ export default const latin: Chars = {
     colon: new Punc(0x3a),
     semicolon: new Punc(0x3b),
 
-    angle: new Punc({
-        l: 0x3c,
-        r: 0x3e,
-    }),
+    angle: new Punc([
+        {l: 0x3c},
+        {l: 0x3e},
+    ]),
     equal: new Punc(0x3d),
     query: new Punc(0x3f),
 
@@ -52,10 +52,10 @@ export default const latin: Chars = {
         l: 0x41,
         r: 0x5a,
     }),
-    bracket: new Punc({
-        l: 0x5b,
-        r: 0x5d, //!>
-    }),
+    bracket: new Punc([
+        {l: 0x5b},
+        {l: 0x5d}, //!>
+    ]),
     backslash: new Sign(0x5c), //!<
     circumflex: new Punc(0x5e),
     lowBar: new Letter(0x5f),
@@ -65,10 +65,10 @@ export default const latin: Chars = {
         l: 0x61,
         r: 0x7a,
     }),
-    brace: new Punc({
-        l: 0x7b,
-        r: 0x7d, //!
-    }),
+    brace: new Punc([
+        {l: 0x7b},
+        {l: 0x7d}, //!
+    ]),
     vertBar: new Punc(0x7c),
     tilde: new Punc(0x7e),
     //control: delete,
