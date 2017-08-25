@@ -1,15 +1,12 @@
 {
     "compilerOptions": {
         "alwaysStrict": true,
+        "baseUrl": "src/",
         "declarationDir": "decl/",
         "diagnostics": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true
     },
-
-    "include": [
-        "src"
-    ],
 
     "exclude": [
         "node_modules"

@@ -1,3 +1,5 @@
+import * as x from "./index/meta-dev"
+
 export const PROTO = Symbol(doc`
     recursively get all prototypes of
 `)

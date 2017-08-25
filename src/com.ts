@@ -1,36 +1,8 @@
-import * as fs from "fs"
-import * as $ from "@motorcycle/stream"
-
-interface $$<E> {
-    map(cb: (e: E)=> E): $$<E>
-    //…TODO find better types or a better streaming library!
-}
-
-namespace Com.Front {
-    export interface Res {
-
-    }
-
-    export function main(res: Res) {
-
-    }
-}
 
 namespace Com.Front.Loader {
-    export function path2Chunk$(
-        path :string,
-    ): $$<string> {
-        type SmOpt = Object
-              //TODO find a better way to use types with node.
-        const readOpt: SmOpt = {
-            encoding: "utf8",
-        }
-
-        return $.fromEvent("data", fs.createReadStream(path, readOpt))
-    }
 }
 
-namespace Com.Front.Decoder {
+namespace Decoder {
     function main() {
         const chunk$: $$<string> = path2Chunk$("./main.neon")
         const charMeta$: $$<string> = chunk$
@@ -44,7 +16,3 @@ namespace Com.Front.Decoder {
               //…   converting to numbers representing code points.
     }
 }
-
-namespace Com.Front.Lexer {}
-namespace Com.Front.Parser {}
-namespace Com.Mid.Analyser {}

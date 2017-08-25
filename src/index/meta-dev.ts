@@ -1,6 +1,11 @@
 import {doc, StrArray} from "./doc"
 
-namespace MetaDev {
+interface Symbol {
+    description :string
+}
+declare const Symbol :(desc :string)=> Symbol
+
+namespace Report {
     export function err(
         surrStrs :StrArray,
         ...vals :Object[],
