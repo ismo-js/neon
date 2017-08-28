@@ -1,22 +1,6 @@
-import {Stream as $} from "xstream"
-import * as fs from "fs"
+/// <reference path="0.ts" />
 
-type Schema = "http" | "https" | "file"
-type Es<E> = E | E[]
-
-const Ob = Object
-
-function toArray<E>(
-    arg: E | E[]
-): E[] {
-    const arr = arg instanceof Array
-        ? arg
-        : [arg]
-
-    return null === arr[0]
-        ? []
-        : arr
-}
+export type Schema = "http" | "https" | "file"
 
 export abstract class Res {
     schema? :Schema = "file"
@@ -43,8 +27,9 @@ export abstract class Res {
         pathPar?,
         queryPar?
     ) {
+        //TODO  implement path, query splitting etc
         if ("string" !== typeof authorityPar) {
-            const path = toArray(schema)
+            const path = toArray(schema) as typeof this.path
 
             this.assign({path})
         } else if ("string" !== typeof pathPar
@@ -74,17 +59,3 @@ export abstract class Res {
 }
 
 interface ResInf extends Res {}
-
-export class NeonRes {
-    toChunk$(
-        path :string,
-    ): $<string> {
-        type SmOpt = Object
-              //TODO find a better way to use types with node.
-        const readOpt: SmOpt = {
-            encoding: "utf8",
-        }
-
-        return $.("data", fs.createReadStream(path, readOpt))
-    }
-}
