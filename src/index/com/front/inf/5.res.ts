@@ -29,7 +29,7 @@ export abstract class Res {
     ) {
         //TODO  implement path, query splitting etc
         if ("string" !== typeof authorityPar) {
-            const path = toArray(schema) as typeof this.path
+            const path = toArray(schema) as Es<string>
 
             this.assign({path})
         } else if ("string" !== typeof pathPar

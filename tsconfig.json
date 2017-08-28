@@ -8,6 +8,9 @@
         "emitDecoratorMetadata": true
     },
 
+    "files": [
+        "./node_modules/@types/*/index.d.ts"
+    ],
     "exclude": [
         "node_modules"
     ]

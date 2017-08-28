@@ -1,12 +1,11 @@
 {
     "name": "neon",
     "version": "0.1.0",
-
     "dependencies": {
         "@cycle/run": "~3.2.0",
         "xstream": "~10.9.0"
     },
     "devDependencies": {
-        "@types/node": "~7.0.5"
+        "@types/node": "^7.0.43"
     }
 }
