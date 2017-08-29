@@ -6,6 +6,6 @@
         "xstream": "~10.9.0"
     },
     "devDependencies": {
-        "@types/node": "^7.0.43"
+        "@types/node": "~7.0.43"
     }
 }

@@ -28,9 +28,9 @@ function decode() {
             return $.from<Char>(chars)
         })
     const pointChar$ :$<Char> = charMeta$
-        .switch()
+        .flatten()
         //…   merges by always switching to the newest stream produced by the high order `this` stream.
     const point$ :$<number> = pointChar$
-        .map(ch=> ch.atCodePoint(0))
+        .map(char=> char.atCodePoint(0))
         //…   converting to numbers representing code points.
 }

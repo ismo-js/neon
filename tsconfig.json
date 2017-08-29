@@ -1,16 +1,28 @@
 {
+    "compileOnSave": true,
     "compilerOptions": {
-        "alwaysStrict": true,
         "baseUrl": "src/",
+        "typeRoots": ["node_modules/@types"],
+        "outDir": "lib/",
+
+        "declaration": true,
         "declarationDir": "decl/",
-        "diagnostics": true,
+
+        "module": "commonjs",
+        "target": "es2017",
+        "lib": ["es2017"],
+
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+
         "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
+        "emitDecoratorMetadata": true,
+
+        "listEmittedFiles": true,
+        "listFiles": true,
+        "diagnostics": true
     },
 
-    "files": [
-        "./node_modules/@types/*/index.d.ts"
-    ],
     "exclude": [
         "node_modules"
     ]
