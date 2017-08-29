@@ -1,5 +1,4 @@
-type Ob = Object
-
+import {O} from "lowbar/main"
 const IT = Symbol.iterator
 
 interface Docable {}
@@ -7,14 +6,14 @@ interface Docable {}
 export type StrArray = string[] | TemplateStringsArray
 export function doc(
     strs :StrArray,
-    ...vals :Ob[],
+    ...vals :O[],
 ): Doc
 export function doc(
     str :string,
 ): Doc
 export function doc(
     str :any,
-    ...vals :Ob[]
+    ...vals :O[]
 ): Doc {
     const strs = str[IT]
 
@@ -24,7 +23,11 @@ export function doc(
 }
 
 class Doc {
-    constructor(readonly value) {
+    constructor(readonly val) {
+
+    }
+
+    toString() {
 
     }
 }

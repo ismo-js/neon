@@ -1,14 +1,14 @@
+import _ from "lowbar/main"
 import {
     Stream as $,
     Listener
 } from "xstream"
-
 import {
     EventEmitter as NodeEmitter
 } from "events"
 
-interface Slotted {
-    slots: {[key: string]: O},
+export interface Slotted {
+    slots: {[key: string]: _.O},
 }
 
 export class NodeProducer<
