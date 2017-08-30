@@ -8,7 +8,7 @@ import {O} from "lowbar/main"
 type Char = string
 
 //    Super kind:
-export const enum SprKind {
+export enum SprKind {
     Control = 0xc,
     //…   Functional char
     Seper = 0x5,
@@ -19,31 +19,31 @@ export const enum SprKind {
     //…   Literal char
 }
 
-export const enum Kind {
-    Nothing = SprKind.Control << 0x10,
-    Break = SprKind.Seper << 0x10 | 0xb,
-    White = SprKind.Seper << 0x10,
-    Punc = SprKind.Oper << 0x10,
-    Sign = SprKind.Oper << 0x10 | 0x5,
-    Num = SprKind.Oper << 0x10 | 0x1,
-    Letter = SprKind.Oper << 0x10 | 0xa,
+export enum Kind {
+    Nothing = SprKind.Control << 0x4,
+    Break = SprKind.Seper << 0x4 | 0xb,
+    White = SprKind.Seper << 0x4,
+    Punc = SprKind.Oper << 0x4,
+    Sign = SprKind.Oper << 0x4 | 0x5,
+    Num = SprKind.Oper << 0x4 | 0x1,
+    Letter = SprKind.Oper << 0x4 | 0xa,
 }
 
-export const enum Latin4 {
-    Null = Kind.Nothing,
-    Tab = Kind.White,
-    Feed = Kind.Break,
-    Return = Kind.Break,
+export enum Latin4 {
+    Null = Kind.Nothing << 0x10 | 0x00,
+    Tab = Kind.White << 0x10,
+    Feed = Kind.Break << 0x10,
+    Return = Kind.Break << 0x10,
 
-    Space = Kind.White,
-    Bang = Kind.Punc,
-    Quote = Kind.Punc,
-    Hash = Kind.Sign,
+    Space = Kind.White << 0x10,
+    Bang = Kind.Punc << 0x10,
+    Quote = Kind.Punc << 0x10,
+    Hash = Kind.Sign << 0x10,
 
-    Dollar = Kind.Letter,
-    Percent = Kind.Sign,
-    Ampersand = Kind.Sign,
-    Apostrophe = Kind.Punc,
+    Dollar = Kind.Letter << 0x10,
+    Percent = Kind.Sign << 0x10,
+    Ampersand = Kind.Sign << 0x10,
+    Apostrophe = Kind.Punc << 0x10,
     //TODO Complete
 }
 
@@ -54,7 +54,7 @@ function decode(
 ) :$<number> {
     const charMeta$ :$<$<string>> = chunk$
         .map((chunk :string): $<string>=> {
-            const chars = Array.from<string>(chunk)
+            const chars = Array.from(chunk)
             //…   uses `Iterable` interface, which iterates over code points represented as single char strings.
             return $.from<Char>(chars)
         })
@@ -64,12 +64,22 @@ function decode(
         // TODO   Anyhack. Include typings providing `String.prototype.atCodePoint`!
         //…   converts to numbers representing these code points.
 
+    const invalPoint$ = point$
+        // TODO   Handle other invalid code points
+        .filter(p=> !!(~0xFFFF & p))
+    // TODO   Better decoding error reporting!
+    invalPoint$.map(report)
+
     return point$
     // TODO   Compose with `screen`!
 }
 
+function report(invalPoint :number) {
+    throw "Invalid code point: { 0x"
+          + invalPoint.toString(16)
+          + " }!"
+}
+
 function screen(
     point$ :$<number>
-) {
-    const
-}
+) {}
