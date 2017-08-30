@@ -3,7 +3,7 @@ import * as fs from "fs"
 import {
     Stream as $,
 } from "xstream"
-import {NodeProducer} from "index/com/front/loader/main"
+import {NodeProducer} from "index/com/front/loader/meta"
 
 export class NeonRes extends Inf.Res {
     toChunk$(
