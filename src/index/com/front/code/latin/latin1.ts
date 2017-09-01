@@ -1,7 +1,7 @@
 import {
     Kind,
     SprKind as Spr,
-} from "./index/com/front/code/kind"
+} from "index/com/front/code/kind"
 
 export enum Latin1 {
     null = Kind.Nothing
@@ -75,3 +75,4 @@ export enum Latin1 {
     query = Kind.Punc
         | 0x3f,
 }
+export default Latin1

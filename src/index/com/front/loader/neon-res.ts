@@ -1,3 +1,5 @@
+import {O} from "lowbar/meta"
+
 import * as fs from "fs"
 
 import {
@@ -7,15 +9,19 @@ import {
 import Res from "index/com/front/loader/res"
 import NodeProducer from "index/com/front/loader/node-producer"
 
-export class NeonRes extends Inf.Res {
+export class NeonRes extends Res {
     toChunk$(
         path :string,
     ): $<string> {
         const encoding = "utf8"
-        const dataProducer: NodeProducer =
+        const slots = {data: }
+        const dataProducer :NodeProducer =
             new NodeProducer(
+                O.assign(
+                    fs.createReadStream(path, {encoding}),
+                    {slots}
+                ),
                 "data",
-                fs.createReadStream(path, {encoding})
             )
         const data$ = $.fromObservable(dataProducer)
 

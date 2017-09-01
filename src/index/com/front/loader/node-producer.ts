@@ -1,26 +1,30 @@
-import _ from "lowbar/main"
+import {O} from "lowbar/meta"
+
 import {
     Stream as $,
-    Listener
+    Listener,
 } from "xstream"
 import {
-    EventEmitter as NodeEmitter
+    EventEmitter as Emitter
 } from "events"
 
-export interface Slotted {
-    slots: {[key: string]: _.O},
+export interface SlotTable {
+    [key :string] :O,
 }
 
 export default class NodeProducer<
-      Emitter extends NodeEmitter & Slotted> {
-    cb: ((pay: Emitter["slots"][string])=> void) | null = null
+      Table extends SlotTable,
+      Slot extends string> {
+    cb: ((pay :Table[Slot])=> void) | null = null
 
     constructor(
-        readonly emitter: Emitter,
-        readonly slot: keyof Emitter["slots"],
+        readonly emitter :Emitter,
+        readonly slot :Slot,
     ) {}
 
-    start(listener: Listener<Emitter["slots"][string]>) {
+    start(
+        listener :Listener<Table[Slot]>
+    ) {
         this.emitter.addListener(
             this.slot,
             this.cb = val => listener.next(val),

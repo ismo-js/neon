@@ -1,9 +1,9 @@
 import {
     Kind,
     SprKind as Spr,
-} from "./index/com/front/code/kind"
+} from "index/com/front/code/kind"
 
-export default enum Latin2 {
+export enum Latin2 {
     at = Kind.Sign // `@`
         | 0x40,
     alphabetUp_0 = Kind.Letter
@@ -25,3 +25,4 @@ export default enum Latin2 {
     grave = Kind.Punc // {`}
         | 0x60,
 }
+export default Latin2
