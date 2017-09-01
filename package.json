@@ -1,8 +1,16 @@
 {
-    "name": "neon",
+    "name": "neon-lang",
+    "description": "The neon Language Tools",
+    "keywords": [
+        "neon",
+        "lang",
+        "language",
+        "type"
+    ],
     "version": "0.1.0",
     "dependencies": {
         "@cycle/run": "~3.2.0",
+        "jschardet": "~1.5.1",
         "xstream": "~10.9.0"
     },
     "devDependencies": {

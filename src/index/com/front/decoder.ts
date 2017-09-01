@@ -3,7 +3,7 @@ import {
 } from "xstream"
 import split from "xstream/extra/split"
 
-import {O} from "./lowbar/main"
+import {O} from "lowbar/meta"
 
 type Char = string
 

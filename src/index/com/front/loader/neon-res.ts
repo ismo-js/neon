@@ -1,5 +1,3 @@
-import {O} from "lowbar/meta"
-
 import * as fs from "fs"
 
 import {
@@ -8,6 +6,7 @@ import {
 
 import Res from "index/com/front/loader/res"
 import NodeProducer from "index/com/front/loader/node-producer"
+import {O} from "lowbar/meta"
 
 export class NeonRes extends Res {
     toChunk$(
