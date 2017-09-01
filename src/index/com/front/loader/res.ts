@@ -1,8 +1,19 @@
+import * as fs from "fs"
+
+import {detect} from "jschardet"
+declare function det(
+    str :string
+) :{
+    encoding :string,
+    confidence :number,
+}
+
 import {
     toArray,
     Es,
     O,
 } from "lowbar/meta"
+
 
 export type Schema = "http" | "https" | "file"
 
@@ -41,12 +52,12 @@ export default class Res extends ResAbs {
         if ("string" !== typeof authority) {
             const path :string[] = toArray(schema as Es<string>)
 
-            this.assign({path})
+            this._assign({path})
         } else if ("string" !== typeof pathPar
               && !(pathPar instanceof Array)) {
             const path = toArray(authority)
 
-            this.assign({
+            this._assign({
                 schema,
                 path,
             })
@@ -54,7 +65,7 @@ export default class Res extends ResAbs {
             const path = toArray(pathPar)
             const query = toArray(queryPar)
 
-            this.assign({
+            this._assign({
                 schema,
                 authority,
                 path,
@@ -63,7 +74,16 @@ export default class Res extends ResAbs {
         }
     }
 
-    private assign(propObj :ResInf) {
-        Ob.assign(this, propObj)
+    // TODO   Distribute `obtain` protocol cases over subclasses
+    async obtain() {
+
+    }
+
+    async detEncoding() {
+        const content = await this.obtain()
+    }
+
+    private _assign(propObj :ResInf) {
+        O.assign(this, propObj)
     }
 }
