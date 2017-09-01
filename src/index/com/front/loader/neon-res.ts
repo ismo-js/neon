@@ -1,9 +1,11 @@
-import * as Inf from "./main"
 import * as fs from "fs"
+
 import {
     Stream as $,
 } from "xstream"
-import {NodeProducer} from "index/com/front/loader/meta"
+
+import Res from "index/com/front/loader/res"
+import NodeProducer from "index/com/front/loader/node-producer"
 
 export class NeonRes extends Inf.Res {
     toChunk$(
@@ -16,5 +18,7 @@ export class NeonRes extends Inf.Res {
                 fs.createReadStream(path, {encoding})
             )
         const data$ = $.fromObservable(dataProducer)
+
+        return data$
     }
 }

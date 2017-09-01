@@ -11,7 +11,7 @@ export interface Slotted {
     slots: {[key: string]: _.O},
 }
 
-export class NodeProducer<
+export default class NodeProducer<
       Emitter extends NodeEmitter & Slotted> {
     cb: ((pay: Emitter["slots"][string])=> void) | null = null
 

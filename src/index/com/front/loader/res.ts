@@ -9,7 +9,7 @@ export abstract class ResAbs {
 
 export interface ResInf extends ResAbs {}
 
-export class Res extends ResAbs {
+export default class Res extends ResAbs {
 
     constructor(
         path :Es<string>,

@@ -1,29 +1,34 @@
 import {O} from "lowbar/main"
+
+export type StrDoc = [string, Docable] | string
+
 const IT = Symbol.iterator
 
-interface Docable {}
+export interface Docable {}
 
-export type StrArray = string[] | TemplateStringsArray
 export function doc(
-    strs :StrArray,
-    ...vals :O[],
-): Doc
-export function doc(
-    str :string,
-): Doc
-export function doc(
-    str :any,
-    ...vals :O[]
+    strs :Iterable<string>,
+    ...vals :Docable[],
 ): Doc {
-    const strs = str[IT]
+    function genContent(): StrDoc[] {
+        const content: StrDoc[] = []
+        const valsAcc = [...vals]
+        //…   clone
+        for (let str of strs) content[content.length] = vals.length
+            ? [
+                str,
+                valsAcc.shift() as Docable
+            ]
+            : str
 
-    return new Doc(
-        str.zip(vals) as (string | Docable)[]
-    )
+        return content
+    }
+
+    return new Doc(genContent())
 }
 
-class Doc {
-    constructor(readonly val) {
+export class Doc {
+    constructor(readonly content :StrDoc[]) {
 
     }
 

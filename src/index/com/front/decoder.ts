@@ -3,7 +3,7 @@ import {
 } from "xstream"
 import split from "xstream/extra/split"
 
-import {O} from "lowbar/main"
+import {O} from "./lowbar/main"
 
 type Char = string
 
@@ -22,18 +22,8 @@ function decode(
         // TODO   Anyhack. Include typings providing `String.prototype.atCodePoint`!
         //…   converts to numbers representing these code points.
 
-    const inval$ :$<number> = point$
-        .filter(p=> !!(~0xFFFF & p))
-
-    inval$.map(report)
     return point$
     // TODO   Compose with `screen`!
-}
-
-function report(invalPoint :number) {
-    throw "Invalid code point: { 0x"
-          + invalPoint.toString(16)
-          + " }!"
 }
 
 function screen(
