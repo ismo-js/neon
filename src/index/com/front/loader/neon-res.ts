@@ -14,16 +14,12 @@ export class NeonRes extends Res {
         path :string,
     ): $<string> {
         const encoding = "utf8"
-        const slots = {data: }
-        const dataProducer :NodeProducer =
+        const dataProducer :NodeProducer<{data :string}, "data"> =
             new NodeProducer(
-                O.assign(
-                    fs.createReadStream(path, {encoding}),
-                    {slots}
-                ),
+                fs.createReadStream(path, {encoding}),
                 "data",
             )
-        const data$ = $.fromObservable(dataProducer)
+        const data$ = $.create(dataProducer)
 
         return data$
     }

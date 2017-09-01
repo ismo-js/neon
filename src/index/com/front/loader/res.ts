@@ -1,3 +1,9 @@
+import {
+    toArray,
+    Es,
+    O,
+} from "lowbar/meta"
+
 export type Schema = "http" | "https" | "file"
 
 export abstract class ResAbs {
@@ -10,7 +16,6 @@ export abstract class ResAbs {
 export interface ResInf extends ResAbs {}
 
 export default class Res extends ResAbs {
-
     constructor(
         path :Es<string>,
     )
