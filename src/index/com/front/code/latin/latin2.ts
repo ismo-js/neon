@@ -3,7 +3,8 @@ import {
     SprKind as Spr,
 } from "index/com/front/code/kind"
 
-export enum Latin2 {
+/* ––^––v––^–– */
+enum Latin2 {
     at = Kind.Sign // `@`
         | 0x40,
     alphabetUp_0 = Kind.Letter

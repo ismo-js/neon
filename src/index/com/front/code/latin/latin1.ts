@@ -3,7 +3,7 @@ import {
     SprKind as Spr,
 } from "index/com/front/code/kind"
 
-export enum Latin1 {
+enum Latin1 {
     null = Kind.Nothing
         | 0x00,
     // [control],
