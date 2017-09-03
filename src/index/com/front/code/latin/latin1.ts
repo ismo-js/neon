@@ -9,9 +9,9 @@ enum Latin1 {
     // [control],
     tab = Kind.White
         | 0x09,
-    feed = Kind.Break // "vertical tab"
+    feed = Kind.Break // "vertical tab" (Unix)
         | 0x0a,
-    return = Kind.Break
+    return = Kind.Break // (Mac)
         | 0x0d,
 
     /* ––^––v––^–– */

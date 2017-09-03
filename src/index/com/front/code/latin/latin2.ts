@@ -17,13 +17,13 @@ enum Latin2 {
         | 0x5c,
     bracket_r = Kind.Bracket
         | 0x5d,
-    circumflex = Kind.Punc // `_` is a letter!
+    circumflex = Kind.Punc
         | 0x5e,
     lowBar = Kind.Letter // `_` is a letter!
         | 0x5f,
 
     /* ––^––v––^–– */
-    grave = Kind.Punc // {`}
+    grave = Kind.Punc // `{`}`
         | 0x60,
 }
 export default Latin2

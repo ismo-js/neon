@@ -1,9 +1,9 @@
 import * as fs from "fs"
 import * as ph from "path"
 
-import {detect} from "jschardet"
+import {detect as det} from "jschardet"
 declare function det(
-    str :string
+    str :string,
 ) :{
     encoding :string,
     confidence :number,
@@ -25,13 +25,13 @@ export default class FileRes extends Res {
     readonly schema = "file"
 
     constructor(
-        path :string[]
+        path :string[],
     ) {
         super(path)
     }
 
     obtain(
-        enc :Encoding = Encoding.utf8
+        enc :Encoding = Encoding.utf8,
     ) :Pm<string> {
         return new Pm((rsv, rjc)=> fs.readFile(
             ph.join(...this.path),
@@ -59,9 +59,8 @@ export default class FileRes extends Res {
 
     async detEncoding() :Pm<Encoding> {
         const content :string = await this.obtain(Encoding.latin1)
-        const encDet = det(content)
 
-        switch (encDet.encoding) {
+        switch (det(content).encoding) {
             case "UTF-8":
                 return Encoding.utf8
             case "UTF-16LE":
