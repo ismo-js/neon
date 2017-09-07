@@ -2,7 +2,6 @@ import {
     Stream as $,
 } from "xstream"
 import split from "xstream/extra/split"
-import pairwise from "xstream/extra/pairwise"
 
 import {O} from "lowbar/meta"
 import Latin from "index/com/front/code/latin/meta"
@@ -35,7 +34,7 @@ enum BreakRat {
     //…   `~~` casts to number for typing
     cr = ~~Latin.return,
     crLf = cr & lf,
-    //…   hahaha… I wish Symbols were available in enums
+    //… LOL   I wish Symbols were available in enums
 }
 
 const isBreak = [BreakRat.lf, BreakRat.cr].includes
