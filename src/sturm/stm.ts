@@ -1,4 +1,6 @@
 import {O, Pm, Px, Int} from "lowbar/meta"
+import {Range} from "./index"
+import Fettle from "./fettle"
 import Unit from "./unit"
 
 interface State<Elem> {
@@ -10,7 +12,7 @@ enum Tag {
     Pm = "Promise",
 }
 
-interface Problem {
+export interface Problem {
     text :string
 }
 
@@ -21,6 +23,7 @@ export default class Stm<Elem>
     }
 
     [Symbol.toStringTag] :Tag.Pm = Tag.Pm
+    fettle :Fettle = Fettle.Mating
 
     async byIndex(
         i :Index,
@@ -34,8 +37,11 @@ export default class Stm<Elem>
         await this.freeze_
     }
 
+    // A promise resolving when stream freezes:
     get freeze_() :Pm<null> {
-        return new Pm<null>((rsv, rjc)=> t)
+        if (this.isFreezed) {
+            return new Pm<null>((rsv, rjc)=> t)
+        }
     }
 
     then<Next>(
@@ -52,27 +58,26 @@ export default class Stm<Elem>
     }
 }
 
+function inProto<Tgt>(
+    tgt :Tgt,
+    prop :string,
+): prop is keyof Tgt {
+    const proto = O.getPrototypeOf(tgt)
+    return prop in proto
+}
+
 export class StmHand<Elem>
       implements ProxyHandler<Stm<Elem>> {
     get(
         tgt :Stm<Elem>,
         prop :string,
     ) :any {
-        function inProto<Tgt>(
-            tgt :Tgt,
-            prop :string,
-        ): prop is keyof Tgt {
-            const proto = O.getPrototypeOf(tgt)
-            return prop in proto
-        }
 
-        const i :number = parseInt(prop)
-        const isI :boolean = Number.isSaveInteger(i)
+        const i :Range = Range.parse(prop)
 
-        if (isI) {
+        if (Index)
             return tgt.byIndex(i)
-        } else if (inProto(tgt, prop)) {
+        else if (inProto(tgt, prop))
             return tgt[prop]
-        }
     }
 }

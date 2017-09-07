@@ -1,4 +1,4 @@
 const enum Unit {
-    ms = -3 & 0x500,
+    ms = -0x503,
 }
 export default Unit
