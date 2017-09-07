@@ -6,6 +6,8 @@ export function isInt(
     return Number.isSaveInteger(val)
 }
 
+export type Hint = "number" | "string" | "default"
+
 export type Pm<E> = Promise<E>
 export const Pm = Promise
 

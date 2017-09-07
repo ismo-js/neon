@@ -1,3 +1,5 @@
+import {O, Hint} from "lowbar/meta"
+
 import {
     Father,
 } from "./kind"
@@ -8,7 +10,7 @@ import {
 
 export default class Meta {
     static [Symbol.toPrimitive](
-        hint :"number" | "string" | "default"
+        hint :Hint,
     ) {
         switch (hint) {
             case "number":

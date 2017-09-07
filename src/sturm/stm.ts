@@ -1,5 +1,5 @@
 import {O, Pm, Px, Int} from "lowbar/meta"
-import {Range} from "./index"
+import Range from "./range"
 import Fettle from "./fettle"
 import Unit from "./unit"
 
