@@ -1,9 +1,9 @@
 import {
-    default as Jsonable,
+    Jsonable,
     Context,
-} from "./jsonable"
+} from "./jsonify"
 
-class Path implements Jsonable {
+export default class Path implements Jsonable {
     readonly isAbs :boolean
     readonly val :string[]
 
@@ -22,7 +22,7 @@ class Path implements Jsonable {
     toJson(
         context :Context,
         tgt? :Object | undefined,
-        prop? :string | undefined,
+        key? :string | undefined,
     ) :string {
         const abs :string[] = this.isAbs
             ? this.val

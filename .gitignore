@@ -6,3 +6,5 @@ package-lock.json
 /map
 /pkg/@*/lib
 /pkg/@*/run
+/pkg/_*/lib
+/pkg/_*/run
