@@ -1,21 +1,7 @@
-interface Context {
-    locName :string,
-    path :Path,
-}
-
-type JsonVal =
-    number | string | boolean | Object | null | undefined
-
-interface Jsonable {
-    toJson(
-        context :Context,
-    ) :JsonVal
-    toJson(
-        context :Context,
-        tgt :Object,
-        prop :string,
-    ) :JsonVal
-}
+import {
+    default as Jsonable,
+    Context,
+} from "./jsonable"
 
 class Path implements Jsonable {
     readonly isAbs :boolean
