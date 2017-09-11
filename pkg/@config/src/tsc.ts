@@ -1,37 +1,3 @@
-type JsonVal =
-    number | string | boolean | Object | null | undefined
-
-interface Jsonable {
-    toJson() :JsonVal
-    toJson(
-        tgt :Object,
-        prop? :string,
-    ): JsonVal
-}
-
-class Path implements Jsonable {
-    readonly isAbs :boolean
-    base :string
-
-    constructor(
-        valParam :(string | null) | (string | null)[],
-    ) {
-        const val = "string" === typeof valParam
-            ? valParam.split("/")
-            : valParam || [null]
-
-        this.isAbs = !val[0]
-            ? (val.shift(), true)
-            : false
-    }
-
-    toJson(
-        tgt? :Object | undefined,
-        prop? :string | undefined,
-    ): JsonVal {
-    }
-}
-
 const compPaths = {
     baseUrl: new Path("src/"),
     typeRoots: [
