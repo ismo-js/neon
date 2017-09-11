@@ -1,5 +1,5 @@
 {
-    "name": "neon-base",
+    "name": "neon-config",
     "private": true,
     "license": "LGPLv3",
     "devDependencies": {

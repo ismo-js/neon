@@ -26,9 +26,9 @@ class Path implements Jsonable {
     }
 
     toJson(
-        tgt? :Object,
-        prop? :string,
-    ) {
+        tgt? :Object | undefined,
+        prop? :string | undefined,
+    ): JsonVal {
     }
 }
 

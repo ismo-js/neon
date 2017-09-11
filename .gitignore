@@ -4,3 +4,5 @@ package-lock.json
 /lib
 /decl
 /map
+/pkg/@*/lib
+/pkg/@*/run
