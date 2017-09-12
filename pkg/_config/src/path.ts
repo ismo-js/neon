@@ -3,37 +3,45 @@ import {
     Context,
 } from "./jsonify"
 
+export type PathLike =
+    Path | ArrayLike<string> | string
+
 export default class Path
       implements Jsonable {
     readonly isAbs :boolean
     readonly val :string[]
 
     constructor(
-        valParam :string | string[],
+        like :PathLike
     ) {
-        const val :string[] = this.val =
-            "string" === typeof valParam
+        const val = this.val =
+            "string" === typeof like
                 ? valParam.split("/")
                 : valParam
+
+        if (val instanceof Path)
+            return val
+
         this.isAbs = !val[0]
             ? (val.shift(), true)
             : false
     }
 
     toJson(
-        context :Context,
-        tgt? :Object | undefined,
-        key? :string | undefined,
+        ctx :Context,
     ) :string {
-        const abs :string[] = context.path.rel(this).val
+        // TODO: What is `x`? Implement!
+        const abs :string[] = x.rel(this).val
         return abs.join("/")
     }
 
-    rel(snd :Path) :Path {
-        const val = snd.isAbs
+    // see `snd` relative to `this`:
+    rel(sndVal :PathLike) :Path {
+        const snd = new Path(sndVal)
+        const resVal = snd.isAbs
             ? this.val.concat(snd.val)
             : snd.val
 
-        return new Path(val)
+        return new Path(resVal)
     }
 }

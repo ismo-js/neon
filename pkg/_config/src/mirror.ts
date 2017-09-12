@@ -1,3 +1,5 @@
+type Pm<T> = Promise<T>
+
 import Path from "./path"
 import {
     Jsonable,
@@ -5,10 +7,16 @@ import {
 } from "./jsonify"
 
 export default class Mirror {
+    static readonly out = new Path("out/")
+    static readonly run = new Path("run/")
+
     // source:
     src :Jsonable | JsonVal
     // relative destination:
     relDest :Path
 
-
+    async diff() :Pm<Object> {
+        const outDir = Mirror.out.rel(this.relDest)
+        const runDir = Mirror.run.rel(this.relDest)
+    }
 }

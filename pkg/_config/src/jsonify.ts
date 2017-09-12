@@ -4,10 +4,10 @@ export type JsonVal =
     number | string | boolean | Object | null | undefined
 
 export interface Context {
-    mir :Mirror,
+    mir :Mirror
     // target:
-    tgt? :Object,
-    key? :keyof this["tgt"],
+    tgt? :Object
+    key? :keyof this["tgt"]
 }
 
 export interface Jsonable {
@@ -41,6 +41,6 @@ export default function jsonify(
     return JSON.stringify(
         val,
         cbReplace,
-        spacing
+        spacing,
     )
 }
