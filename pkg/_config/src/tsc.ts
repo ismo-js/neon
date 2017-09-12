@@ -1,3 +1,5 @@
+import Path from "./path"
+
 const compPaths = {
     baseUrl: new Path("src/"),
     typeRoots: [

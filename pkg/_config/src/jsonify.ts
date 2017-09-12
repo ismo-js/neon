@@ -1,4 +1,5 @@
 import Path from "./path"
+import Templ from "./templ"
 
 export interface Context {
     locName :string,
@@ -10,17 +11,17 @@ export type JsonVal =
 
 export interface Jsonable {
     toJson(
-        context :Context,
+        context :Templ,
     ) :JsonVal
     toJson(
-        context :Context,
+        context :Templ,
         tgt :Object,
         key :string,
     ) :JsonVal
 }
 
 export default function jsonify(
-    context :Context,
+    context :Templ,
     val :any,
     spacing :number = 4,
     //… prohibits passing spacing as a string

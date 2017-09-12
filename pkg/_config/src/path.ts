@@ -3,7 +3,8 @@ import {
     Context,
 } from "./jsonify"
 
-export default class Path implements Jsonable {
+export default class Path
+      implements Jsonable {
     readonly isAbs :boolean
     readonly val :string[]
 
@@ -24,13 +25,15 @@ export default class Path implements Jsonable {
         tgt? :Object | undefined,
         key? :string | undefined,
     ) :string {
-        const abs :string[] = this.isAbs
-            ? this.val
-            : context.path.rel(this).val
+        const abs :string[] = context.path.rel(this).val
         return abs.join("/")
     }
 
     rel(snd :Path) :Path {
-        return new Path(this.val.concat(snd.val))
+        const val = snd.isAbs
+            ? this.val.concat(snd.val)
+            : snd.val
+
+        return new Path(val)
     }
 }
