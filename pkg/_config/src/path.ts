@@ -14,16 +14,16 @@ export default class Path
     constructor(
         like :PathLike
     ) {
-        const val = this.val =
-            "string" === typeof like
-                ? valParam.split("/")
-                : valParam
+        like = "string" === typeof like
+            ? like.split("/")
+            : like
 
-        if (val instanceof Path)
-            return val
+        if (like instanceof Path)
+            return like
 
-        this.isAbs = !val[0]
-            ? (val.shift(), true)
+        this.val = Array.from(like)
+        this.isAbs = !this.val[0]
+            ? (this.val.shift(), true) // Side effect!
             : false
     }
 
@@ -33,6 +33,12 @@ export default class Path
         // TODO: What is `x`? Implement!
         const abs :string[] = x.rel(this).val
         return abs.join("/")
+    }
+
+    fromJson(
+        ctx :Context,
+    ) :this {
+        return this //TODO
     }
 
     // see `snd` relative to `this`:
