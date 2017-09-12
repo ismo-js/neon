@@ -1,6 +1,5 @@
 type Pm<T> = Promise<T>
-type O = Object
-const O = Object
+type O = Object; const O = Object
 
 import * as fjp from "fast-json-patch"
 import * as fse from "fs-extra"
@@ -20,17 +19,23 @@ export default class Mirror {
     // relative destination:
     readonly relDest :Path
 
-    async diff() :Pm<Object> {
+    async diff() :Pm<any> {
         const outDest = Mirror.outDir.rel(this.relDest)
         const runDest = Mirror.runDir.rel(this.relDest)
 
-        let contents: {out :any, run :any}
-        await Promise.all([
-            fse.readJson(outDest.toJson())
-                .then((out: JsonVal)=> O.assign(contents, {out})),
-            fse.readJson(runDest.toJson())
-                .then((run: JsonVal)=> O.assign(contents, {run})),
-        ])
-        fjp.compare(outJson, runJson)
+        const content = (
+            await Promise.all([
+                fse.readJson(outDest.toJson()),
+                fse.readJson(runDest.toJson()),
+            ]) as [any, any]
+        )
+        const patch: fjp.Operation[] =
+            (fjp.compare as Function)(...content)
+        //…TODO: Dumb type fix hack. Y error?:
+        //    `Expected 2; got 0 args.`
+
+        return fjp.applyPatch({}, patch).newDocument
     }
+
+    applyDiff() {}
 }
