@@ -22,9 +22,13 @@ export interface Jsonable {
     ) :this
 }
 
-function isJsonable(val :any) :boolean {
+function isJsonable(val :any) :val is Jsonable {
     return "function" !== typeof val.toJson
         && "function" !== typeof val.fromJson
+}
+
+function isO(val :any) :val is O {
+    return ["function", "object"].includes(val)
 }
 
 export default function jsonify<Val extends JsonVal>(
@@ -41,12 +45,16 @@ export default function jsonify<Val extends JsonVal>(
     ) :Val {
 
         if (isJsonable(val)) {
-            const jsonVal = key
-                ? val.toJson(mir, this, key)
+            const cxt = key
+                ? val.toJson({
+                    mir,
+                    tgt: this,
+                    key: key || null,
+                })
                 : val.toJson(mir)
 
-            return jsonVal
-        } else (isO()) {
+            return val.toJson(cxt)
+        } else (isO(val)) {
 
         }
     }

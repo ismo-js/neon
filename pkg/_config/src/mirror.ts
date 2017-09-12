@@ -31,11 +31,13 @@ export default class Mirror {
         )
         const patch: fjp.Operation[] =
             (fjp.compare as Function)(...content)
-        //…TODO: Dumb type fix hack. Y error?:
+        //…TODO:         ^ Dumb type fix hack. Y error?:
         //    `Expected 2; got 0 args.`
 
         return fjp.applyPatch({}, patch).newDocument
     }
 
-    applyDiff() {}
+    applyDiff() {
+
+    }
 }
