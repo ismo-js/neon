@@ -3,6 +3,10 @@
     "private": true,
     "license": "LGPLv3",
     "devDependencies": {
-        "@types/node": "~7.0.43"
+        "@types/node": "~7.0.43",
+        "@types/fast-json-patch": "~1.1.5",
+    },
+    "dependencies": {
+        "fast-json-patch": "~2.0.5"
     }
 }

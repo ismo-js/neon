@@ -14,10 +14,8 @@ export default class Path
     constructor(
         like :PathLike
     ) {
-        like = "string" === typeof like
-            ? like.split("/")
-            : like
-
+        if ("string" === typeof like)
+            like = like.split("/")
         if (like instanceof Path)
             return like
 

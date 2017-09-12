@@ -1,5 +1,7 @@
 type Pm<T> = Promise<T>
 
+import {compare} from "fast-json-patch"
+
 import Path from "./path"
 import {
     Jsonable,
@@ -18,5 +20,7 @@ export default class Mirror {
     async diff() :Pm<Object> {
         const outDir = Mirror.out.rel(this.relDest)
         const runDir = Mirror.run.rel(this.relDest)
+
+
     }
 }
