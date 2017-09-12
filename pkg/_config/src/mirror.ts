@@ -2,7 +2,8 @@ type Pm<T> = Promise<T>
 type O = Object
 const O = Object
 
-import {compare} from "fast-json-patch"
+import * as fjp from "fast-json-patch"
+import * as fse from "fs-extra"
 
 import Path from "./path"
 import {
@@ -23,13 +24,13 @@ export default class Mirror {
         const outDest = Mirror.outDir.rel(this.relDest)
         const runDest = Mirror.runDir.rel(this.relDest)
 
-        let contents: {out :str, run :str}
+        let contents: {out :any, run :any}
         await Promise.all([
-            (readFile() as Pm<string>)
-                .then(out=> O.assign(contents, {out})),
-            (readFile() as Pm<string>)
-                .then(run=> O.assign(contents, {run})),
+            fse.readJson(outDest.toJson())
+                .then((out: JsonVal)=> O.assign(contents, {out})),
+            fse.readJson(runDest.toJson())
+                .then((run: JsonVal)=> O.assign(contents, {run})),
         ])
-        compare(outJson, runJson)
+        fjp.compare(outJson, runJson)
     }
 }

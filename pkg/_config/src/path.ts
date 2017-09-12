@@ -12,7 +12,7 @@ export default class Path
     readonly val :string[]
 
     constructor(
-        like :PathLike
+        like :PathLike,
     ) {
         if ("string" === typeof like)
             like = like.split("/")
@@ -26,8 +26,9 @@ export default class Path
     }
 
     toJson(
-        ctx :Context,
+        ctx? :Context,
     ) :string {
+        if (!ctx) return this.join("/")
         // TODO: What is `x`? Implement!
         const abs :string[] = x.rel(this).val
         return abs.join("/")
@@ -40,12 +41,18 @@ export default class Path
     }
 
     // see `snd` relative to `this`:
-    rel(sndVal :PathLike) :Path {
+    rel(
+        sndVal :PathLike
+    ) :Path {
         const snd = new Path(sndVal)
         const resVal = snd.isAbs
             ? this.val.concat(snd.val)
             : snd.val
 
         return new Path(resVal)
+    }
+
+    get [Symbol.toStringTag]() {
+        return this.toJson()
     }
 }

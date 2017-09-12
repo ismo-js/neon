@@ -4,9 +4,10 @@
     "license": "LGPLv3",
     "devDependencies": {
         "@types/node": "~7.0.43",
-        "@types/fast-json-patch": "~1.1.5",
+        "@types/fs-extra": "~4.0.2"
     },
     "dependencies": {
-        "fast-json-patch": "~2.0.5"
+        "fast-json-patch": "~2.0.5",
+        "fs-extra": "~4.0.1"
     }
 }
