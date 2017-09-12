@@ -1,10 +1,4 @@
-import Path from "./path"
 import Templ from "./templ"
-
-export interface Context {
-    locName :string,
-    path :Path,
-}
 
 export type JsonVal =
     number | string | boolean | Object | null | undefined
