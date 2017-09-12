@@ -1,21 +1,27 @@
-import Templ from "./templ"
+import Mirror from "./mirror"
 
 export type JsonVal =
     number | string | boolean | Object | null | undefined
 
+export interface Context {
+    mir :Mirror,
+    // target:
+    tgt? :Object,
+    key? :keyof this["tgt"],
+}
+
 export interface Jsonable {
     toJson(
-        context :Templ,
+        ctx :Context,
     ) :JsonVal
-    toJson(
-        context :Templ,
-        tgt :Object,
-        key :string,
-    ) :JsonVal
+
+    fromJson(
+        ctx :Context,
+    ) :this
 }
 
 export default function jsonify(
-    context :Templ,
+    mir :Mirror,
     val :any,
     spacing :number = 4,
     //… prohibits passing spacing as a string
@@ -24,12 +30,12 @@ export default function jsonify(
         this :Object,
         key :string,
         val :any,
-    ) {
-        if ("function" === typeof val.toJson) {
-            const retVal = key
-                ? val.toJson(context, this, key)
-                : val.toJson(context)
-        }
+    ) :any {
+        return "function" !== typeof val.toJson
+            ? val
+            : key
+            ? val.toJson(mir, this, key)
+            : val.toJson(mir)
     }
 
     return JSON.stringify(

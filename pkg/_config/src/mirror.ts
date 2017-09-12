@@ -1,9 +1,14 @@
 import Path from "./path"
+import {
+    Jsonable,
+    JsonVal,
+} from "./jsonify"
 
-export class Mirror {
-    // file templates by name:
-    fileTempls :{[key: string]: Object}
-    destDir :Path
+export default class Mirror {
+    // source:
+    src :Jsonable | JsonVal
+    // relative destination:
+    relDest :Path
 
 
 }

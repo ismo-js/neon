@@ -1,10 +1,19 @@
-node_modules
+# Node
+# * Files:
 package-lock.json
 .directory
+
+# * Dirs:
+node_modules/
+
+
+# Project Structure
 /lib
 /decl
 /map
-/pkg/@*/lib
-/pkg/@*/run
+/pkg/\@*/lib
+/pkg/\@*/run
+/pkg/\@*/out
 /pkg/_*/lib
 /pkg/_*/run
+/pkg/_*/out
