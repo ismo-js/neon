@@ -3,19 +3,19 @@ type O = Object; const O = Object
 import Mirror from "./mirror"
 
 export type JsonVal =
-    number | string | boolean | O | null | undefined
+    number | string | boolean | O | null
 
-export interface Context {
+export interface Context<Tgt> {
     mir :Mirror
     // target:
-    tgt? :Object
-    key? :keyof this["tgt"]
+    tgt? :Tgt
+    key :(keyof Tgt) | null
 }
 
 export interface Jsonable {
     toJson(
         ctx :Context,
-    ) :JsonVal
+    ) :JsonVal | undefined
 
     fromJson(
         ctx :Context,
@@ -31,30 +31,32 @@ function isO(val :any) :val is O {
     return ["function", "object"].includes(val)
 }
 
-export default function jsonify<Val extends JsonVal>(
+export default function jsonify<Val>(
     mir :Mirror,
     val :Val,
     spacing :number = 4,
     //… prohibits passing spacing as a string
-    diff? :Val,
-) {
-    function cbReplace(
+    diff? :Patch<Val>,
+) :string {
+    function cbReplace<E>(
         this :Object,
         key :string,
-        val :any,
-    ) :Val {
+        e :E,
+    ) :typeof e { //TODO
+        if (isO(e)) {
+            if (isJsonable(e)) {
+                const cxt = key
+                    ? {
+                        mir,
+                        tgt: this,
+                        key: key || null,
+                    }
+                    : mir
 
-        if (isJsonable(val)) {
-            const cxt = key
-                ? val.toJson({
-                    mir,
-                    tgt: this,
-                    key: key || null,
-                })
-                : val.toJson(mir)
-
-            return val.toJson(cxt)
-        } else (isO(val)) {
+                return e.toJson(cxt)
+            } else {
+            }
+        } else {
 
         }
     }
