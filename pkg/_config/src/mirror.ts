@@ -11,6 +11,10 @@ import {
     JsonVal,
 } from "./jsonify"
 
+interface Simile<Val> {
+    out :Val,
+    run :Val,
+}
 export default class Mirror {
     static readonly outDir = new Path("out/")
     static readonly runDir = new Path("run/")
@@ -20,23 +24,33 @@ export default class Mirror {
     // relative destination:
     readonly relDest :Path
 
-    async diff<Val>() :Pm<Val> {
+    async read<Val extends JsonVal>(
+    ) :Pm<Simile<Val>> {
         const outDest = Mirror.outDir.rel(this.relDest)
         const runDest = Mirror.runDir.rel(this.relDest)
-
-        const [...content] =
+        const [out, run] =
             await Promise.all([
                 fse.readJson(outDest.toJson()),
                 fse.readJson(runDest.toJson()),
             ])
+
+        return {out, run}
+    }
+
+    diff<Val extends JsonVal>(
+        {out, run} :Simile<Val>
+    ) :Val {
         const contWrap =
-            content.map(e=> [e]) as [[Val], [Val]]
+            [out, run].map(e=> [e]) as [[Val], [Val]]
         const patch: fjp.Operation[] =
             (fjp.compare as Function)(...contWrap)
         //…TODO:         ^ Dumb type fix hack. Y error when removing?:
         //    `Expected 2; got 0 args.`
-        const diffWrap = fjp.applyPatch([], patch).newDocument
+        const diffWrap :[Val] | never[] =
+            fjp.applyPatch([], patch).newDocument
 
+        if ("undefined" === typeof diffWrap[0])
+            throw "Patching error…"
         return diffWrap[0]
     }
 
