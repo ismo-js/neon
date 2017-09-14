@@ -8,7 +8,7 @@ export interface Context<Tgt=O> {
     mir :Mirror
     // target:
     tgt? :Tgt
-    key :(keyof Tgt) | null
+    key? :(keyof Tgt) | null
 }
 
 export interface Jsonable {
@@ -37,22 +37,23 @@ export default function jsonify<Val>(
         this :Object,
         key :string,
         e :E,
-    ) :typeof e { //TODO
+    ) {
         if (isO(e)) {
             if (isJsonable(e)) {
+                const self = this
                 const cxt = key
                     ? {
                         mir,
                         tgt: this,
-                        key: key || null,
+                        key: key as keyof typeof self || null,
                     }
                     : {mir}
 
-                return e.toJson(cxt)
-            } else {
+                return (e as any as Jsonable).toJson(cxt)
+                //…TODO Y the hell the guards aren't working?
             }
-        } else {
-
+            return {...(e as any as O)}
+            //…TODO: Y is this dirty anyhack needed?
         }
     }
 
