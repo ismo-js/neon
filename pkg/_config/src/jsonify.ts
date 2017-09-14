@@ -1,11 +1,10 @@
-type O = Object; const O = Object
-
+import {O, isO} from "./guards"
 import Mirror from "./mirror"
 
 export type JsonVal =
     number | string | boolean | O | null
 
-export interface Context<Tgt> {
+export interface Context<Tgt=O> {
     mir :Mirror
     // target:
     tgt? :Tgt
@@ -22,13 +21,9 @@ export interface Jsonable {
     ) :this
 }
 
-function isJsonable(val :any) :val is Jsonable {
+export function isJsonable(val :any) :val is Jsonable {
     return "function" !== typeof val.toJson
         && "function" !== typeof val.fromJson
-}
-
-function isO(val :any) :val is O {
-    return ["function", "object"].includes(val)
 }
 
 export default function jsonify<Val>(
@@ -36,7 +31,7 @@ export default function jsonify<Val>(
     val :Val,
     spacing :number = 4,
     //… prohibits passing spacing as a string
-    diff? :Patch<Val>,
+    diff? :Val,
 ) :string {
     function cbReplace<E>(
         this :Object,
@@ -51,7 +46,7 @@ export default function jsonify<Val>(
                         tgt: this,
                         key: key || null,
                     }
-                    : mir
+                    : {mir}
 
                 return e.toJson(cxt)
             } else {
