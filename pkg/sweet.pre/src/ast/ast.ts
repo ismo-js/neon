@@ -1,4 +1,4 @@
-enum Lvl {
+export enum Lvl {
     X0, X1, X2, X3, X4, X5, X6, X7, X8, X9, Xa, Xb, Xc, Xd, Xe, Xf,
 }
 
@@ -26,13 +26,17 @@ class Undef extends Void {
         Void.mag[1] ^ 0x101 << Lvl.X1,
     ]
 }
-
-class Null extends Void {
-    readonly static mag = [
-        Lvl.X4,
-        Void.mag[1],
-    ]
+namespace Undef {
+    const enum Mag {
+        bits = 0,
+        lvl = Lvl.X4,
+    }
 }
+
+const Null = !function () {
+
+    return Null
+}()
 
 class Bool extends Prim {
     readonly static mag = [
