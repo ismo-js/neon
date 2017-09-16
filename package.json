@@ -4,5 +4,8 @@
     "license": "LGPLv3",
     "devDependencies": {
         "@types/node": "~7.0.43"
+    },
+    "dependencies": {
+        "acorn": "^5.1.2"
     }
 }
