@@ -1,10 +1,10 @@
-export const enum Lvl {
+export enum Lvl {
     // Complexity:
-    Complxy = 1,
-    Type = 4,
+    Complxy = 0x04,
+    Type = 0x10,
 }
 
-export declare const enum Magic {
+export declare enum Magic {
     bits,
     lvl,
     byte,
@@ -26,9 +26,12 @@ export enum ComplxyType {
     //… TODO Support ES version switching
     Str = "string",
     Callable = "function",
+    Sym = "symbol",
 }
 
 export abstract class Val {
+    abstract static readonly paramTyped :any
+
     readonly treeType :TreeType = "Literal"
     abstract readonly complxyType :ComplxyType
 }

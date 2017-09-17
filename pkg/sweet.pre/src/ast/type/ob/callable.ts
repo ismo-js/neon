@@ -1,20 +1,19 @@
 import {
     Lvl,
-    TreeType,
     ComplxyType,
 } from "ast/ast"
-import Mom from "ast/complxy/prim"
+import Mom from "ast/complxy/ob"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
-class Sym extends Mom {
-    complxyType :ComplxyType = ComplxyType.Sym
+abstract class Callable extends Mom {
+    complxyType :ComplxyType = ComplxyType.Callable
 }
-namespace Sym {
+namespace RegEx {
     export enum Mag {
-        bits = 0x54b,
+        bits = 0xca1,
         lvl = ~~Lvl.Type,
         word = Pre.bits ^ bits << Pre.lvl,
     }
 }
-export default Sym
+export default RegEx
