@@ -1,0 +1,27 @@
+main in^
+    wait 5
+    print
+        |   Welcome…
+        ---
+        |   What language do you want to use?
+        choice, lang *english
+        choice, lang *german
+    in lang: print
+        question, in lang
+        text-area, answer
+    in answer: print
+        item answer
+
+wait count^
+    print
+        |   Just
+        count
+        |   seconds left for being bored…
+        ---
+        |   Life sucks, right?
+
+question lang^
+    *english lang
+    |   What are you up to?
+    *german lang
+    |   Was willst leicht tun?

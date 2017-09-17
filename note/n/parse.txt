@@ -1,0 +1,32 @@
+main in^
+    cap | Multiplier
+    input *raw-fst
+    input *raw-snd
+    output, fst snd
+
+sign-dec [char0`@ chars]^
+    char0`in digs
+        *sign True
+        *dec, char0`@ chars
+    char0`= |+
+        *sign True
+        *dec, chars
+    char0`= |-
+        *sign False
+        *dec, chars
+
+parse-dec [char0`@ chars]^
+    char0`= |,
+        parse-dec chars
+    char0`= |.
+        *point
+        parse-dec chars
+    char0`in digs
+        parse-dig char0
+        parse-dec chars
+
+parse-dig char^
+    digs
+
+digs
+    |   0 1 2 3 4 5 6 7 8 9
