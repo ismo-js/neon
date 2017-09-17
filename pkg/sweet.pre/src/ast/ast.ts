@@ -1,7 +1,8 @@
 export enum Lvl {
     // Complexity:
     Complxy = 0x04,
-    Type = 0x10,
+    Type = 0x0c,
+    Expr = 0x14,
 }
 
 export declare enum Magic {
@@ -16,9 +17,9 @@ export type TreeType =
 // ComplexityType:
 //…   *doesn't* exactly match the ast `Complxy` categorization system, but exactly matches the EcmaScript `typeof` operator semantics.
 export enum ComplxyType {
-    Void = "undefined",
-    Ob = "object",
-    Null = Ob,
+    Undef = "undefined",
+    Container = "object",
+    Null = Container,
     Bool = "boolean",
     Float = "number",
     Int = "integer",
