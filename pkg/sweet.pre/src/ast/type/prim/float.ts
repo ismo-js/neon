@@ -1,19 +1,20 @@
 import {
     Lvl,
+    TreeType,
     ComplxyType,
 } from "ast/ast"
-import Mom from "ast/complxy/nil"
+import Mom from "ast/complxy/prim"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
-class Null extends Mom {
-    complxyType :ComplxyType = ComplxyType.Null
+class Float extends Mom {
+    complxyType :ComplxyType = ComplxyType.Float
 }
-namespace Null {
+namespace Float {
     export enum Mag {
-        bits = 0x000,
+        bits = 0xf10,
         lvl = ~~Lvl.Type,
         word = Pre.bits ^ bits << Pre.lvl,
     }
 }
-export default Null
+export default Float

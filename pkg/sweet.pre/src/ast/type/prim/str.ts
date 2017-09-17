@@ -6,13 +6,13 @@ import Mom from "ast/complxy/prim"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
-class Num extends Mom {
+class Str extends Mom {
 }
-namespace Num {
+namespace Sym {
     export enum Mag {
-        bits = 0x123,
+        bits = 0xabc,
         lvl = ~~Lvl.Type,
         word = Pre.bits ^ bits << Pre.lvl,
     }
 }
-export default Num
+export default Sym
