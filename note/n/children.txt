@@ -1,0 +1,4 @@
+child:
+    target: is Elem
+    key: is string`| symbol
+    descr: Descr Elem

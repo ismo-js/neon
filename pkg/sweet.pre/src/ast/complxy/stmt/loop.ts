@@ -3,10 +3,10 @@ import {
     Val,
 } from "ast/ast"
 
-abstract class Ident extends Val {
+abstract class Loop extends Val {
 
 }
-namespace Ident {
+namespace Loop {
     export enum Mag {
         bits = 0x58,
         //…   *S*tatement: /infinity/
@@ -14,4 +14,4 @@ namespace Ident {
         word = bits,
     }
 }
-export default Ident
+export default Loop
