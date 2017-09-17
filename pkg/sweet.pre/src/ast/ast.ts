@@ -1,10 +1,17 @@
-export enum Lvl {
-    X0, X1, X2, X3, X4, X5, X6, X7, X8, X9, Xa, Xb, Xc, Xd, Xe, Xf,
+export const enum Lvl {
+    // Complexity:
+    Complxy = 1,
+    Type = 4,
 }
 
-type Magic = [Lvl, number]
-abstract class Val {
-    readonly mag: Magic
+export declare const enum Magic {
+    bits,
+    lvl,
+    byte,
+}
+
+export abstract class Val {
+    static Mag :Magic
 }
 
 abstract class Void extends Val {

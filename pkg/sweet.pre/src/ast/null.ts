@@ -1,15 +1,15 @@
-import {Lvl} from "./ast"
-const Mom = Void
+import {Lvl, Magic} from "./ast"
+import Mom from "./void"
+
+const Pre = Mom.Mag; type Pre = Mom.Mag
 
 class Null extends Mom {
 }
-
 namespace Null {
-    const enum Mag {
+    export enum Mag {
         bits = 0x101,
-        lvl = Lvl.X4,
-        byte = Mom.Mag.bits ^ bits << Mom.Mag.lvl,
+        lvl = ~~Lvl.Type,
+        byte = Pre.bits ^ bits << Pre.lvl,
     }
 }
-
 export default Null
