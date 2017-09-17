@@ -1,6 +1,6 @@
 import {
     Lvl,
-    TreeType,
+    ComplxyType,
 } from "ast/ast"
 import Mom from "ast/complxy/prim"
 
@@ -11,7 +11,8 @@ class Bool extends Mom {
 }
 namespace Bool {
     export enum Mag {
-        bits = 0xb01,
+        bits = 0xb0,
+        //…   *bo*olean
         lvl = ~~Lvl.Type,
         word = Pre.bits ^ bits << Pre.lvl,
     }

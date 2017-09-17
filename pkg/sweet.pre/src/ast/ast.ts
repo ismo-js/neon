@@ -30,8 +30,12 @@ export enum ComplxyType {
 }
 
 export abstract class Val {
-    abstract static readonly paramTyped :any
+    static readonly paramTyped :any
 
     readonly treeType :TreeType = "Literal"
     abstract readonly complxyType :ComplxyType
+}
+
+export abstract class Expr<Val> {
+
 }

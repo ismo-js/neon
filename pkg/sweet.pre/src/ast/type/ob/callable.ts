@@ -11,7 +11,8 @@ abstract class Callable extends Mom {
 }
 namespace RegEx {
     export enum Mag {
-        bits = 0xca1,
+        bits = 0xcb,
+        //…   *c*alla*b*le
         lvl = ~~Lvl.Type,
         word = Pre.bits ^ bits << Pre.lvl,
     }

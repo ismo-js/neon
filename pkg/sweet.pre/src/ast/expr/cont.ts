@@ -1,11 +1,12 @@
 import {
     Lvl,
+    Expr,
 } from "ast/ast"
-import Mom from "ast/complxy/ob"
+import Dad from "ast/complxy/ob"
 
-const Pre = Mom.Mag; type Pre = Mom.Mag
+const Pre = Dad.Mag; type Pre = Dad.Mag
 
-class Cont extends Mom {
+class Cont extends Expr<Dad> {
 }
 namespace Cont {
     export enum Mag {

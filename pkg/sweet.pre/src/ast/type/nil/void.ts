@@ -11,7 +11,8 @@ class Void extends Mom {
 }
 namespace Void {
     export enum Mag {
-        bits = 0x101,
+        bits = 0xdf,
+        //…   no *d*e*f*inition
         lvl = ~~Lvl.Type,
         word = Pre.bits ^ bits << Pre.lvl,
     }

@@ -12,7 +12,8 @@ class Float extends Mom {
 }
 namespace Float {
     export enum Mag {
-        bits = 0xf10,
+        bits = 0xf1,
+        //…   *fl*oat
         lvl = ~~Lvl.Type,
         word = Pre.bits ^ bits << Pre.lvl,
     }

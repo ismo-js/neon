@@ -1,11 +1,12 @@
 import {
     Lvl,
+    Expr,
 } from "ast/ast"
-import Mom from "ast/complxy/ob"
+import Dad from "ast/complxy/ob"
 
-const Pre = Mom.Mag; type Pre = Mom.Mag
+const Pre = Dad.Mag; type Pre = Dad.Mag
 
-class RegEx extends Mom {
+class RegEx extends Expr<Dad> {
 }
 namespace RegEx {
     export enum Mag {

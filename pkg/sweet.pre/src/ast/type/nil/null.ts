@@ -11,7 +11,8 @@ class Null extends Mom {
 }
 namespace Null {
     export enum Mag {
-        bits = 0x000,
+        bits = 0x00,
+        //…   zero
         lvl = ~~Lvl.Type,
         word = Pre.bits ^ bits << Pre.lvl,
     }
