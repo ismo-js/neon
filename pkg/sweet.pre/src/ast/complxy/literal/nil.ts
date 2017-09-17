@@ -3,14 +3,13 @@ import {
     Val,
 } from "ast/ast"
 
-abstract class Prim extends Val {
-
+abstract class Nil extends Val {
 }
-namespace Prim {
+namespace Nil {
     export enum Mag {
-        bits = 0x1,
+        bits = 0x00,
         lvl = ~~Lvl.Complxy,
         word = bits,
     }
 }
-export default Prim
+export default Nil
