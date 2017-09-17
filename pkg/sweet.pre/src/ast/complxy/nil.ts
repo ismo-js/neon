@@ -4,13 +4,13 @@ import {
     Val,
 } from "./ast"
 
-abstract class Void extends Val {
+abstract class Nil extends Val {
 }
-namespace Void {
+namespace Nil {
     export enum Mag {
         bits = 0x0,
         lvl = ~~Lvl.Complxy,
-        byte = bits,
+        word = bits,
     }
 }
-export default Void
+export default Nil

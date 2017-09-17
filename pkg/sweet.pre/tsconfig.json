@@ -1,0 +1,29 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "baseUrl": "src/",
+        "typeRoots": ["node_modules/@types"],
+        "outDir": "lib/",
+
+        "module": "commonjs",
+        "target": "es2017",
+        "lib": ["es2017"],
+
+        "strict": true,
+        "noFallthroughCasesInSwitch": true,
+        "forceConsistentCasingInFileNames": true,
+
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+
+        "listEmittedFiles": true,
+        "listFiles": true,
+        "diagnostics": true
+    },
+
+    "exclude": [
+        "node_modules",
+        "***/*.old",
+        "***/*.pre"
+    ]
+}

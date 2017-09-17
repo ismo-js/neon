@@ -9,7 +9,7 @@ namespace Null {
     export enum Mag {
         bits = 0x101,
         lvl = ~~Lvl.Type,
-        byte = Pre.bits ^ bits << Pre.lvl,
+        word = Pre.bits ^ bits << Pre.lvl,
     }
 }
 export default Null

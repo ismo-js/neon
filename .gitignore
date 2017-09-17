@@ -11,9 +11,8 @@ node_modules/
 /lib
 /decl
 /map
-/pkg/\@*/lib
+/pkg/*/lib
 /pkg/\@*/run
 /pkg/\@*/out
-/pkg/_*/lib
 /pkg/_*/run
 /pkg/_*/out
