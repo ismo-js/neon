@@ -1,13 +1,13 @@
 import {
     Lvl,
-    ComplxyType,
+    RunComplxy as RC,
 } from "ast/ast"
 import Mom from "ast/complxy/ob"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
 abstract class Callable extends Mom {
-    complxyType :ComplxyType = ComplxyType.Callable
+    runComplxy :RC= RC.Callable
 }
 namespace Callable {
     export enum Mag {

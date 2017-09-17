@@ -1,7 +1,7 @@
 import {
     Lvl,
     Val,
-} from "./ast"
+} from "ast/ast"
 
 abstract class Nil extends Val {
 }

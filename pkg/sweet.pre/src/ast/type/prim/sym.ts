@@ -1,14 +1,13 @@
 import {
     Lvl,
-    TreeType,
-    ComplxyType,
+    RunComplxy as RC,
 } from "ast/ast"
 import Mom from "ast/complxy/prim"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
 class Sym extends Mom {
-    complxyType :ComplxyType = ComplxyType.Sym
+    runComplxy :RC = RC.Sym
 }
 namespace Sym {
     export enum Mag {

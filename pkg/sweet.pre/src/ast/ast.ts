@@ -14,9 +14,10 @@ export declare enum Magic {
 export type TreeType =
     "Program" | "Literal" //TODO
 
-// ComplexityType:
+// Run Complexity:
 //…   *doesn't* exactly match the ast `Complxy` categorization system, but exactly matches the EcmaScript `typeof` operator semantics.
-export enum ComplxyType {
+export enum RunComplxy {
+    Any = "",
     Undef = "undefined",
     Container = "object",
     Null = Container,
@@ -31,10 +32,8 @@ export enum ComplxyType {
 }
 
 export abstract class Val {
-    static readonly paramTyped :any
-
     readonly treeType :TreeType = "Literal"
-    abstract readonly complxyType :ComplxyType
+    abstract readonly runComplxy :RunComplxy
 }
 
 export abstract class Expr<Val> {

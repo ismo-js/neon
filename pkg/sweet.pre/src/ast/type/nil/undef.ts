@@ -1,13 +1,13 @@
 import {
     Lvl,
-    ComplxyType,
+    RunComplxy as RC,
 } from "ast/ast"
 import Mom from "ast/complxy/nil"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
 class Undef extends Mom {
-    complxyType :ComplxyType = ComplxyType.Undef
+    runComplxy :RC = RC.Undef
 }
 namespace Undef {
     export enum Mag {

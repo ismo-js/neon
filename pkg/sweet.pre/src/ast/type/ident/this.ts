@@ -2,19 +2,19 @@ import {
     Lvl,
     RunComplxy as RC,
 } from "ast/ast"
-import Mom from "ast/complxy/prim"
+import Mom from "ast/complxy/nil"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
-class Float extends Mom {
-    runComplxy :RC = RC.Float
+class This extends Mom {
+    runComplxy :RC = RC.Any
 }
-namespace Float {
+namespace This {
     export enum Mag {
-        bits = 0xf1,
-        //…   *fl*oat
+        bits = 0x75,
+        //…   *t*hi*s*
         lvl = ~~Lvl.Type,
         word = Pre.bits ^ bits << Pre.lvl,
     }
 }
-export default Float
+export default This

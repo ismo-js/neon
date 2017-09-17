@@ -1,14 +1,13 @@
 import {
     Lvl,
-    TreeType,
-    ComplxyType,
+    RunComplxy as RC,
 } from "ast/ast"
 import Mom from "ast/complxy/prim"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
 class Str extends Mom {
-    complxyType :ComplxyType = ComplxyType.Str
+    runComplxy :RC = RC.Str
 }
 namespace Str {
     export enum Mag {
