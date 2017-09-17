@@ -7,7 +7,7 @@ abstract class Ob extends Val {
 
 }
 namespace Ob {
-    enum Mag {
+    export enum Mag {
         bits = 0xa,
         lvl = ~~Lvl.Complxy,
         word = bits,

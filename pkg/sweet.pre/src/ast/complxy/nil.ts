@@ -1,6 +1,5 @@
 import {
     Lvl,
-    Magic,
     Val,
 } from "./ast"
 
