@@ -13,3 +13,4 @@ namespace Ob {
         word = bits,
     }
 }
+export default Ob

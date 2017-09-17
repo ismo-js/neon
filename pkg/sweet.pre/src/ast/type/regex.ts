@@ -1,17 +1,17 @@
 import {
     Lvl,
 } from "ast/ast"
-import Mom from "ast/complxy/nil"
+import Mom from "ast/complxy/ob"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
-class Null extends Mom {
+class RegEx extends Mom {
 }
-namespace Null {
+namespace RegEx {
     export enum Mag {
-        bits = 0x000,
+        bits = 0x2e9,
         lvl = ~~Lvl.Type,
         word = Pre.bits ^ bits << Pre.lvl,
     }
 }
-export default Null
+export default RegEx

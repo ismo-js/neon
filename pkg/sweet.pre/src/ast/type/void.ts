@@ -5,13 +5,13 @@ import Mom from "ast/complxy/nil"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
-class Null extends Mom {
+class Void extends Mom {
 }
-namespace Null {
+namespace Void {
     export enum Mag {
-        bits = 0x000,
+        bits = 0x101,
         lvl = ~~Lvl.Type,
         word = Pre.bits ^ bits << Pre.lvl,
     }
 }
-export default Null
+export default Void
