@@ -17,8 +17,8 @@ class If extends Mom {
 }
 namespace If {
     export enum Mag {
-        bits = 0xc0,
-        //…   *co*ntainer
+        bits = 0x1f,
+        //…   *if*
         lvl = ~~Lvl.Type,
         word = Pre.bits ^ bits << Pre.lvl,
     }

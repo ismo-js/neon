@@ -14,8 +14,8 @@ class Switch extends Mom {
 }
 namespace Case {
     export enum Mag {
-        bits = 0xc5,
-        //…   *co*ntainer
+        bits = 0x53,
+        //…   *sw*itch
         lvl = ~~Lvl.Type,
         word = Pre.bits ^ bits << Pre.lvl,
     }

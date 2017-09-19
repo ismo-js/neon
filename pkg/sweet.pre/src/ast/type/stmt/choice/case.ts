@@ -14,8 +14,8 @@ class Case extends Mom {
 }
 namespace Case {
     export enum Mag {
-        bits = 0xc0,
-        //…   *co*ntainer
+        bits = 0xc5,
+        //…   *c*a*s*e
         lvl = ~~Lvl.Type,
         word = Pre.bits ^ bits << Pre.lvl,
     }
