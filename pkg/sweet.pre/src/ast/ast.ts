@@ -33,7 +33,8 @@ export enum RunComplxy {
 
 export abstract class Val {
     readonly treeType :TreeType = "Literal"
-    abstract readonly runComplxy :RunComplxy
+    //abstract readonly runComplxy :RunComplxy
+    //…TODO move to interface
 }
 
 export abstract class Expr<Val> {

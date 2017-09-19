@@ -2,7 +2,7 @@ import {
     Lvl,
     RunComplxy as RC,
 } from "ast/ast"
-import Mom from "ast/complxy/ob"
+import Mom from "ast/complxy/literal/ob"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
 

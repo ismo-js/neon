@@ -4,7 +4,6 @@ import {
 } from "ast/ast"
 
 abstract class Ident extends Val {
-
 }
 namespace Ident {
     export enum Mag {
