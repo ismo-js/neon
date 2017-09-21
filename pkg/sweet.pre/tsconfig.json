@@ -9,6 +9,9 @@
         "target": "es2017",
         "lib": ["es2017"],
 
+        "jsx": "React",
+        "jsxFactory": "JSX.tag",
+
         "strict": true,
         "noFallthroughCasesInSwitch": true,
         "forceConsistentCasingInFileNames": true,

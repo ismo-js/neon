@@ -1,3 +1,5 @@
+import "reflect-metadata"
+
 export enum Lvl {
     // Complexity:
     Complxy = 0x04,
@@ -40,3 +42,11 @@ export abstract class Val {
 export abstract class Expr<Val> {
 
 }
+
+export function mag(
+    word :number,
+) {
+    return Reflect.metadata("ast:mag", word)
+}
+
+export class Out {}
