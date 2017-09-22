@@ -9,8 +9,8 @@
         "target": "es2017",
         "lib": ["es2017"],
 
-        "jsx": "React",
-        "jsxFactory": "JSX.tag",
+        "jsx": "react",
+        "jsxFactory": "tag",
 
         "strict": true,
         "noFallthroughCasesInSwitch": true,

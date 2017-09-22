@@ -5,16 +5,24 @@ import {
 } from "ast/ast"
 import Mom from "ast/complxy/stmt/choice"
 
-namespace JSX {
-    export interface Element {}
+interface Taggable {
+    tag(
+        attrs :Object,
+    ) :Object
+}
 
-    export function tag(
-        Elem :new(attrs: Object)=> JSX.Element,
-        attrs :Object | null,
-        ...children :(string | JSX.Element)[]
-    ) :JSX.Element {
-        return new Elem(attrs || {})
+declare global {
+    namespace JSX {
+        interface Element {}
     }
+}
+
+function tag<ElemCon extends Taggable>(
+    elemCon :ElemCon,
+    attrs :Object | null,
+    ...children :(string | Object)[]
+) :JSX.Element {
+    return elemCon.tag(attrs || {})
 }
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
@@ -31,7 +39,7 @@ class If extends Mom {
 
     output() {
         return <Out>
-            if ({this.test}) {cons}
+            if ({this.test}) {this.cons}
             {(this.alt)
                 ? <Out>else {this.alt}</Out>
                 : void 0
