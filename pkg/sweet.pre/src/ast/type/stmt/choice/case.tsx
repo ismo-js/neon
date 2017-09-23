@@ -7,10 +7,21 @@ const Pre = Mom.Mag; type Pre = Mom.Mag
 
 class Case extends Mom {
     @mag(0x3a7c)
+    @typ(Nullable, Expr)
     match: Expr | null
 
     @mag(0xc025)
-    cons: Stmt
+    @typ(ran(1), Stmt)
+    cons: Stmt[]
+
+    get output() {
+        return <Expr>
+            <Word>case</Word>
+            {this.match}
+            :
+            {this.cons}
+        </Expr>
+    }
 }
 namespace Case {
     export enum Mag {

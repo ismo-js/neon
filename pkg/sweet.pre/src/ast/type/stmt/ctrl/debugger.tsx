@@ -6,6 +6,9 @@ import Mom from "ast/complxy/stmt/ctrl"
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
 class Debugger extends Mom {
+    get output() {
+        return <Stmt>debugger</Stmt>
+    }
 }
 namespace Debugger {
     export enum Mag {

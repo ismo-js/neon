@@ -12,9 +12,9 @@ class Switch extends Mom {
     @mag(0xca5e)
     cases: Case[]
 
-    output() {
+    get output() {
         return <Stmt>
-            switch{" "}
+            <Word>switch</Word>
             <Paren>{this.match}</Paren>
             <Brace>{this.cases}</Brace>
         </Stmt>

@@ -24,25 +24,28 @@ const Pre = Mom.Mag; type Pre = Mom.Mag
 
 class If extends Mom {
     @mag(0x7e57)
+    @typ(Expr)
     test: Expr
 
     @mag(0xc025)
+    @typ(Stmt)
     cons: Stmt
 
     @mag(0xa17e)
+    @typ(Nullable, Stmt)
     alt: Stmt | null
 
-    output() {
+    get output() {
         return <Stmt>
-            if{" "}
+            <Word>if</Word>
             <Paren>{this.test}</Paren>
             {this.cons}
             {(this.alt)
                 ? <Expr>
-                    else{" "}
+                    <Word>else</Word>
                     {this.alt}
                 </Expr>
-                : ""
+                : []
             }
         </Stmt>
     }
