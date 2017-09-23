@@ -11,6 +11,14 @@ class Switch extends Mom {
 
     @mag(0xca5e)
     cases: Case[]
+
+    output() {
+        return <Stmt>
+            switch{" "}
+            <Paren>{this.match}</Paren>
+            <Brace>{this.cases}</Brace>
+        </Stmt>
+    }
 }
 namespace Case {
     export enum Mag {

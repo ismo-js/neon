@@ -50,9 +50,3 @@ export function mag(
 }
 
 export class Out {}
-
-declare global {
-    namespace JSX {
-        interface Element {}
-    }
-}

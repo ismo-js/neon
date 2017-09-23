@@ -1,3 +1,4 @@
+/// <reference path="../../../../jsx.ts" />
 import {
     Lvl,
     mag,
@@ -9,12 +10,6 @@ interface Taggable {
     tag(
         attrs :Object,
     ) :Object
-}
-
-declare global {
-    namespace JSX {
-        interface Element {}
-    }
 }
 
 function tag<ElemCon extends Taggable>(
@@ -38,13 +33,18 @@ class If extends Mom {
     alt: Stmt | null
 
     output() {
-        return <Out>
-            if ({this.test}) {this.cons}
+        return <Stmt>
+            if{" "}
+            <Paren>{this.test}</Paren>
+            {this.cons}
             {(this.alt)
-                ? <Out>else {this.alt}</Out>
-                : void 0
+                ? <Expr>
+                    else{" "}
+                    {this.alt}
+                </Expr>
+                : ""
             }
-        </Out>
+        </Stmt>
     }
 }
 namespace If {
