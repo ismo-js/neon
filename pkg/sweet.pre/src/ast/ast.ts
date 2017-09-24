@@ -6,7 +6,7 @@ export enum Lvl {
     // Complexity:
     Complxy = 0x04,
     Type = 0x0c,
-    Expr = 0x14,
+    Expr = 0x14, //TODO Rethink level stucture
 }
 
 export declare enum Magic {
@@ -37,11 +37,8 @@ export enum RunComplxy {
 
 export interface Node {
     readonly treeType :TreeType
+    readonly runComplxy :RunComplxy
     readonly output :JSX.Element
-}
-
-export abstract class Expr<Val> {
-
 }
 
 export function mag(
