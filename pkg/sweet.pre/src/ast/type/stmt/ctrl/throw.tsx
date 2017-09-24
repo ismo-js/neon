@@ -6,6 +6,15 @@ import Mom from "ast/complxy/stmt/ctrl"
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
 class Throw extends Mom {
+    @mag(0xa29e)
+    argument: Expr
+
+    get output() {
+        return <Stmt>
+            <Word>throw</Word>
+            {this.argument}
+        </Stmt>
+    }
 }
 namespace Throw {
     export enum Mag {

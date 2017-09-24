@@ -5,9 +5,9 @@ import Mom from "ast/complxy/stmt/ctrl"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
-class Try extends Mom {
+class Handler extends Mom {
 }
-namespace Try {
+namespace Handler {
     export enum Mag {
         bits = 0x74,
         //…   *t*r*y*
@@ -15,4 +15,4 @@ namespace Try {
         word = Pre.bits ^ bits << Pre.lvl,
     }
 }
-export default Try
+export default Handler
