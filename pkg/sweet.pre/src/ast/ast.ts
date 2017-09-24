@@ -1,5 +1,7 @@
 import "reflect-metadata"
 
+type O = Object; const O = Object
+
 export enum Lvl {
     // Complexity:
     Complxy = 0x04,
@@ -33,10 +35,9 @@ export enum RunComplxy {
     Sym = "symbol",
 }
 
-export abstract class Val {
-    readonly treeType :TreeType = "Literal"
-    //abstract readonly runComplxy :RunComplxy
-    //…TODO move to interface
+export interface Node {
+    readonly treeType :TreeType
+    readonly output :JSX.Element
 }
 
 export abstract class Expr<Val> {
@@ -49,4 +50,17 @@ export function mag(
     return Reflect.metadata("ast:mag", word)
 }
 
-export class Out {}
+export interface Taggable {
+    tag(
+        attrs :Object,
+    ) :Object
+}
+
+export type Children = (string | O)[]
+export function tag(
+    elemCon :Taggable,
+    attrs :O | null,
+    ...children :Children
+) :JSX.Element {
+    return elemCon.tag(attrs || {}, children)
+}

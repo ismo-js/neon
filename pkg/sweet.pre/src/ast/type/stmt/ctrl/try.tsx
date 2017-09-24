@@ -1,5 +1,6 @@
 import {
     Lvl,
+    mag,
 } from "ast/ast"
 import Handler from "ast/type/stmt/ctrl/handler"
 import Block from "ast/type/stmt/pod/block"
@@ -8,9 +9,9 @@ import Mom from "ast/complxy/stmt/ctrl"
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
 class Try extends Mom {
-    @mag(0xa77e)
+    @mag(0xb0d4)
     @typ(Block)
-    attempt: Block
+    body: Block
 
     @mag(0x4ad1)
     @typ(Nullable, Handler)
@@ -23,7 +24,7 @@ class Try extends Mom {
     get output() {
         return <Stmt>
             <Word>try</Word>
-            <Brace>{this.attempt}</Brace>
+            <Brace>{this.body}</Brace>
             {this.handler}
         </Stmt>
     }

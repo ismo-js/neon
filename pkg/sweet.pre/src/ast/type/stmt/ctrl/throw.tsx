@@ -1,5 +1,6 @@
 import {
     Lvl,
+    mag,
 } from "ast/ast"
 import Mom from "ast/complxy/stmt/ctrl"
 
@@ -7,6 +8,7 @@ const Pre = Mom.Mag; type Pre = Mom.Mag
 
 class Throw extends Mom {
     @mag(0xa29e)
+    @typ(Expr)
     argument: Expr
 
     get output() {

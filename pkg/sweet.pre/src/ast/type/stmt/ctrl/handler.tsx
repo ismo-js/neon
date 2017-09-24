@@ -1,5 +1,6 @@
 import {
     Lvl,
+    mag,
 } from "ast/ast"
 import Mom from "ast/complxy/stmt/ctrl"
 

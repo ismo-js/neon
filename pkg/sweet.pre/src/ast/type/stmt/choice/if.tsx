@@ -2,23 +2,8 @@
 import {
     Lvl,
     mag,
-    Out,
 } from "ast/ast"
 import Mom from "ast/complxy/stmt/choice"
-
-interface Taggable {
-    tag(
-        attrs :Object,
-    ) :Object
-}
-
-function tag<ElemCon extends Taggable>(
-    elemCon :ElemCon,
-    attrs :Object | null,
-    ...children :(string | Object)[]
-) :JSX.Element {
-    return elemCon.tag(attrs || {})
-}
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
