@@ -1,5 +1,7 @@
 import {
     mag,
+    Node,
+    TT,
 } from "ast/meta"
 import {
     Taggable,
@@ -9,17 +11,20 @@ import {
 } from "ast/hexer/tag"
 import {O} from "neon-lowbar"
 
-class WordCls {
+abstract class ExprCls
+      implements Node {
+    abstract treeType :TT
+
     static tag(
         attrs :O,
         children :Children[],
-    ) :O {
+    ) {
         const childStr = arrange(children).join("")
 
         return {
-            toString: ()=> " " + childStr + " ",
+            toString: ()=> childStr,
         }
     }
 }
-const Word :Taggable = WordCls
-export default Word
+const Expr :Taggable = ExprCls
+export default Expr

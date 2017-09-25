@@ -1,5 +1,4 @@
-type O = Object; const O = Object
-type Fn = Function; const Fn = Function
+import {O, Fn} from "neon-lowbar"
 
 export type Type = Fn | Iterable<Fn>
 

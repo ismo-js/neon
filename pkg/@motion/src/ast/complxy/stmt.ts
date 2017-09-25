@@ -1,45 +1,28 @@
 import {
     mag,
     Node,
-    TreeType as TT,
+    TT,
+} from "ast/meta"
+import {
     Taggable,
     Child,
     Children,
-} from "ast/meta"
+    arrange,
+} from "ast/hexer/tag"
 import {O} from "neon-lowbar"
-
-function flatten(
-    children :Children,
-) :Child[] {
-    if (Array.isArray(children)) {
-        return ([] as (string | O)[])
-            .concat(...children.map(flatten))
-    } else {
-        return [children]
-    }
-}
-
-function arrange(
-    childArr :Child[],
-) :string[] {
-    return childArr.map(e=> e.toString())
-}
 
 abstract class StmtCls
       implements Node {
     abstract treeType :TT
-    abstract output :JSX.Element
 
     static tag(
         attrs :O,
         children :Children[],
     ) {
-        const childStr = arrange(flatten(children)).join("")
+        const childStr = arrange(children).join("")
 
         return {
-            toString() {
-                return childStr + "; "
-            },
+            toString: ()=> childStr + "; ",
         }
     }
 }

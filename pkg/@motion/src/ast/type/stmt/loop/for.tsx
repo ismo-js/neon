@@ -2,12 +2,12 @@ import {
     Lvl,
     mag,
     tag,
-    xmp,
     typ,
 } from "ast/meta"
 import {
     Stmt,
     Word,
+    Expr,
 } from "ast/complxy/meta"
 import Mom from "ast/complxy/stmt/loop"
 

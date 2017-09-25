@@ -6,8 +6,5 @@ export {
 } from "./ast"
 export * from "./ast"
 
-export {default as mag} from "./magic"
-export * from "./magic"
-
-export {default as tag} from "./tag"
-export * from "./tag"
+export {default as mag} from "./hexer/magic"
+export {default as tag} from "./hexer/tag"

@@ -13,6 +13,9 @@ export const Pm = Promise
 
 export const Px = Proxy
 
+export type Fn = Function
+export const Fn = Function
+
 export type O = Object
 export const O = Object
 

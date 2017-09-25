@@ -19,3 +19,20 @@ export default function tag(
 ) :JSX.Element {
     return elemCon.tag(attrs || {}, children)
 }
+
+export function flatten(
+    children :Children,
+) :Child[] {
+    if (Array.isArray(children)) {
+        return ([] as (string | O)[])
+            .concat(...children.map(flatten))
+    } else {
+        return [children]
+    }
+}
+
+export function arrange(
+    children :Children,
+) :string[] {
+    return flatten(children).map(e=> e.toString())
+}
