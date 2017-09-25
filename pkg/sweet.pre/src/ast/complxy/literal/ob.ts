@@ -1,9 +1,9 @@
 import {
     Lvl,
-    Val,
+    Node,
 } from "ast/ast"
 
-abstract class Ob extends Val {
+abstract class Ob implements Node {
 }
 namespace Ob {
     export enum Mag {

@@ -14,9 +14,9 @@ class If extends Mom {
     @typ(Expr)
     test: Expr
 
-    @mag(0xc025)
+    @mag(0xb0d4)
     @typ(Stmt)
-    cons: Stmt
+    body: Stmt
 
     @mag(0xa17e)
     @typ(Nullable, Stmt)

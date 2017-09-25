@@ -2,6 +2,7 @@ import {
     Lvl,
     mag,
     tag,
+    xmp,
 } from "ast/ast"
 import typ from "typ"
 import Mom from "ast/complxy/stmt/loop"
@@ -9,11 +10,27 @@ import Mom from "ast/complxy/stmt/loop"
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
 class While extends Mom {
-    //TODO properties
+    @mag(0x7e57)
+    @typ(Expr)
+    test: Expr
+
+    @mag(0xb0d4)
+    @typ(Stmt)
+    body: Stmt
+
+    @mag(0xd0b4)
+    @typ(Boolean)
+    doBefore: boolean = false
 
     output() {
         return <Stmt>
+            {this.doBefore
+                ? [<Word>do</Word>, this.body]
+                : []
+            }
             <Word>while</Word>
+            <Paren>{this.test}</Paren>
+            {this.doBefore ? [] : this.body}
         </Stmt>
     }
 }

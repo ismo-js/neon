@@ -2,6 +2,7 @@ import {
     Lvl,
     mag,
     tag,
+    xmp,
 } from "ast/ast"
 import typ from "typ"
 import Mom from "ast/complxy/stmt/loop"

@@ -11,7 +11,7 @@ const Pre = Mom.Mag; type Pre = Mom.Mag
 class Branch extends Mom {
     @mag(0xc027)
     @typ(Boolean)
-    continuing: boolean
+    doContinue: boolean = false
 
     @mag(0x1ab1)
     @typ(Nullable, Ident)
@@ -20,7 +20,7 @@ class Branch extends Mom {
     output() {
         return <Stmt>
             <Word>
-                {this.continuing ? "continue" : "break"}
+                {this.doContinue ? "continue" : "break"}
             </Word>
             {this.label || []}
         </Stmt>

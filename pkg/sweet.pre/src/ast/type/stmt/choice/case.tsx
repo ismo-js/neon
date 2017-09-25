@@ -15,7 +15,7 @@ class Case extends Mom {
 
     @mag(0xc025)
     @typ(ran(1), Stmt)
-    cons: Stmt[]
+    body: Stmt[]
 
     output() {
         return <Expr>

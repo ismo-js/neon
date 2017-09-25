@@ -1,10 +1,11 @@
 import {
     Lvl,
-    Val,
+    RunComplxy as RC,
+    Node,
 } from "ast/ast"
 
-abstract class Prim extends Val {
-
+abstract class Prim implements Node {
+    abstract runComplxy :RC
 }
 namespace Prim {
     export enum Mag {

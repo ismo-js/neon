@@ -1,9 +1,11 @@
 import {
     Lvl,
-    Val,
+    RunComplxy as RC,
+    Node,
 } from "ast/ast"
 
-abstract class Nil extends Val {
+abstract class Nil implements Node {
+    abstract runComplxy :RC
 }
 namespace Nil {
     export enum Mag {
