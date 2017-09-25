@@ -50,11 +50,14 @@ export interface Taggable {
     tag(attrs :O) :O
 }
 
-export type Children = (string | O)[]
+export type Child = string | O
+export type Children = Child | (Child | Child[])[]
+//…TODO Should be recursive, but TypeScript is dumb ;^)
+
 export function tag(
     elemCon :Taggable,
     attrs :O | null,
-    ...children :Children,
+    ...children :Children[],
 ) :JSX.Element {
     return elemCon.tag(attrs || {}, children)
 }
