@@ -1,11 +1,11 @@
 import "reflect-metadata"
 import {O} from "neon-lowbar"
 
-export interface Taggable {
-    tag(
+export interface Tagger {
+    constructor(
         attrs :O,
         children :Children[],
-    ) :O
+    ): this
 }
 
 export type Child = string | O

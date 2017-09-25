@@ -4,29 +4,32 @@ import {
     TT,
 } from "ast/meta"
 import {
-    Taggable,
+    Tagger,
     Child,
     Children,
     arrange,
 } from "ast/hexer/tag"
 import {O} from "neon-lowbar"
 
-export abstract class ExprCls
-      implements Node {
-    abstract treeType :TT
+export class Tag implements Tagger {
+    readonly childStr :string
 
-    static tag(
+    constructor(
         attrs :O,
         children :Children[],
     ) {
-        const childStr = arrange(children).join("")
+        this.childStr = arrange(children).join("")
+    }
 
-        return {
-            toString: ()=> childStr,
-        }
+    toString() {
+        return this.childStr
     }
 }
 
-const Expr :Taggable = ExprCls
-type Expr = ExprCls
+abstract class Expr implements Node {
+    abstract treeType :TT
+}
+namespace Expr {
+    const T = Tag; type T = Tag
+}
 export default Expr

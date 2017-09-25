@@ -2,26 +2,30 @@ import {
     mag,
 } from "ast/meta"
 import {
-    Taggable,
+    Tagger,
     Child,
     Children,
     arrange,
 } from "ast/hexer/tag"
 import {O} from "neon-lowbar"
 
-export abstract class WordCls {
-    static tag(
+export class Tag implements Tagger {
+    readonly childStr :string
+
+    constructor (
         attrs :O,
         children :Children[],
-    ) :O {
-        const childStr = arrange(children).join("")
+        //…TODO   Flatten children to `this.childArr`!
+    ) {
+        this.childStr = arrange(children).join("")
+    }
 
-        return {
-            toString: ()=> " " + childStr + " ",
-        }
+    toString() {
+        return " " + this.childStr + " "
     }
 }
 
-const Word :Taggable = WordCls
-type Word = WordCls
+namespace Word {
+    const T = Tag; type T = Tag
+}
 export default Word

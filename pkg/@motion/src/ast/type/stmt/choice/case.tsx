@@ -23,8 +23,8 @@ class Case extends Mom {
     body :Stmt[]
 
     output() {
-        return <Expr>
-            <Word>case</Word>
+        return <Expr.T>
+            <Word.T>case</Word.T>
             {this.match}
             :
             {this.body}
