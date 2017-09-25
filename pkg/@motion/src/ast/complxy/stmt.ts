@@ -1,12 +1,11 @@
 import {
-    Lvl,
     mag,
     Node,
     TreeType as TT,
     Taggable,
     Child,
     Children,
-} from "ast/ast"
+} from "ast/meta"
 import {O} from "neon-lowbar"
 
 function flatten(
@@ -26,14 +25,14 @@ function arrange(
     return childArr.map(e=> e.toString())
 }
 
-export default abstract class Stmt
-      implements Node, Taggable {
+abstract class StmtCls
+      implements Node {
     abstract treeType :TT
     abstract output :JSX.Element
 
     static tag(
         attrs :O,
-        children :Children[]
+        children :Children[],
     ) {
         const childStr = arrange(flatten(children)).join("")
 
@@ -44,3 +43,5 @@ export default abstract class Stmt
         }
     }
 }
+const Stmt :Taggable = StmtCls
+export default Stmt

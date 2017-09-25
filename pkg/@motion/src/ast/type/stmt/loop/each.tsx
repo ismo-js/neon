@@ -5,6 +5,7 @@ import {
     xmp,
 } from "ast/ast"
 import typ from "typ"
+import Stmt from "ast/complxy/stmt"
 import Mom from "ast/complxy/stmt/loop"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag

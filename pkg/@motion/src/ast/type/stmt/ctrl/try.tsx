@@ -6,6 +6,7 @@ import {
 import typ from "typ"
 import Catch from "ast/type/stmt/ctrl/catch"
 import Block from "ast/type/stmt/pod/block"
+import Stmt from "ast/complxy/stmt"
 import Mom from "ast/complxy/stmt/ctrl"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag

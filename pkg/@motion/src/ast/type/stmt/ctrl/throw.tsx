@@ -4,6 +4,7 @@ import {
     tag,
 } from "ast/ast"
 import typ from "typ"
+import Stmt from "ast/complxy/stmt"
 import Mom from "ast/complxy/stmt/ctrl"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag

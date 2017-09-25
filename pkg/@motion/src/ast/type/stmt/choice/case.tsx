@@ -4,6 +4,7 @@ import {
     tag,
 } from "ast/ast"
 import typ from "typ"
+import Stmt from "ast/complxy/stmt"
 import Mom from "ast/complxy/stmt/choice"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
@@ -22,7 +23,7 @@ class Case extends Mom {
             <Word>case</Word>
             {this.match}
             :
-            {this.cons}
+            {this.body}
         </Expr>
     }
 }

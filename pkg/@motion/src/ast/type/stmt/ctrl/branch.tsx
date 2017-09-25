@@ -4,14 +4,20 @@ import {
     tag,
 } from "ast/ast"
 import typ from "typ"
+import Stmt from "ast/complxy/stmt"
 import Mom from "ast/complxy/stmt/ctrl"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
+export enum Action {
+    continue = 0xc0,
+    break = 0xb2,
+}
+
 class Branch extends Mom {
     @mag(0xac70)
     @typ(Action)
-    action: boolean = false
+    action: Action = Action.break
 
     @mag(0x1ab1)
     @typ(Nullable, Ident)
@@ -20,7 +26,7 @@ class Branch extends Mom {
     output() {
         return <Stmt>
             <Word>
-                {this.doContinue ? "continue" : "break"}
+                {Action[this.action]}
             </Word>
             {this.label || []}
         </Stmt>

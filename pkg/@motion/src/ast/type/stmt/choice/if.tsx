@@ -1,10 +1,10 @@
-/// <reference path="../../../../jsx.ts" />
 import {
     Lvl,
     mag,
     tag,
 } from "ast/ast"
 import typ from "typ"
+import Stmt from "ast/complxy/stmt"
 import Mom from "ast/complxy/stmt/choice"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
@@ -26,7 +26,7 @@ class If extends Mom {
         return <Stmt>
             <Word>if</Word>
             <Paren>{this.test}</Paren>
-            {this.cons}
+            {this.body}
             {(this.alt)
                 ? <Expr>
                     <Word>else</Word>
