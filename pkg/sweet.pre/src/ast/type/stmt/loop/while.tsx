@@ -4,28 +4,25 @@ import {
     tag,
 } from "ast/ast"
 import typ from "typ"
-import Mom from "ast/complxy/stmt/ctrl"
+import Mom from "ast/complxy/stmt/loop"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
-class Throw extends Mom {
-    @mag(0xa29e)
-    @typ(Expr)
-    argument: Expr
+class While extends Mom {
+    //TODO properties
 
     output() {
         return <Stmt>
-            <Word>throw</Word>
-            {this.argument}
+            <Word>while</Word>
         </Stmt>
     }
 }
-namespace Throw {
+namespace While {
     export enum Mag {
-        bits = 0x73,
-        //…   *t*hro*w*
+        bits = 0x31,
+        //…   *w*hi*l*e
         lvl = ~~Lvl.Type,
         word = Pre.bits ^ bits << Pre.lvl,
     }
 }
-export default Throw
+export default While

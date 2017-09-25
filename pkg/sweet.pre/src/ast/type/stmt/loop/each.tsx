@@ -4,28 +4,26 @@ import {
     tag,
 } from "ast/ast"
 import typ from "typ"
-import Mom from "ast/complxy/stmt/ctrl"
+import Mom from "ast/complxy/stmt/loop"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
-class Throw extends Mom {
-    @mag(0xa29e)
-    @typ(Expr)
-    argument: Expr
+class Each extends Mom {
+    //TODO properties
 
     output() {
         return <Stmt>
-            <Word>throw</Word>
-            {this.argument}
+            <Word>for</Word>
+            <Paren></Paren>
         </Stmt>
     }
 }
-namespace Throw {
+namespace Each {
     export enum Mag {
-        bits = 0x73,
-        //…   *t*hro*w*
+        bits = 0xec,
+        //…   *e*a*c*h
         lvl = ~~Lvl.Type,
         word = Pre.bits ^ bits << Pre.lvl,
     }
 }
-export default Throw
+export default Each

@@ -1,7 +1,9 @@
 import {
     Lvl,
     mag,
+    tag,
 } from "ast/ast"
+import typ from "typ"
 import Mom from "ast/complxy/stmt/ctrl"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag

@@ -48,7 +48,7 @@ export function mag(
 }
 
 export interface Taggable {
-    tag(attrs :Object) :Object
+    tag(attrs :O) :O
 }
 
 export type Children = (string | O)[]
@@ -71,6 +71,7 @@ export function xmp(
     if (tgt.isXmpMode) {
         return [
             <var>{String(prop)}</var>,
+            //…TODO Instrinsic elements…
             <code>{
                 Reflect.getMetadata("ast:mag", tgt, prop)
             }</code>,

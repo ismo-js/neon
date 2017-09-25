@@ -42,7 +42,7 @@ function applySemiGen(gen :Type) {
     }
 }
 
-export function typ(
+export default function typ(
     head :Type | Generic,
     ...chain :Type[],
 ) {
