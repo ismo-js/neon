@@ -9,13 +9,28 @@ import Mom from "ast/complxy/stmt/loop"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
+enum Rel {
+    on = 0x02,
+    of = 0x0f,
+}
+
 class Each extends Mom {
-    //TODO properties
+    @mag(0x2e1a)
+    @typ(Rel)
+    rel :Rel
+
+    @mag(0xb0d4)
+    @typ(Stmt)
+    body: Stmt
 
     output() {
         return <Stmt>
             <Word>for</Word>
-            <Paren></Paren>
+            <Paren>
+                {this.left}
+                <Word>{Rel[this.rel]}</Word>
+            </Paren>
+            {this.body}
         </Stmt>
     }
 }

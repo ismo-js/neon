@@ -10,6 +10,10 @@ import Mom from "ast/complxy/stmt/loop"
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
 class While extends Mom {
+    @mag(0xd0b4)
+    @typ(Boolean)
+    doBefore: boolean = false
+    
     @mag(0x7e57)
     @typ(Expr)
     test: Expr
@@ -17,10 +21,6 @@ class While extends Mom {
     @mag(0xb0d4)
     @typ(Stmt)
     body: Stmt
-
-    @mag(0xd0b4)
-    @typ(Boolean)
-    doBefore: boolean = false
 
     output() {
         return <Stmt>

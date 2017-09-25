@@ -10,12 +10,31 @@ import Mom from "ast/complxy/stmt/loop"
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
 class For extends Mom {
-    //TODO properties
+    @mag(0x1217)
+    @typ(Nullable, /*TODO ?*/)
+    init :Var | Expr | null
+
+    @mag(0x7e57)
+    @typ(Expr)
+    test :Expr | null
+
+    @mag(0xf12a)
+    @typ(Nullable, Expr)
+    finalizer :Expr | null
+
+    @mag(0xb0d4)
+    @typ(Stmt)
+    body: Stmt
 
     output() {
         return <Stmt>
             <Word>for</Word>
-            <Paren></Paren>
+            <Paren>
+                {this.init};
+                {this.test};
+                {this.finalizer}
+            </Paren>
+            {this.body}
         </Stmt>
     }
 }
