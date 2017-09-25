@@ -1,3 +1,5 @@
+export {default as typ} from "typ"
+
 export {
     TreeType as TT,
     RunComplxy as RC,

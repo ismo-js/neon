@@ -2,9 +2,12 @@ import {
     Lvl,
     mag,
     tag,
-} from "ast/ast"
+} from "ast/meta"
 import typ from "typ"
-import Stmt from "ast/complxy/stmt"
+import {
+    Stmt,
+    Word,
+} from "ast/complxy/meta"
 import Mom from "ast/complxy/stmt/choice"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag

@@ -2,11 +2,14 @@ import {
     Lvl,
     mag,
     tag,
-} from "ast/ast"
-import typ from "typ"
+    typ,
+} from "ast/meta"
+import {
+    Stmt,
+    Word,
+} from "ast/complxy/meta"
 import Catch from "ast/type/stmt/ctrl/catch"
 import Block from "ast/type/stmt/pod/block"
-import Stmt from "ast/complxy/stmt"
 import Mom from "ast/complxy/stmt/ctrl"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
