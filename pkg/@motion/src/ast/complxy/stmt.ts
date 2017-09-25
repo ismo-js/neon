@@ -11,7 +11,7 @@ import {
 } from "ast/hexer/tag"
 import {O} from "neon-lowbar"
 
-abstract class StmtCls
+export abstract class StmtCls
       implements Node {
     abstract treeType :TT
 
@@ -26,5 +26,7 @@ abstract class StmtCls
         }
     }
 }
+
 const Stmt :Taggable = StmtCls
+type Stmt = StmtCls
 export default Stmt

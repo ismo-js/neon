@@ -16,11 +16,11 @@ const Pre = Mom.Mag; type Pre = Mom.Mag
 class Case extends Mom {
     @mag(0x3a7c)
     @typ(Nullable, Expr)
-    match: Expr | null
+    match :Expr | null
 
     @mag(0xc025)
     @typ(ran(1), Stmt)
-    body: Stmt[]
+    body :Stmt[]
 
     output() {
         return <Expr>

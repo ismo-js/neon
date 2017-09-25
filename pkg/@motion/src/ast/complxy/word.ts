@@ -9,7 +9,7 @@ import {
 } from "ast/hexer/tag"
 import {O} from "neon-lowbar"
 
-class WordCls {
+export abstract class WordCls {
     static tag(
         attrs :O,
         children :Children[],
@@ -21,5 +21,7 @@ class WordCls {
         }
     }
 }
+
 const Word :Taggable = WordCls
+type Word = WordCls
 export default Word

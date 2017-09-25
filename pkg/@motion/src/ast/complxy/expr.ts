@@ -11,7 +11,7 @@ import {
 } from "ast/hexer/tag"
 import {O} from "neon-lowbar"
 
-abstract class ExprCls
+export abstract class ExprCls
       implements Node {
     abstract treeType :TT
 
@@ -26,5 +26,7 @@ abstract class ExprCls
         }
     }
 }
+
 const Expr :Taggable = ExprCls
+type Expr = ExprCls
 export default Expr
