@@ -9,7 +9,7 @@ import Mom from "ast/complxy/stmt/loop"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
-enum Rel {
+export enum Rel {
     on = 0x02,
     of = 0x0f,
 }
@@ -21,7 +21,7 @@ class Each extends Mom {
 
     @mag(0xb0d4)
     @typ(Stmt)
-    body: Stmt
+    body :Stmt
 
     output() {
         return <Stmt>

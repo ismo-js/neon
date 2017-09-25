@@ -1,6 +1,5 @@
 import "reflect-metadata"
-
-type O = Object; const O = Object
+import {O} from "neon-lowbar"
 
 export enum Lvl {
     // Complexity:

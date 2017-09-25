@@ -9,9 +9,9 @@ import Mom from "ast/complxy/stmt/ctrl"
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
 class Branch extends Mom {
-    @mag(0xc027)
-    @typ(Boolean)
-    doContinue: boolean = false
+    @mag(0xac70)
+    @typ(Action)
+    action: boolean = false
 
     @mag(0x1ab1)
     @typ(Nullable, Ident)

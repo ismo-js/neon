@@ -1,0 +1,11 @@
+{
+    "name": "neon-lowbar",
+    "license": "LGPL-3.0",
+    "version": "0.1.0",
+    "main": "lib/meta.js",
+    "types": "lib/meta.d.ts",
+    "devDependencies": {
+    },
+    "dependencies": {
+    }
+}

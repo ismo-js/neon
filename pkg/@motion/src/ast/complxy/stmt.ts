@@ -6,15 +6,14 @@ import {
     Taggable,
     Children,
 } from "ast/ast"
-
-type O = Object; const O = Object
+import {O} from "neon-lowbar"
 
 export default abstract class Stmt
       implements Node, Taggable {
     abstract treeType :TT
     abstract output :JSX.Element
 
-    tag(attrs :Object, children :Children) {
+    tag(attrs :O, children :Children) {
         return {
             toString () {
                 return ";"
