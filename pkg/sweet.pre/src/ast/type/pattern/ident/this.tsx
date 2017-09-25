@@ -8,6 +8,10 @@ const Pre = Mom.Mag; type Pre = Mom.Mag
 
 class This extends Mom {
     runComplxy :RC = RC.Any
+
+    output() {
+        return <Expr>this</Expr>
+    }
 }
 namespace This {
     export enum Mag {

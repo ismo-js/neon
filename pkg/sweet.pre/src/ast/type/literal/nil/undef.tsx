@@ -6,15 +6,19 @@ import Mom from "ast/complxy/literal/nil"
 
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
-class Null extends Mom {
-    runComplxy :RC = RC.Null
+class Undef extends Mom {
+    runComplxy :RC = RC.Undef
+
+    output() {
+        return <Expr>undefined</Expr>
+    }
 }
-namespace Null {
+namespace Undef {
     export enum Mag {
-        bits = 0x00,
-        //…   zero
+        bits = 0xdf,
+        //…   un*d*e*f*ined
         lvl = ~~Lvl.Type,
         word = Pre.bits ^ bits << Pre.lvl,
     }
 }
-export default Null
+export default Undef

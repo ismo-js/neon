@@ -7,7 +7,7 @@ import Mom from "ast/complxy/stmt/ctrl"
 const Pre = Mom.Mag; type Pre = Mom.Mag
 
 class Debugger extends Mom {
-    get output() {
+    output() {
         return <Stmt>debugger</Stmt>
     }
 }

@@ -12,7 +12,7 @@ class Return extends Mom {
     @typ(Expr)
     argument: Expr
 
-    get output() {
+    output() {
         return <Stmt>
             <Word>return</Word>
             {this.argument}

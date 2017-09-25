@@ -14,7 +14,7 @@ class Case extends Mom {
     @typ(ran(1), Stmt)
     cons: Stmt[]
 
-    get output() {
+    output() {
         return <Expr>
             <Word>case</Word>
             {this.match}

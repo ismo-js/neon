@@ -11,7 +11,7 @@ class Throw extends Mom {
     @typ(Expr)
     argument: Expr
 
-    get output() {
+    output() {
         return <Stmt>
             <Word>throw</Word>
             {this.argument}

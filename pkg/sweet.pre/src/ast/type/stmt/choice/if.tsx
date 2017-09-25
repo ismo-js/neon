@@ -20,7 +20,7 @@ class If extends Mom {
     @typ(Nullable, Stmt)
     alt: Stmt | null
 
-    get output() {
+    output() {
         return <Stmt>
             <Word>if</Word>
             <Paren>{this.test}</Paren>

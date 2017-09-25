@@ -8,7 +8,7 @@ export const IS_INSTANCE = Symbol("is instance?")
 
 export interface Dynamic {
     [IS_INSTANCE](
-        val :any
+        val :any,
     ): boolean
 }
 

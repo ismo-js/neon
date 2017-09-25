@@ -13,7 +13,7 @@ class Switch extends Mom {
     @mag(0xca5e)
     cases: Case[]
 
-    get output() {
+    output() {
         return <Stmt>
             <Word>switch</Word>
             <Paren>{this.match}</Paren>

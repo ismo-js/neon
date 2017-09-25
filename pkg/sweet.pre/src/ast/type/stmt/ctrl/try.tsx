@@ -21,7 +21,7 @@ class Try extends Mom {
     @typ(Nullable, Block)
     finalizer: Block | null
 
-    get output() {
+    output() {
         return <Stmt>
             <Word>try</Word>
             <Brace>{this.body}</Brace>

@@ -48,16 +48,34 @@ export function mag(
 }
 
 export interface Taggable {
-    tag(
-        attrs :Object,
-    ) :Object
+    tag(attrs :Object) :Object
 }
 
 export type Children = (string | O)[]
 export function tag(
     elemCon :Taggable,
     attrs :O | null,
-    ...children :Children
+    ...children :Children,
 ) :JSX.Element {
     return elemCon.tag(attrs || {}, children)
+}
+
+export interface Xmpable {
+    isXmpMode? :boolean
+}
+
+export function xmp(
+    tgt :Xmpable,
+    prop :string | symbol,
+) :any {
+    if (tgt.isXmpMode) {
+        return [
+            <var>{String(prop)}</var>,
+            <code>{
+                Reflect.getMetadata("ast:mag", tgt, prop)
+            }</code>,
+        ]
+    }
+
+    return tgt[prop]
 }

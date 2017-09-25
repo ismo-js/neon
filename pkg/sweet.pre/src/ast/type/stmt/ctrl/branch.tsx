@@ -15,7 +15,7 @@ class Branch extends Mom {
     @typ(Nullable, Ident)
     label: Ident | null
 
-    get output() {
+    output() {
         return <Stmt>
             <Word>
                 {this.continuing ? "continue" : "break"}
