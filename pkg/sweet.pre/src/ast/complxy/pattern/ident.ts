@@ -1,9 +1,11 @@
 import {
     Lvl,
-    Val,
+    RunComplxy as RC,
+    Node,
 } from "ast/ast"
 
-abstract class Ident extends Val {
+abstract class Ident implements Node {
+    runComplxy :RC = RC.Any
 }
 namespace Ident {
     export enum Mag {

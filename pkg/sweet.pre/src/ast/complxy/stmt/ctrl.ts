@@ -1,10 +1,11 @@
 import {
     Lvl,
-    Val,
+    RunComplxy as RC,
+    Node,
 } from "ast/ast"
+import Stmt from "../stmt"
 
-abstract class Ctrl extends Val {
-
+abstract class Ctrl extends Stmt {
 }
 namespace Ctrl {
     export enum Mag {

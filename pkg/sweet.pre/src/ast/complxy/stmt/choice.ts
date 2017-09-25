@@ -1,10 +1,11 @@
 import {
     Lvl,
-    Val,
+    RunComplxy as RC,
+    Node,
 } from "ast/ast"
+import Stmt from "../stmt"
 
-abstract class Choice extends Val {
-
+abstract class Choice extends Stmt {
 }
 namespace Choice {
     export enum Mag {

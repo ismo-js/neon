@@ -1,10 +1,11 @@
 import {
     Lvl,
-    Val,
+    RunComplxy as RC,
+    Node,
 } from "ast/ast"
+import Stmt from "../stmt"
 
-abstract class Loop extends Val {
-
+abstract class Loop implements Node {
 }
 namespace Loop {
     export enum Mag {

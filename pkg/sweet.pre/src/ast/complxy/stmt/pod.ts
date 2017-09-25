@@ -1,10 +1,11 @@
 import {
     Lvl,
-    Val,
+    RunComplxy as RC,
+    Node,
 } from "ast/ast"
+import Stmt from "../stmt"
 
-abstract class Pod extends Val {
-
+abstract class Pod extends Stmt {
 }
 namespace Pod {
     export enum Mag {

@@ -1,6 +1,7 @@
 import {
     Lvl,
     RunComplxy as RC,
+    tag,
 } from "ast/ast"
 import Mom from "ast/complxy/literal/nil"
 
@@ -10,7 +11,9 @@ class Undef extends Mom {
     runComplxy :RC = RC.Undef
 
     output() {
-        return <Expr>undefined</Expr>
+        return <Expr>
+            <Word>undefined</Word>
+        </Expr>
     }
 }
 namespace Undef {

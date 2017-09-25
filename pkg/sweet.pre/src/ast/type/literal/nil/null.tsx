@@ -11,13 +11,15 @@ class Null extends Mom {
     runComplxy :RC = RC.Null
 
     output() {
-        return <Expr>null</Expr>
+        return <Expr>
+            <Word>null</Word>
+        </Expr>
     }
 }
 namespace Null {
     export enum Mag {
-        bits = 0x00,
-        //…   zero
+        bits = 0x21,
+        //…   *n*ul*l*
         lvl = ~~Lvl.Type,
         word = Pre.bits ^ bits << Pre.lvl,
     }
