@@ -4,16 +4,35 @@ type Fn = Function; const Fn = Function
 export type Type = Fn | Iterable<Fn>
 
 export const APPLY_GENERIC = Symbol("apply generic")
+export const IS_INSTANCE = Symbol("is instance?")
+
+export interface Dynamic {
+    [IS_INSTANCE](
+        val :any
+    ): boolean
+}
 
 export interface Generic {
-    [APPLY_GENERIC](arg :Type) :Type | Generic
+    [APPLY_GENERIC](
+        arg :Type,
+    ) :Type | Generic
 }
 
 function applySemiGen(gen :Type) {
     switch (gen) {
         case Array:
-            // TODO
-            break
+            return function (
+                arg :Type,
+            ) :Dynamic {
+                return {
+                    [IS_INSTANCE](
+                        val :any,
+                    ) :boolean {
+                        const isArr = Array.isArray(val)
+                        return isArr && true //TODO
+                    },
+                }
+            }
         case Fn:
             // TODO
             break
@@ -28,10 +47,9 @@ export function typ(
     ...chain :Type[],
 ) {
     if (chain.length) {
-        const gen = head as Generic
-        const applyGen = "function" === typeof gen[APPLY_GENERIC]
-            ? gen[APPLY_GENERIC]
-            : applySemiGen(gen as Type)
+        const applyGen = "function" === typeof head[APPLY_GENERIC]
+            ? head[APPLY_GENERIC]
+            : applySemiGen(head as Type)
 
         return typ(typing, chain.slice(1))
     }
