@@ -17,7 +17,9 @@ export interface Generic {
     ) :Type | Generic
 }
 
-function getTyp(gen :Type) :Dynamic | Generic {
+function getTyp(
+    gen :Type,
+) :Dynamic | Generic | null {
     switch (gen) {
         case Array:
             return function (
@@ -28,16 +30,21 @@ function getTyp(gen :Type) :Dynamic | Generic {
                         return Array.isArray(val)
                     },
                     [APPLY_GENERIC](arg :Type) :Dynamic {
-
-                    }
+                        return {
+                            [IS_INSTANCE](val :any) {
+                                return Array.isArray(val) &&
+                                    val.every(e=> isInstance(e, arg))
+                            }
+                        }
+                    },
                 }
             }
         case Fn:
             // TODO
-            break
         case O:
             // TODO
-            break
+        default:
+            return null
     }
 }
 

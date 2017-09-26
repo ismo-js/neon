@@ -2,6 +2,7 @@
 # * Files:
 package-lock.json
 .directory
+*.log
 
 # * Dirs:
 node_modules/
