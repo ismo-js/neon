@@ -1,6 +1,6 @@
 import {O, Fn} from "neon-lowbar"
 
-export type Type = Fn | Iterable<Fn>
+export type Type = Fn | Iterable<Fn> | Dynamic
 
 export const APPLY_GENERIC = Symbol("apply generic")
 export const IS_INSTANCE = Symbol("is instance?")
@@ -17,19 +17,19 @@ export interface Generic {
     ) :Type | Generic
 }
 
-function applySemiGen(gen :Type) {
+function getTyp(gen :Type) :Dynamic | Generic {
     switch (gen) {
         case Array:
             return function (
                 arg :Type,
-            ) :Dynamic {
+            ) :Dynamic & Generic {
                 return {
-                    [IS_INSTANCE](
-                        val :any,
-                    ) :boolean {
-                        const isArr = Array.isArray(val)
-                        return isArr && true //TODO
+                    [IS_INSTANCE](val :any) :boolean {
+                        return Array.isArray(val)
                     },
+                    [APPLY_GENERIC](arg :Type) :Dynamic {
+
+                    }
                 }
             }
         case Fn:
@@ -44,22 +44,24 @@ function applySemiGen(gen :Type) {
 export default function typ(
     head :Type | Generic,
     ...chain :Type[],
-) {
+) :(
+    tgt :O,
+    prop :string | symbol,
+    desc :PropertyDescriptor,
+)=> void {
     if (chain.length) {
         const applyGen = "function" === typeof head[APPLY_GENERIC]
             ? head[APPLY_GENERIC]
-            : applySemiGen(head as Type)
+            : getTyp(head)[APPLY_GENERIC] || null
+
+        if (!applyGen)
+            throw `{${head}} is not a generic type!`
 
         return typ(typing, chain.slice(1))
     }
 
-    return function (
-        tgt: O,
-        prop :string | symbol,
-        desc :PropertyDescriptor,
-    ) {
+    return function (tgt, prop, desc) {
         desc.set = val=> {
-            if (!(val instanceof typing))
         }
     }
 }
