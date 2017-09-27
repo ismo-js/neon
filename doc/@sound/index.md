@@ -1,33 +1,36 @@
-sound (*`neon-sound`*)
+sounᴅ (*`neon-sound`*)
 ===
-…providing ```(@ty``)```, `(@intf)` et cetera
-
 ***Runtime-typed EcmaScript***
 
-## Project Information
-### Author:
-- Jakob Schnell @probitlabs
+## Providing
++ ``` @ty`` ```
++ ` @intf `
+
+… et cetera
+
+## Project
++ *Author:*<br/>Jakob Schnell @probitlabs
     * :e-mail: <jakob.schnell@univie.ac.at>
++ *License:*<br/>LGPL-3.0
 
-### License:
-- LGPL-3.0
 
-### State:
+## State
 *Build-up phase:* not too much done yet; not runnable :(
+
+
+## Introduction
+*TypeScript* extends *EcmaScript* syntactically
+— by type definitions as well as future *ES* inspired sugar —
+plus semantically
+— what can be seen in the emitted `.d.ts`es.
+*sounᴅ* plans to form a contrast by:
+
++ Enabeling **run- *and* compile-time typechecking**
 
 
 ## Featueres
 
-- Types
-    + Interface types
-    + Class types
-    + Dynamic types
-
-### Interface
-
-```js
-@intf class Cat {
-    @ty`${Prim.string}` name
-    @ty`${Person}[]` owner
-}
-```
+* Types
+    + [Interface types](./types/intf.md)
+    + [Class types](./types/class.md)
+    + [Dynamic types](./types/dynam.md)
