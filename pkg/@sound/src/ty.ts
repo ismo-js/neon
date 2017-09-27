@@ -1,6 +1,6 @@
 import {O, Fn} from "neon-lowbar"
 
-export type Ty = Fn | DynamTy | Iterable<any>
+export type Ty = Fn | DynamTy | any[]
 
 export const HAS = Symbol.hasInstance
 

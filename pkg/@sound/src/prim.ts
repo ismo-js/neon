@@ -1,12 +1,12 @@
 import {HAS, DynamTy} from "ty"
 
 export interface PrimTys {
-    undefined :undefined,
-    ["null"] :null,
-    symbol :symbol,
-    boolean :boolean,
-    number :number,
-    string :string,
+    undefined :undefined
+    ["null"] :null
+    symbol :symbol
+    boolean :boolean
+    number :number
+    string :string
 }
 
 export function test<TyStr extends string>(
