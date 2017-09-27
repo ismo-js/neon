@@ -1,14 +1,15 @@
+![#ffff23](https://placehold.it/100/c2ff23/ff23c2?text=neon)
 sounᴅ (*`neon-sound`*)
 ===
 ***Runtime-typed EcmaScript***
 
-## Providing
+## <small>[Ħ]</small> Providing
 + ``` @ty`` ```
 + ` @intf `
 
 … et cetera
 
-## Project
+## <small>[Ħ]</small> Project
 + *Author:*
 <br/>Jakob Schnell @probitlabs
     * :e-mail: <jakob.schnell@univie.ac.at>
@@ -16,11 +17,11 @@ sounᴅ (*`neon-sound`*)
 <br/>**LGPL-3.0**
 
 
-## State
+## <small>[Ħ]</small> State
 *Build-up phase:* not too much done yet; not runnable `:(`
 
 
-## Introduction
+## <small>[Ħ]</small> Introduction
 *TypeScript* extends *EcmaScript* syntactically
  — by type definitions as well as future *ES* inspired sugar —
 plus semantically
@@ -38,7 +39,7 @@ plus semantically
 * <span id="facit1">‹`*`›:</span>
 The «compiler» is just a validating *Babel* plug-in, which uses the statically available information to perform type checks.
 
-## Featueres
+## <small>[Ħ]</small> Featueres
 
 * Types
     + [Interface types](./types/intf.md)
@@ -51,14 +52,3 @@ The «compiler» is just a validating *Babel* plug-in, which uses the statically
 
 - <span id="foot1">‹`¹`›:</span>
 Maybe — at a later point in time, there will be a feature providing `let`/`const` typings. I don't see proposals for things like *variable decorators* and *variable read/write hooks*
-
-<style>
-h2::before {
-    content: "Ħ"; font-family: monospace;
-    padding: 0 1ex; margin-right:.5ex;
-    opacity:.5; background-color:rgba(128,128,128,0.5);
-}
-small, h5 {
-    font-variant-caps:small-caps;
-}
-</style>
