@@ -1,15 +1,16 @@
-![#ffff23](https://placehold.it/100/c2ff23/ff23c2?text=neon)
+![#ffff23](https://placehold.it/120/c2ff23/ff23c2?text=neon^)
+
 sounᴅ (*`neon-sound`*)
 ===
 ***Runtime-typed EcmaScript***
 
-## <small>[Ħ]</small> Providing
+## ~~[Ħ]~~ Providing
 + ``` @ty`` ```
 + ` @intf `
 
 … et cetera
 
-## <small>[Ħ]</small> Project
+## ~~[Ħ]~~ Project
 + *Author:*
 <br/>Jakob Schnell @probitlabs
     * :e-mail: <jakob.schnell@univie.ac.at>
@@ -17,11 +18,11 @@ sounᴅ (*`neon-sound`*)
 <br/>**LGPL-3.0**
 
 
-## <small>[Ħ]</small> State
+## ~~[Ħ]~~ State
 *Build-up phase:* not too much done yet; not runnable `:(`
 
 
-## <small>[Ħ]</small> Introduction
+## ~~[Ħ]~~ Introduction
 *TypeScript* extends *EcmaScript* syntactically
  — by type definitions as well as future *ES* inspired sugar —
 plus semantically
@@ -39,7 +40,7 @@ plus semantically
 * <span id="facit1">‹`*`›:</span>
 The «compiler» is just a validating *Babel* plug-in, which uses the statically available information to perform type checks.
 
-## <small>[Ħ]</small> Featueres
+## ~~[Ħ]~~ Featueres
 
 * Types
     + [Interface types](./types/intf.md)
