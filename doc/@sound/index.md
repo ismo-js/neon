@@ -11,18 +11,19 @@ sounᴅ (*`neon-sound`*)
 … et cetera
 
 ## ~~[Ħ]~~ Project
-+ *Author:*
-<br/>Jakob Schnell @probitlabs
-    * :e-mail: <jakob.schnell@univie.ac.at>
-+ *License:*
-<br/>**LGPL-3.0**
+
+(… written in *TypeScript*)
+
+>   [*`(→)`* Project Overview](../index.md)
 
 
 ## ~~[Ħ]~~ State
+
 *Build-up phase:* not too much done yet; not runnable `:(`
 
 
 ## ~~[Ħ]~~ Introduction
+
 *TypeScript* extends *EcmaScript* syntactically
  — by type definitions as well as future *ES* inspired sugar —
 plus semantically
@@ -30,7 +31,7 @@ plus semantically
 *sounᴅ* plans to form a contrast …
 
 ##### *`(+)`* By:
-+ Enabeling **run- *and* compile[¹](#facit1)-time typechecking**
++ Enabeling **run- *and* compile[*](#facit1)-time typechecking**
 
 ##### *`(-)`* Without:
 - Extending the language **syntactic**ally
@@ -49,7 +50,11 @@ The «compiler» is just a validating *Babel* plug-in, which uses the statically
 
 ---
 
-##### Footer:
-
-- <span id="foot1">‹`¹`›:</span>
-Maybe — at a later point in time, there will be a feature providing `let`/`const` typings. I don't see proposals for things like *variable decorators* and *variable read/write hooks*
+##### *`(_)`* Footer:
+<br/>
+*<span id="foot1">‹`¹`›</span>*
+>   Maybe — at a later point in time,
+>   there will be a feature providing strong dynamical typing for `let`/`const` variables.
+>
+>   As I do not see proposals for things like *variable decorators* and *variable read/write hooks* on their ways,
+>   therefore a policy change could occur.
