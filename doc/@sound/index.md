@@ -1,8 +1,10 @@
 ![#ffff23](https://placehold.it/120/c2ff23/ff23c2?text=neon^)
 
-sounᴅ (*`neon-sound`*)
+sounᴅ *(`neon-sound`)*
 ===
-***Runtime-typed EcmaScript***
+***Runtime-typed *EcmaScript* ***
+
+>   **(→)** bringing types to *EcmaScript*
 
 ## ~~[Ħ]~~ Providing
 + ``` @ty`` ```
@@ -35,7 +37,7 @@ plus semantically
 
 ##### *`(-)`* Without:
 - Extending the language **syntactic**ally
-<br/>At compile-time, no changes were made to the source[*](#facit1)
+<br/>At compile-time, no changes were made to the sources[*](#facit1)
 
 ##### *`(=)`* Summing to:
 * <span id="facit1">‹`*`›:</span>
