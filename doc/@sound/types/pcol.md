@@ -1,31 +1,48 @@
 ![neon^](https://placehold.it/120/c2ff23/ff23c2?text=neon^)
 
-Protocols
+Protocols (Interfaces)
 ===
 
-```ts
-@pcol class Ownable {
-    name = { // restrictor #1
-        key: String,
-        //…"name" will be a plain property name like in `instance.name` 
-        enumerable: true,
-        writable: undefined,
-        ...ty`${Prim.string}`(),
-    }
+## Example
 
-    owners = { // restrictor #2
+```ts
+@pcol class Ownable extends Positionable {
+    @restrict({ // restrictor #1
+        keyType: Prim.string,
+        //…"name" will be a plain property name like in `instance.name`
+        writable: undefined,
+        enumerable: true,
+        ...ty`${Prim.string}`(),
+    })
+    name
+
+    @restrict({ // restrictor #2
         ...ty`[…${Person}]`(),
+    })
+    owners
+}
+```
+
+### Pseudo-Future EcmaScript Snippet
+```ts
+interface Ownable extends Positionable {
+    @{
+        keyType: String.prim,
+        writable: undefined,
+        enumerable: true,
     }
 }
 ```
 
 
+# Restrictors
 ## Default Restrictor
 
 ```ts
 {
-    key: Symbol,
+    keyType: Prim.symbol,
+    writable: undefined,
+    configurable: undefined,
     enumerable: undefined,
-    writable
 }
 ```
