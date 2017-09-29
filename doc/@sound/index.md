@@ -33,7 +33,7 @@ plus semantically
 *sounᴅ* plans to form a contrast …
 
 ##### *`(+)`* By:
-+ Enabeling **run- *and* compile[*](#facit1)-time typechecking**
++ Enabeling **run- *and* compile[*](#facit1)-time type** respectively descriptor **checking**
 
 ##### *`(-)`* Without:
 - Extending the language **syntactic**ally
@@ -46,7 +46,7 @@ The «compiler» is just a validating *Babel* plug-in, which uses the statically
 ## ~~[Ħ]~~ Featueres
 
 * Types
-    + [Interface types](./types/intf.md)
+    + [Protocol types](./types/pcol.md)
     + [Class types](./types/class.md)
     + [Dynamic types](./types/dynam.md)
 
