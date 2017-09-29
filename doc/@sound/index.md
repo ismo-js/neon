@@ -46,7 +46,7 @@ The «compiler» is just a validating *Babel* plug-in, which uses the statically
 ## ~~[Ħ]~~ Featueres
 
 * Types
-    + [Protocol types](./types/pcol.md)
+    + [Interface types](./types/inter.md)
     + [Class types](./types/class.md)
     + [Dynamic types](./types/dynam.md)
 
