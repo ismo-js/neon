@@ -5,21 +5,37 @@ Class
 
 >   **NOTE:**
 >
->   In `@ty`'s template language, there's a difference between `->` & `=>`. `->`-typed functions must be called using `new`, `=>`-typed ones called without `new`.
+>   In `@ty`'s template language,
+>   there's a difference between `->`- & `=>`-notated function types
+>   (also including classes):
+>   `->`-notated functions must be called using `new`,
+>   `=>`-notated ones called without `new`.
 
+##### Meta-typed:
 ```js
 @ty`
 ()-> {
-    name :: string,
-    owners :: […${Person}],
-}
+    catSound :: […${Person}],
+} & ${Ownable}
 `
 class Cat {
-    @desc({enumerable: true})
-    // inline-typing: @ty`${Prim.string}`
-    name = "Kitty"
+    catSound = "Meooow!!11"
 
-    // inline-typing: @ty`[…${Person}]`
-    owners = []
+    @desc({enumerable: true})
+    name = "Kitty"
+    [Ownable.owners] = []
+}
+```
+
+##### Inline-typed:
+```js
+@ty` ()-> ${Ownable} `
+class Cat {
+    @ty` […${Person}] `
+    catSound = "Meooow!!11"
+
+    @desc({enumerable: true})
+    name = "Kitty"
+    [Ownable.owners] = []
 }
 ```

@@ -3,9 +3,12 @@
 Typing Decorator
 ===
 
-## Template Language
+## ~~[Ħ]~~ Template Language
+### Operators
+#### `[]`–Array Typings
+
 ### Function Type
-##### Meta typed:
+##### Meta-typed:
 ```js
 class {
     @ty`
@@ -20,7 +23,7 @@ class {
 }
 ```
 
-##### Inline typed:
+##### Inline-typed:
 ```js
 class {
     @ty`

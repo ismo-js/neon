@@ -4,7 +4,7 @@ Interfaces
 ===
 *(Trait Protocols)*
 
-## Example
+### Example
 ```js
 @inter class Ownable extends Positionable {
     @rest({ // restrictor
@@ -12,47 +12,48 @@ Interfaces
         writable: undefined,
         //…`undefined` is default (an unnecessary line) [1]
         enumerable: true,
-        ...ty`string`(),
     })
+    @ty` string `
     name
 
-    @rest({
-        ...ty`[…${Person}]`(),
-    })
+    @ty` […${Person}] `
     owners
 }
 ```
 
-### Pseudo-Future EcmaScript Snippet
-```ts
+##### Pseudo-Future EcmaScript Snippet:
+```js
 interface Ownable extends Positionable {
     @{
         writable: undefined,
         enumerable: true,
     }
-    public name :String.Prim
+    public name :: String.Prim
 
-    owners :[…Person]
+    owners :: […Person]
 }
 ```
 
-Despite the share in goal and mind as well as the syntactical overlap with *TypeScript* interfaces, those are not semantically related.
+Despite the share in goal and mind,
+respectively the syntactical overlap with *TypeScript* interfaces,
+those are not semantically related to that «pseudo-future».
 
 
-# Restrictors
+## ~~[Ħ]~~ Restrictors
 
-```ts
+##### Pseudo-Future EcmaScript Schema:
+```js
 const Restriction = Boolean.Prim | undefined
 
 interface Restrictor {
-    symbolical :Boolean.Prim =
+    symbolical :: Boolean.Prim =
         true
     //…if false, "name" will be a plain property name like in `instance.name`
-    writable :Restriction =
+    writable :: Restriction =
         undefined
-    configurable :Restriction =
+    configurable :: Restriction =
         undefined
-    enumerable :Restriction =
+    enumerable :: Restriction =
         undefined
 }
 ```

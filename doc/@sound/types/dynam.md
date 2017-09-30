@@ -6,7 +6,7 @@ Dynamics
 ```js
 @ty`Dynam`
 class StringDynam {
-    [HAS](inst) {
+    static [HAS](inst) {
         return "string" === typeof inst
     }
 }
