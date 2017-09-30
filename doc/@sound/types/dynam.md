@@ -3,7 +3,7 @@
 Dynamics
 ===
 
-```ts
+```js
 @ty`Dynam`
 class StringDynam {
     [HAS](inst) {

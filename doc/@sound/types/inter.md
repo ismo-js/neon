@@ -5,19 +5,18 @@ Interfaces
 *(Trait Protocols)*
 
 ## Example
-```ts
+```js
 @inter class Ownable extends Positionable {
-    @restrict({ // restrictor
+    @rest({ // restrictor
         symbolical: false,
-        //…"name" will be a plain property name like in `instance.name`
         writable: undefined,
         //…`undefined` is default (an unnecessary line) [1]
         enumerable: true,
-        ...ty`${Prim.string}`(),
+        ...ty`string`(),
     })
     name
 
-    @restrict({
+    @rest({
         ...ty`[…${Person}]`(),
     })
     owners
@@ -48,6 +47,7 @@ const Restriction = Boolean.Prim | undefined
 interface Restrictor {
     symbolical :Boolean.Prim =
         true
+    //…if false, "name" will be a plain property name like in `instance.name`
     writable :Restriction =
         undefined
     configurable :Restriction =

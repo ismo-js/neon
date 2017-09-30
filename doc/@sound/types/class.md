@@ -3,13 +3,23 @@
 Class
 ===
 
-```ts
+>   **NOTE:**
+>
+>   In `@ty`'s template language, there's a difference between `->` & `=>`. `->`-typed functions must be called using `new`, `=>`-typed ones called without `new`.
+
+```js
+@ty`
+()-> {
+    name :: string,
+    owners :: […${Person}],
+}
+`
 class Cat {
     @desc({enumerable: true})
-    @ty`${Prim.string}`
-    name
+    // inline-typing: @ty`${Prim.string}`
+    name = "Kitty"
 
-    @ty`[…${Person}]`
-    owners
+    // inline-typing: @ty`[…${Person}]`
+    owners = []
 }
 ```
