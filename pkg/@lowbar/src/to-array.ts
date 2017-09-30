@@ -11,3 +11,12 @@ export function toArray<E>(
         ? []
         : arr
 }
+
+// array 1-level equality:
+export function arrEq<E>(
+    l :E[],
+    r :E[],
+) :boolean {
+    return l.length === r.length
+          && l.every((e, i)=> l[i] === e)
+}

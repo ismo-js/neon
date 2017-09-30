@@ -1,9 +1,9 @@
-export type Int = number & never
+export type Int = number & {"IS INTEGER" :1}
 //…TODO How to write a proper type definition for unit types?
 export function isInt(
     val :number,
 ): val is Int {
-    return Number.isSaveInteger(val)
+    return Number.isSafeInteger(val)
 }
 
 export type Hint = "number" | "string" | "default"

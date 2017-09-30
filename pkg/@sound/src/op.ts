@@ -5,7 +5,10 @@ import {
 
 // template entity:
 export type Ent = Int | Dollar
-export type EntSeq = [Int, Ent[]]
+export type EntSeq = [
+    Int, // index
+    Ent[] // content
+]
 
 // reduction:
 export interface Reduc {
@@ -26,7 +29,48 @@ export function arrEq<E>(
     l :E[],
     r :E[],
 ) :boolean {
-    return l.every((e, i)=> l[i] === e)
+    return l.length === r.length
+          && l.every((e, i)=> l[i] === e)
 }
 
-export default class Op {}
+export default abstract class Op {
+    static readonly matchers :Ent[][]
+
+    reduc(
+        {
+            startI,
+            pending: pendingParam,
+            matchSeqs,
+            args,
+        } :Reduc,
+        r :Ent,
+        i :Int,
+    ) :Reduc {
+        const pending = [...pendingParam, r]
+        const wordI =
+            pending.lastIndexOf(Chars.space as Int) + 1 as Int
+        //…edge case: `-1 === lastIndex <=> 0 === wordI`!
+        const pendWord = pending.slice(wordI)
+        // pending fuselage:
+        const pendFusel = pending.slice(0, wordI)
+
+        if (this.constructor.matchers.some(e=> arrEq(pendWord, e)))
+            return {
+                startI: i,
+                pending: [],
+                matchSeqs: [
+                    ...matchSeqs,
+                    [wordI, pendWord]
+                ],
+                args: [...args, pendFusel],
+            }
+
+        return {
+            startI,
+            pending,
+            matchSeqs,
+            args,
+        }
+    }
+
+}
