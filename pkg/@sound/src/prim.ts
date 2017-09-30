@@ -1,6 +1,6 @@
 import {HAS, DynamTy} from "ty"
 
-export interface PrimTys {
+export interface PrimTypes {
     undefined :undefined
     ["null"] :null
     symbol :symbol
@@ -13,7 +13,7 @@ export function test<TyStr extends string>(
     tyStr :TyStr,
 ) :DynamTy {
     return {
-        [HAS](test :any) :test is PrimTys[TyStr] {
+        [HAS](test :any) :test is PrimTypes[TyStr] {
             return tyStr === typeof test
         }
     }

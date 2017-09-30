@@ -1,10 +1,17 @@
+import {
+    O,
+    Int, //TODO Find better integer typing!!!
+} from "neon-lowbar"
+
 // template entity:
-export type Ent = number | Dollar
+export type Ent = Int | Dollar
 
 // reduction:
 export interface Reduc {
+    startI :Int,
     pending :Ent[],
-    matches :Ent[][],
+    matchRanges :[Int, Int][],
+    args :Ent[][],
 }
 
 // dollar entity:

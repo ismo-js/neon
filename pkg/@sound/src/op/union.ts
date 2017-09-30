@@ -1,3 +1,8 @@
+import {
+    O,
+    Int,
+} from "neon-lowbar"
+
 import Chars from "chars"
 import {
     Ent,
@@ -8,26 +13,42 @@ import {
 
 export default class Union extends Mom {
     static readonly matchers :Ent[][] =
-        [[Chars.ampersand]]
+        [[Chars.ampersand as Int]]
 
     static reduc(
         {
+            startI,
             pending: pendingParam,
-            matches,
+            matchRanges,
+            args,
         } :Reduc,
         r :Ent,
+        i :Int,
     ) :Reduc {
-        const pending = pendingParam.concat([r])
+        const pending = [...pendingParam, r]
+        const wordI =
+            pending.lastIndexOf(Chars.space as Int) + 1 as Int
+        //…edge case: `-1 === lastIndex <=> 0 === wordI`!
+        const pendWord = pending.slice(wordI)
+        // pending fuselage:
+        const pendFusel = pending.slice(0, wordI)
 
-        if (Union.matchers.some(e=> arrEq(pending, e)))
+        if (Union.matchers.some(e=> arrEq(pendWord, e)))
             return {
+                startI: i,
                 pending: [],
-                matches: matches.concat(pending),
+                matchRanges: [
+                    ...matchRanges,
+                    [wordI, pendWord.length as Int]
+                ],
+                args: [...args, pendFusel],
             }
 
         return {
+            startI,
             pending,
-            matches,
+            matchRanges,
+            args,
         }
     }
 
@@ -40,8 +61,10 @@ export default class Union extends Mom {
     get ast() {
         // reduction finish:
         const reducFin = this.template.reduce(Union.reduc, {
+            startI: 0 as Int,
             pending: [],
-            matches: [],
+            matchRanges: [],
+            args: [],
         })
 
         return undefined //TODO
