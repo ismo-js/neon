@@ -5,12 +5,14 @@ import {
 
 // template entity:
 export type Ent = Int | Dollar
+export type EntSeq = [Int, Ent[]]
 
 // reduction:
 export interface Reduc {
+    // start index:
     startI :Int,
     pending :Ent[],
-    matchRanges :[Int, Int][],
+    matchSeqs :EntSeq[],
     args :Ent[][],
 }
 

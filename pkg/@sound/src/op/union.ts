@@ -6,20 +6,23 @@ import {
 import Chars from "chars"
 import {
     Ent,
+    EntSeq,
     Reduc,
     arrEq,
     default as Mom,
 } from "op"
+import Ordering from "op/ordering"
 
 export default class Union extends Mom {
+    static readonly toks :Symbol[] = [Symbol("`|`")]
     static readonly matchers :Ent[][] =
-        [[Chars.ampersand as Int]]
+        [[Chars.vBar as Int]]
 
     static reduc(
         {
             startI,
             pending: pendingParam,
-            matchRanges,
+            matchSeqs,
             args,
         } :Reduc,
         r :Ent,
@@ -37,9 +40,9 @@ export default class Union extends Mom {
             return {
                 startI: i,
                 pending: [],
-                matchRanges: [
-                    ...matchRanges,
-                    [wordI, pendWord.length as Int]
+                matchSeqs: [
+                    ...matchSeqs,
+                    [wordI, pendWord]
                 ],
                 args: [...args, pendFusel],
             }
@@ -47,9 +50,13 @@ export default class Union extends Mom {
         return {
             startI,
             pending,
-            matchRanges,
+            matchSeqs,
             args,
         }
+    }
+
+    static seq2tok(seq :EntSeq) {
+        return Union.toks[0]
     }
 
     constructor(
@@ -59,13 +66,23 @@ export default class Union extends Mom {
     }
 
     get ast() {
-        // reduction finish:
-        const reducFin = this.template.reduce(Union.reduc, {
+        const {
+            matchSeqs,
+            args,
+        } :Reduc = this.template.reduce(Union.reduc, {
             startI: 0 as Int,
             pending: [],
-            matchRanges: [],
+            matchSeqs: [],
             args: [],
         })
+        // argument abstract syntax trees:
+        const argOps: Ordering[] = args.map(arg=> new Ordering(arg))
+        const ast = ([] as (Ent | Ordering)[]).concat(
+            ...argOps.map((e, i)=> [
+                e,
+                Union.seq2tok(matchSeqs[i])
+            ]),
+        )
 
         return undefined //TODO
     }
