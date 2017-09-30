@@ -1,48 +1,48 @@
 import Chars from "chars"
-import Mom from "op"
-
-interface Reduc {
-    pending :number[]
-}
+import {
+    Ent,
+    Reduc,
+    arrEq,
+    default as Mom,
+} from "op"
 
 export default class Union extends Mom {
-    static readonly matchers :number[][]
-        = [
-            [Chars.ampersand]
-        ]
+    static readonly matchers :Ent[][] =
+        [[Chars.ampersand]]
+
+    static reduc(
+        {
+            pending: pendingParam,
+            matches,
+        } :Reduc,
+        r :Ent,
+    ) :Reduc {
+        const pending = pendingParam.concat([r])
+
+        if (Union.matchers.some(e=> arrEq(pending, e)))
+            return {
+                pending: [],
+                matches: matches.concat(pending),
+            }
+
+        return {
+            pending,
+            matches,
+        }
+    }
 
     constructor(
-        readonly template :number[],
+        readonly template :Ent[],
     ) {
         super()
     }
 
     get ast() {
-        this.template.reduce(
-            (
-                {
-                    pending: pendingParam,
-                    matches,
-                } :Reduc,
-                r :number,
-            ) :Reduc => {
-                const pending = pendingParam.concat([r])
-
-                if (this.matchers.some(matcher=> eq(pending, matcher)))
-                    return {
-                        pending: [],
-                        matches: matches.concat(pending),
-                    }
-
-                return {
-                    pending,
-                }
-            },
-            {
-                pending: [],
-
-            },
-        )
+        // reduction finish:
+        const reducFin = this.template.reduce(Union.reduc, {
+            pending: [],
+            matches: [],
+        })
 
         return undefined //TODO
     }
