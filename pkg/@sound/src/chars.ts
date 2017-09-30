@@ -1,5 +1,6 @@
 enum Chars {
-    // […]
+    space = 0x20,
+    bang = 0x21,
     quote = 0x22,
     hash = 0x23,
     // […]
