@@ -1,6 +1,7 @@
 import {
     O,
     Int,
+    arrEq,
 } from "neon-lowbar"
 
 import Chars from "chars"
@@ -8,7 +9,6 @@ import {
     Ent,
     EntSeq,
     Reduc,
-    arrEq,
     default as Mom,
 } from "op"
 

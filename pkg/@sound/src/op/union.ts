@@ -1,6 +1,7 @@
 import {
     O,
     Int,
+    arrEq,
 } from "neon-lowbar"
 
 import Chars from "chars"
@@ -8,7 +9,6 @@ import {
     Ent,
     EntSeq,
     Reduc,
-    arrEq,
     default as Mom,
 } from "op"
 import Ordering from "op/ordering"
@@ -17,7 +17,7 @@ import Ordering from "op/ordering"
 export default class Union extends Mom {
     static readonly toks :Symbol[] = [Symbol("`|`")]
     static readonly matchers :Ent[][] = [
-        [Chars.vBar as Int]
+        [Chars.vBar as Int],
     ]
 
     constructor(
