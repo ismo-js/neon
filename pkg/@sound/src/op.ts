@@ -24,15 +24,6 @@ export class Dollar {
     constructor(readonly val :any) {}
 }
 
-// array 1-level equality:
-export function arrEq<E>(
-    l :E[],
-    r :E[],
-) :boolean {
-    return l.length === r.length
-          && l.every((e, i)=> l[i] === e)
-}
-
 export default abstract class Op {
     static readonly matchers :Ent[][]
 

@@ -1,0 +1,8 @@
+version: 3
+services:
+    web-front:
+        image: web-front
+        size: s3
+        ports:
+        -   "80:8080"
+        fip: web-front
