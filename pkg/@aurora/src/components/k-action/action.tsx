@@ -1,5 +1,5 @@
 import {
-    Component as Com,
+    Component,
     Prop,
 } from "@stencil/core"
 
@@ -7,11 +7,11 @@ import {
     Int
 } from "neon-lowbar"
 
-@Com({
+@Component({
     tag: "k-action",
     styleUrl: "action.css",
 })
-export class KAction {
+export class Action {
     @Prop() sign :string
 
     protected signPoints :{[key :string] :Int[]} = {

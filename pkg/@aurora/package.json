@@ -3,10 +3,10 @@
     "license": "LGPL-3.0",
     "version": "0.1.0",
     "dependencies": {
-        "@stencil/core": "0.0.5",
+        "@stencil/core": "^0.0.5",
         "neon-lowbar": "~0.1.0"
     },
     "scripts": {
-        "build": "stencil build --prerender",
+        "build": "stencil build --prerender"
     }
 }
