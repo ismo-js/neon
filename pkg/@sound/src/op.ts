@@ -1,6 +1,6 @@
 import {
     O,
-    Int, //TODO Find better integer typing!!!
+    Int,
 } from "neon-lowbar"
 
 // template entity:

@@ -1,0 +1,34 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "baseUrl": "src/",
+        "outDir": "lib/",
+
+        "module": "commonjs",
+        "target": "es2017",
+        "lib": ["es2017"],
+        "declaration": true,
+
+        "jsx": "react",
+        "jsxFactory": "h",
+
+        "strict": true,
+        "noFallthroughCasesInSwitch": true,
+        "forceConsistentCasingInFileNames": true,
+
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+
+        "listEmittedFiles": true,
+        "listFiles": true,
+        "diagnostics": true
+    },
+
+    "exclude": [
+        "node_modules/",
+        "***/*.old",
+        "***/*.pre",
+        "lib/",
+        "desc/"
+    ]
+}
