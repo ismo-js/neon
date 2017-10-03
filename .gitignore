@@ -15,5 +15,7 @@ node_modules/
 /pkg/*/lib
 /pkg/\@*/run
 /pkg/\@*/out
+/pkg/\@*/www
 /pkg/_*/run
 /pkg/_*/out
+/pkg/_*/www

@@ -9,8 +9,9 @@ import {
 
 @Com({
     tag: "k-action",
+    styleUrl: "action.css",
 })
-export default class Action {
+export class KAction {
     @Prop() sign :string
 
     protected signPoints :{[key :string] :Int[]} = {
