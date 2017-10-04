@@ -9,9 +9,7 @@
     },
     "devDependencies": {
         "@stencil/dev-server": "0.0.17",
-        "@stencil/utils": "0.0.4",
-        "@types/jest": "~21.1.1",
-        "jest": "~21.2.1"
+        "@stencil/utils": "0.0.4"
     },
     "scripts": {
         "build": "stencil build --prerender --debug",
