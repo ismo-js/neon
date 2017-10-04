@@ -9,7 +9,7 @@ import {
 
 @Component({
     tag: "k-action",
-    styleUrl: "action.css",
+    styleUrl: "action.sass",
 })
 export class Action {
     @Prop() sign :string

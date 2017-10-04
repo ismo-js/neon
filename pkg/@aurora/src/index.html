@@ -4,18 +4,11 @@
         <meta charset="utf-8" />
         <title>‹ ısmo ›</title>
         <script src="dest/app.js"></script>
+        <style>body {margin:0; padding:0;}</style>
     </head>
     <body>
-        <header>
-            <stencil-route-link url="/">
-                <h1>‹ ısmo ›</h1>
-            </stencil-route-link>
-            <p>Here's fine.</p>
-        </header>
-
         <stencil-router>
-            <stencil-route url="/" component="aurora-index" exact="true" />
-            <stencil-route url="/doc" component="aurora-doc"/ >
+            <stencil-route url="/" component="aurora-index" />
         </stencil-router>
     </body>
 </html>
