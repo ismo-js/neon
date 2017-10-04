@@ -3,7 +3,7 @@
     "license": "LGPL-3.0",
     "version": "0.1.0",
     "dependencies": {
-        "@stencil/core": "latest",
+        "@stencil/core": "0.0.5",
         "@stencil/router": "latest",
         "neon-lowbar": "~0.1.0"
     },

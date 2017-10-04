@@ -6,7 +6,9 @@ exports.config = {
             ],
             components: [
                 "aurora-index",
+                "aurora-navbar",
                 "aurora-doc",
+                "aurora-xmp",
             ],
         },
     ],
