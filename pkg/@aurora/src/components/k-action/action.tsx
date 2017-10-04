@@ -30,10 +30,10 @@ export class Action {
         return [
             <img class="sign"
                 src={"var/sign/" + signName}
-                alt="${this.getSignChars(signName)}" />,
+                alt={this.getSignChars(signName)} />,
 
             <div class="desc">
-                <slot name="desc" />
+                <slot />
             </div>
         ]
     }

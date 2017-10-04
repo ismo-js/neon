@@ -3,10 +3,18 @@
     "license": "LGPL-3.0",
     "version": "0.1.0",
     "dependencies": {
-        "@stencil/core": "^0.0.5",
+        "@stencil/core": "latest",
+        "@stencil/router": "latest",
         "neon-lowbar": "~0.1.0"
     },
+    "devDependencies": {
+        "@stencil/dev-server": "0.0.17",
+        "@stencil/utils": "0.0.4",
+        "@types/jest": "~21.1.1",
+        "jest": "~21.2.1"
+    },
     "scripts": {
-        "build": "stencil build --prerender"
+        "build": "stencil build --prerender --debug",
+        "dev": "sd concurrent \"stencil build --dev --watch\" \"stencil-dev-server\" "
     }
 }

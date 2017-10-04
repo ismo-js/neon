@@ -3,11 +3,19 @@
     <head>
         <meta charset="utf-8" />
         <title>‹ ısmo ›</title>
-        <script src="dest/app.js" />
+        <script src="dest/app.js"></script>
     </head>
     <body>
-        <k-action>
-            Hallo.
-        </k-action>
+        <header>
+            <stencil-route-link url="/">
+                <h1>‹ ısmo ›</h1>
+            </stencil-route-link>
+            <p>Here's fine.</p>
+        </header>
+
+        <stencil-router>
+            <stencil-route url="/" component="aurora-index" exact="true" />
+            <stencil-route url="/doc" component="aurora-doc"/ >
+        </stencil-router>
     </body>
 </html>
