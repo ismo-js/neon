@@ -8,14 +8,14 @@ import {
 } from "neon-lowbar"
 
 @Component({
-    tag: "aurora-doc",
-    styleUrl: "doc.sass",
+    tag: "aurora-xmp",
+    styleUrl: "xmp.sass",
 })
-export class Doc {
+export class Xmp {
     render() {
         return [
             <k-action sign="arrow">
-                Welcome our docs!
+                Welcome our example showcase!
             </k-action>,
         ]
     }

@@ -9,14 +9,19 @@ import {
 
 @Component({
     tag: "aurora-index",
-    styleUrl: "index.css",
+    styleUrl: "index.sass",
 })
 export class Index {
     render() {
         return [
-            <k-action sign="arrow">
-                Welcome to ısmo!
-            </k-action>,
+            <header>
+            </header>,
+
+            <stencil-router>
+                <stencil-route url="/" exact={true} component="aurora-xmp" />
+                <stencil-route url="/doc" component="aurora-doc" />
+                <stencil-route url="/xmp" component="aurora-xmp" />
+            </stencil-router>
         ]
     }
 }
