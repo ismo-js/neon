@@ -4,8 +4,6 @@
     "version": "0.1.0",
     "main": "lib/meta.js",
     "types": "lib/meta.d.ts",
-    "devDependencies": {
-    },
-    "dependencies": {
-    }
+    "devDependencies": {},
+    "dependencies": {}
 }
