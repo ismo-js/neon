@@ -4,7 +4,8 @@
     "version": "0.1.0",
     "dependencies": {
         "@types/reflect-metadata": "0.0.5",
+        "neon-lowbar": "~0.1.0",
         "reflect-metadata": "^0.1.10",
-        "neon-lowbar": "~0.1.0"
+        "xstream": "^11.0.0"
     }
 }

@@ -1,5 +1,8 @@
 export const ITER = Symbol.iterator
 
+export type Nullable<T> = {[Prop in keyof T]: T[Prop] | null}
+export type Partial<T> = {[Prop in keyof T]?: T[Prop]}
+
 export type Int = number & {"IS INTEGER" :1}
 //…TODO How to write a proper type definition for unit types?
 export function isInt(

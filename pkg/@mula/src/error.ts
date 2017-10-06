@@ -9,13 +9,15 @@ export enum Lvl {
     yellow,
 }
 
-export class SyError {
+export class SyError extends Error {
     constructor(
         readonly lineI :Int,
         readonly pointI :Int,
         readonly lvl :Lvl,
         readonly type :SyError.Type,
-    ) {}
+    ) {
+        super("{Syntax Error: + " + SyError.Type[type] + "}")
+    }
 }
 export namespace SyError {
     export enum Type {
