@@ -3,13 +3,20 @@ import {
     Int,
 } from "neon-lowbar"
 
-import Tree from "tree"
+import Tree from "./tree"
 import {
     Lvl,
     SyError,
-} from "error"
+} from "./error"
 
 const tabIndent = 4 as Int
+
+export const reducInit :Reduc = {
+    lineI: 0 as Int,
+    indentLvl: 0 as Int,
+    rootTree: new Tree<Int[]>([]),
+    syErrors: [] as SyError[],
+}
 
 export interface Reduc {
     lineI :Int
@@ -18,10 +25,22 @@ export interface Reduc {
     syErrors :SyError[]
 }
 
+export function parse(
+    str :string,
+): Tree<Int[]> {
+    const lineStrs = str.split("\n")
+    const lines = lineStrs.map(
+        lineStr=> Array.from(lineStr, char=> char.codePointAt(0)),
+    )
+    const {rootTree} = lines.reduce(reduc, reducInit)
+
+    return rootTree
+}
+
 export function reduc(
     pay :Reduc,
     line :Int[],
-): Reduc {
+) :Reduc {
     const lineI = (pay.lineI + 1) as Int
     const {indentI, begin} = countIndent(line)
     const trimmed = line.slice(begin)
@@ -57,7 +76,9 @@ export function reduc(
     }
 }
 
-function countIndent(line :Int[]) {
+function countIndent(
+    line :Int[],
+) :{indentI :Int, begin :Int} {
     let indentI = 0 as Int
     let pointI = 0 as Int
     line: for (let point of line) switch (point) {
