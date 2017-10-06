@@ -3,13 +3,19 @@ import {
     Int,
 } from "neon-lowbar"
 
-const tabIndent = 4 as Int
+import Tree from "tree"
+import {
+    Lvl,
+    SyError,
+} from "error"
 
+const tabIndent = 4 as Int
 
 export interface Reduc {
     lineI :Int
     indentLvl :Int
     rootTree :Tree<Int[]>
+    syErrors :SyError[]
 }
 
 export function reduc(
@@ -17,18 +23,37 @@ export function reduc(
     line :Int[],
 ): Reduc {
     const lineI = (pay.lineI + 1) as Int
-    const {indentI, pointI} = countIndent(line)
-    const trimmed = line.slice(pointI)
+    const {indentI, begin} = countIndent(line)
+    const trimmed = line.slice(begin)
     const indentLvl = (indentI / tabIndent | 0) as Int
     //…rounds down
     const indentMod = (indentI % tabIndent) as Int
+    const lvlDelta = indentLvl - pay.indentLvl
+
+    const indentErrors = indentMod || 1 < lvlDelta
+        ? [
+            new SyError(
+                lineI,
+                begin,
+                1 < lvlDelta ? Lvl.orange : Lvl.yellow,
+                SyError.Type.indent,
+            )
+        ]
+        : []
 
     const lineTree = new Tree(trimmed)
+    const rootTree = pay.rootTree.concat([lineTree], indentLvl)
+
+    const syErrors = [
+        ...pay.syErrors,
+        ...indentErrors,
+    ]
 
     return {
         lineI,
         indentLvl,
         rootTree,
+        syErrors,
     }
 }
 
@@ -50,28 +75,7 @@ function countIndent(line :Int[]) {
 
     return {
         indentI,
-        pointI,
-    }
-}
-
-export class Tree<E> {
-    constructor (
-        readonly e :E,
-        readonly subnodes :Tree<E>[] = [],
-    ) {}
-
-    replace(patch :{[key :number] :E}): Tree<E> {
-        const subnodes = this.subnodes.map(node=> node.clone())
-        for (let i in patch)
-            if (-1 < Math.sign(i))
-                subnodes[i] = patch[i]
-
-        return new Tree(
-            -1 in patch
-                ? patch[-1]
-                : this.e,
-            subnodes,
-        )
+        begin: pointI,
     }
 }
 
