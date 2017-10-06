@@ -2,8 +2,6 @@ import {O} from "lowbar/main"
 
 export type StrDoc = [string, Docable] | string
 
-const IT = Symbol.iterator
-
 export interface Docable {}
 
 export function doc(

@@ -1,3 +1,5 @@
+export const ITER = Symbol.iterator
+
 export type Int = number & {"IS INTEGER" :1}
 //…TODO How to write a proper type definition for unit types?
 export function isInt(
