@@ -25,17 +25,21 @@ export interface Reduc {
     cfg :Config
 }
 
-export function parse(
-    str :string,
-): Tree<Int[]> {
-    const lineStrs = str.split("\n")
-    const lines = lineStrs.map(
-        lineStr=> Array.from(lineStr, char=> char.codePointAt(0)),
-    )
-    const {rootTree} = lines.reduce(reduc, reducInit) as Reduc
+/*
+    // Will get replaced by `front/`
 
-    return rootTree
-}
+    export function parse(
+        str :string,
+    ): Tree<Int[]> {
+        const lineStrs = str.split("\n")
+        const lines = lineStrs.map(
+            lineStr=> Array.from(lineStr, char=> char.codePointAt(0)),
+        )
+        const {rootTree} = lines.reduce(reduc, reducInit) as Reduc
+
+        return rootTree
+    }
+*/
 
 export function reduc(
     pay :Reduc,

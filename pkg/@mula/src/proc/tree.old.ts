@@ -19,7 +19,7 @@ export default class Tree<E> {
     replace(
         patch :Patch<E> = {},
         deepCloning :boolean = true,
-    ): Tree<E> {
+    ) :Tree<E> {
         const subnodes :Tree<E>[] =
             this.subnodes.map((node, i)=> i in patch
                 ? patch[i]
