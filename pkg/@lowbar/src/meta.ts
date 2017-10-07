@@ -13,6 +13,7 @@ export function isInt(
 ): val is Int {
     return Number.isSafeInteger(val)
 }
+export const INF = Number.POSITIVE_INFINITY
 
 export type Hint = "number" | "string" | "default"
 

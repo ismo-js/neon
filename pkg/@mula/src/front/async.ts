@@ -38,6 +38,7 @@ export async function parseAsync(
 export function isStm(
     val :any,
 ) :val is Stm<any> {
-    return val instanceof Readable || val instanceof Stream
+    return val instanceof Readable
+          || val instanceof Stream
 }
 
