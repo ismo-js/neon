@@ -1,4 +1,4 @@
-import {Pm} from "lowbar"
+import {Pm} from "neon-lowbar"
 
 import {
     Config,
@@ -27,8 +27,12 @@ export {
     parseAsync,
 }
 
-export default async function (val :CharLs | Stm<CharLs>, config :ConfigInter) :Pm<Res> {
-    if (isStm(val))
-        return await parseAsync(val, config)
-    return parse(val, config)
+export default async function parseAny(
+    val :CharLs | CharStmLs,
+    config :ConfigInter
+) :Pm<Res> {
+    if (isStm(val)
+          || Array.isArray(val) && val.every(isStm))
+        return await parseAsync(val as CharStmLs, config)
+    return parse(val as CharLs, config)
 }

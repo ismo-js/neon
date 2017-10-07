@@ -1,5 +1,4 @@
 import {
-    ITER,
     Int,
     O,
     Pm,
@@ -8,16 +7,19 @@ import {
 import {
     ConfigInter,
     CharLs,
-    validate,
+    Config,
 } from "./config"
 
 // ---
 
 export function parse(
     input :CharLs,
-    config :ConfigInter,
+    configParam :ConfigInter,
 ) :Res {
-    validate(config)
+    const config = Config.from(configParam)
+    if (config.msgs.some(msg=> 0 < msg.lvl))
+        return config
+        //…TODO What to return?
 
     if (input instanceof Int32Array)
         return parse32(input, config)
@@ -26,7 +28,7 @@ export function parse(
         return parse32(str2arr32(input), config)
 
     if (Array.isArray(input)
-          && input.every(e=> "number" === typeof input)) {
+          && input.every(e=> Number.isSafeInteger(e))) {
         
     }
 }

@@ -3,20 +3,31 @@ import {
     Int,
 } from "neon-lowbar"
 
-export enum Lvl {
-    red,
-    orange,
-    yellow,
+// ---
+
+export interface Lvlable {
+    lvl :Lvl
 }
 
-export class SyError extends Error {
+export enum Lvl {
+    // error (negative):
+    // [analogous to hexadecimal RGB:]
+    red = -0xf00,
+    orange = -0xfa0,
+    yellow = -0xff0,
+
+    // message (positive):
+    blue = 0x00f,
+}
+
+export class SyError extends Error implements Lvlable {
     constructor(
         readonly lineI :Int,
         readonly pointI :Int,
         readonly lvl :Lvl,
         readonly type :SyError.Type,
     ) {
-        super("{Syntax Error: + " + SyError.Type[type] + "}")
+        super(`{\`mula\` Syntax Error: ${SyError.Type[type]}}`)
     }
 }
 export namespace SyError {
