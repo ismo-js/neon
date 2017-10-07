@@ -12,8 +12,8 @@ import {
 
 import {
     CharLs,
-    Config,
     ConfigInter,
+    default as Config,
 } from "./config"
 
 // ---
@@ -30,8 +30,8 @@ export async function parseAsync(
 
     for (let stmParam of stms) {
         const stm = stmParam instanceof Stream
-            ? stmParam
-            : $.from(stmParam) //TODO typing
+            ? $.from(stmParam)
+            : stmParam
     }
 }
 

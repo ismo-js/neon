@@ -7,9 +7,10 @@ import {
 } from "neon-lowbar"
 
 import {
+    Lvl,
     Lvlable,
-    ConfigMsg,
-} from "msg"
+} from "msg/proto"
+import Msg from "msg/config"
 
 // ---
 
@@ -21,7 +22,7 @@ export abstract class ConfigProto {
 }
 export interface ConfigInter extends Partial<ConfigProto> {}
 
-export class Config extends ConfigProto {
+export default class Config extends ConfigProto {
     msgs :Lvlable[] = []
 
     static from(
@@ -34,10 +35,10 @@ export class Config extends ConfigProto {
             indentLength: Config.valiLength(indentLength, 0x10 as Int),
             rootLength: Config.valiLength(rootLength, 0x40 as Int),
         }
-        const x = ([] as ConfigMsg[]).concat(...O.entries(asser).map(
+        const x = ([] as Msg[]).concat(...O.entries(asser).map(
             ([k, bool])=> bool
                 ? []
-                : [new ConfigMsg(k as keyof ConfigProto)],
+                : [new Msg(k as keyof ConfigProto, Lvl.red)],
         ))
     }
 

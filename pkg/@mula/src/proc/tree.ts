@@ -3,6 +3,8 @@ import {
     Int,
 } from "neon-lowbar"
 
+// ---
+
 export interface Patch<E> {
     e? :E
     [key :number] :Tree<E>
@@ -28,7 +30,6 @@ export default class Tree<E> {
         const additPatches = O.entries(patch).filter(
             ([i, e])=> !(i in subnodes)
         )
-        console.log("ADDIT: @", this, ";", additPatches)
         for (let [i, tree] of additPatches)
             subnodes[i as any as number] = tree
 
@@ -45,7 +46,6 @@ export default class Tree<E> {
         lvl :Int = 0 as Int,
         deepCloning = true,
     ) :Tree<E> {
-        console.log("CONCAT: @", this, ";", tail, ";", lvl)
         if (lvl > 0) {
             const patchI = this.subnodes.length - 1
             const patch :Patch<E> = {

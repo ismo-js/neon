@@ -7,7 +7,7 @@ import {
 import {
     ConfigInter,
     CharLs,
-    Config,
+    default as Config,
 } from "./config"
 
 // ---

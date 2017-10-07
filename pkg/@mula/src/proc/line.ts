@@ -3,26 +3,26 @@ import {
     Int,
 } from "neon-lowbar"
 
+import Config from "front/config"
 import Tree from "./tree"
-import {
-    Lvl,
-    SyError,
-} from "./error"
+import {Lvl} from "msg/proto"
+import Msg from "msg/syntax"
 
-const tabIndent = 4 as Int
+// ---
 
-export const reducInit :Reduc = {
+export const reducInit :Partial<Reduc> = {
     lineI: 0 as Int,
     indentLvl: 0 as Int,
     rootTree: new Tree<Int[]>([]),
-    syErrors: [] as SyError[],
+    msgs: [] as Msg[],
 }
 
 export interface Reduc {
     lineI :Int
     indentLvl :Int
     rootTree :Tree<Int[]>
-    syErrors :SyError[]
+    msgs :Msg[]
+    cfg :Config
 }
 
 export function parse(
@@ -32,7 +32,7 @@ export function parse(
     const lines = lineStrs.map(
         lineStr=> Array.from(lineStr, char=> char.codePointAt(0)),
     )
-    const {rootTree} = lines.reduce(reduc, reducInit)
+    const {rootTree} = lines.reduce(reduc, reducInit) as Reduc
 
     return rootTree
 }
@@ -41,21 +41,23 @@ export function reduc(
     pay :Reduc,
     line :Int[],
 ) :Reduc {
+    const {cfg} = pay
+    const {indentLength} = cfg
     const lineI = (pay.lineI + 1) as Int
-    const {indentI, begin} = countIndent(line)
+    const {indentI, begin} = countIndent(line, indentLength as Int)
     const trimmed = line.slice(begin)
-    const indentLvl = (indentI / tabIndent | 0) as Int
+    const indentLvl = (indentI / indentLength | 0) as Int
     //…rounds down
-    const indentMod = (indentI % tabIndent) as Int
+    const indentMod = (indentI % indentLength) as Int
     const lvlDelta = indentLvl - pay.indentLvl
 
-    const indentErrors = indentMod || 1 < lvlDelta
+    const indentMsgs = indentMod || 1 < lvlDelta
         ? [
-            new SyError(
+            new Msg(
                 lineI,
                 begin,
                 1 < lvlDelta ? Lvl.orange : Lvl.yellow,
-                SyError.Type.indent,
+                Msg.Subj.indent as Int,
             )
         ]
         : []
@@ -63,27 +65,29 @@ export function reduc(
     const lineTree = new Tree(trimmed)
     const rootTree = pay.rootTree.concat([lineTree], indentLvl)
 
-    const syErrors = [
-        ...pay.syErrors,
-        ...indentErrors,
+    const msgs = [
+        ...pay.msgs,
+        ...indentMsgs,
     ]
 
     return {
         lineI,
         indentLvl,
         rootTree,
-        syErrors,
+        msgs,
+        cfg,
     }
 }
 
 function countIndent(
     line :Int[],
+    length :Int,
 ) :{indentI :Int, begin :Int} {
     let indentI = 0 as Int
     let pointI = 0 as Int
     line: for (let point of line) switch (point) {
         case Chars.tab as Int:
-            indentI = (indentI + tabIndent) as Int
+            indentI = (indentI + length) as Int
             pointI++
             break
         case Chars.space as Int:

@@ -3,7 +3,9 @@ import {
     Int,
 } from "neon-lowbar"
 
-import {ConfigProto} from "front/config"
+import {
+    ConfigProto,
+} from "front/config"
 
 // ---
 
@@ -22,13 +24,14 @@ export enum Lvl {
     blue = 0x00f,
 }
 
-export abstract class MsgProto extends Error
+export default abstract class Proto extends Error
       implements Lvlable {
     static type = "General"
     static lvlText = {
         [Lvl.red]: "error",
         [Lvl.orange]: "caution",
         [Lvl.yellow]: "warning",
+
         [Lvl.blue]: "notice",
     }
 
@@ -49,25 +52,5 @@ export abstract class MsgProto extends Error
                     .toString(0x10)
             } \
         }`)
-    }
-}
-
-export class SyMsg extends MsgProto {
-    static type = "Syntax"
-}
-export namespace SyMsg {
-    export enum Subj {
-        indent = 0x12de,
-    }
-}
-
-export class ConfigMsg extends MsgProto {
-    static type = "Configuration"
-
-    constructor(
-        readonly key :keyof ConfigProto,
-        lvl :Lvl,
-    ) {
-        super(-0xc as Int, 0 as Int, lvl)
     }
 }
