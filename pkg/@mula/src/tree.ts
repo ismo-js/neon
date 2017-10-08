@@ -8,64 +8,82 @@ import {
 
 // ---
 
-type Conifer<Node> = Tree<Node, Node>
+export type Conifer<Lbl> = Tree<Lbl, Lbl>
 
-class Tree<Node, Leaf> {
-    [key :number] :Tree<Node, Leaf>
+export interface Generator<In, Out, Res> {
+    next(arg? :In) :Out
+}
+
+export type Walker<Lbl, Lf extends Lbl, Res, ResLf extends Res> =
+    (lbl: Lbl)=> Generator<Tree<Lbl, Lf>, Tree<Res, ResLf>, Res>
+
+// tree graph with branch labels of `Br` and leave labels of `Lf`:
+export default class Tree<Lbl, Lf extends Lbl> {
+    static Handler = class Handler<Lbl, Lf extends Lbl>
+          implements ProxyHandler<Tree<Lbl, Lf>> {
+        get<Prop extends keyof Tree<Lbl, Lf>>(
+            tgt :Tree<Lbl, Lf>,
+            prop :Prop,
+        ) :Tree<Lbl, Lf>[Prop]
+        get(
+            tgt :Tree<Lbl, Lf>,
+            prop :number,
+        ) :Lf
+        get(
+            tgt :Tree<Lbl, Lf>,
+            prop :any,
+        ) :any {
+            const propI = tgt.normalizeI(prop)
+            
+            if (isInt(prop!)) {
+                return 
+            }
+        }
+
+        has<Prop extends keyof Tree<Lbl, Lf>>(
+            tgt :Tree<Lbl, Lf>,
+            prop :Prop
+        ) :true
+        has(
+            tgt :Tree<Lbl, Lf>,
+            prop :any
+        ) :boolean {
+            return prop in tgt
+                  || isInt(tgt.normalizeI(prop)!)
+        }
+    }
+
+    readonly [key :number] :Tree<Lbl, Lf>
     length :Int = 0 as Int
 
-    protected handler :ProxyHandler<this> = {
-        set(
-            tgt :Conifer<any>,
-            prop :PropertyKey,
-            val :any,
-        ) :boolean {
-            const propInt = Number.parseInt(prop as any)
-            if (isInt(propInt))
-               return tgt.setI(propInt, val)
-
-            if (prop in this) {
-                tgt[prop as any] = val
-                return true
-            }
-
-            return false
-        },
-    }
-
-    set ["new"](val :Tree<Node, Leaf>) {
-        this[this.length] = val
-    }
+    protected handler = new Tree.Handler<Lbl, Lf>() 
 
     constructor(
-        node :Node,
-        leaves :Iterable<Leaf>,
-    ) {
+        label :Lbl,
+        edges :Iterable<Tree<Lbl, Lf>>,
+    )
+    constructor() {
         return new Px(this, this.handler)
     }
 
-    protected setI(
-        int :Int,
-        val :Tree<Node, Leaf>,
-    ) :boolean {
-        if (!(val instanceof Tree))
-            return false
+    flatWalk(
+        walker :Iterator<>
+    ) :
 
-        const propAbs = Math.abs(int)
-        const propI = 0 > int
-            ? (propAbs > this.length
-                ? Number.NaN
-                : this.length - propAbs
+    protected normalizeI(
+        iParam :Int,
+    ) :Int | null {
+        const absI = Math.abs(iParam)
+        const normI = 0 > iParam
+            ? (absI > this.length
+                ? null
+                : (this.length - absI) as Int
             )
-            : (propAbs > this.length
-                ? Number.NaN
-                : propAbs
+            : (absI > this.length
+                ? null
+                : absI as Int
             )
         
-        if (Number.NaN === propI)
-            return false
-
-        // TODO
-        return true
+        return normI
     }
 }

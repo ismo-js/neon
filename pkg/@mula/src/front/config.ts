@@ -18,7 +18,7 @@ export type CharLs = Int32Array | (Int|number)[] | string
 
 export abstract class ConfigProto {
     readonly indentLength :Int|number = 4
-    readonly rootLength :Int|number = 0
+    readonly rootLvl :Int|number = 0
 }
 export interface ConfigInter extends Partial<ConfigProto> {}
 
@@ -28,12 +28,12 @@ export default class Config extends ConfigProto {
     static from(
         {
             indentLength,
-            rootLength,
+            rootLvl,
         } :ConfigInter,
     ) :Config {
         const asser = {
             indentLength: Config.valiLength(indentLength, 0x10 as Int),
-            rootLength: Config.valiLength(rootLength, 0x40 as Int),
+            rootLvl: Config.valiLength(rootLvl, 0x100 as Int),
         }
         const x = ([] as Msg[]).concat(...O.entries(asser).map(
             ([k, bool])=> bool
