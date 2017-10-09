@@ -69,6 +69,10 @@ export default class Tree<Lbl, Lf extends Lbl> {
         }
     }
 
+    static leaf<Lf>(lf :Lf) :Tree<any, Lf> {
+        return new this([], lf)
+    }
+
     readonly [key :number] :Tree<Lbl, Lf>
 
     protected UNFIXED = Symbol("{ unfixed value placeholder }")
@@ -84,12 +88,12 @@ export default class Tree<Lbl, Lf extends Lbl> {
     //  but TypeScript's intelligence is limited nowadays.
 
     constructor(
-        edges :Iterable<Tree<Lbl, Lf>> = [],
+        edges :Iterable<Tree<Lbl, Lf> | Lbl> = [],
         fixLbl? :Lbl,
     ) {
-        const hasFixLbl = 2 > arguments.length
+        const hasFixLbl = 1 < arguments.length
 
-        if (hasFixLbl) this.lbl_c = fixLbl
+        if (hasFixLbl) this.lbl_c = fixLbl!
         return new Px(this, this.handler)
     }
 
@@ -107,10 +111,23 @@ export default class Tree<Lbl, Lf extends Lbl> {
         return [...this].length as Int
     }
 
-    skirt<Res, ResLf extends Res>(
-        walker :Walker<Lbl, Lf, Res, ResLf>
-    ) :Tree<Res, ResLf> {
-        const iterator = walker(0 as Int)
+    skirt<Out, OutLf extends Out>(
+        walker :Walker<Lbl, Lf, Out, OutLf>
+    ) :Tree<Out, OutLf> {
+        function* genor() {
+            let value :Tree<Out, OutLf> | ((lbl: Lbl)=> Out) | undefined
+            let done :boolean = true
+            do {
+                if (!done) yield value
+                ; ({done, value} = walkIter.next())
+            } while (!done)
+            return (value! as (lbl: Lbl)=> Out)(lbl)
+        }
+
+        const lbl = this.label
+        const walkIter = walker(0 as Int)
+        
+        return new Tree(genor() as Iterable<Tree<Out, OutLf> | Out>)
     }
 
     protected normalizeI(
