@@ -51,9 +51,10 @@ export default class Tree<Lbl, Lf extends Lbl> {
         ) :any {
             const propI = tgt.normalizeI(prop)
             
-            if (isInt(prop!)) {
-                return 
-            }
+            if (isInt(prop)) {
+                return undefined
+            } else return tgt[prop]
+            //…TODO Proper error management by looking up the prototype tree for prop
         }
 
         has<Prop extends keyof Tree<Lbl, Lf>>(
@@ -64,8 +65,9 @@ export default class Tree<Lbl, Lf extends Lbl> {
             tgt :Tree<Lbl, Lf>,
             prop :any
         ) :boolean {
-            return prop in tgt
+            return true
                   || isInt(tgt.normalizeI(prop)!)
+            //…TODO
         }
     }
 
@@ -80,15 +82,14 @@ export default class Tree<Lbl, Lf extends Lbl> {
     //  store other tree's unfixed symbols in trees in derived classes
     protected handler = new Tree.Handler<Lbl, Lf>() 
     protected lbl_c :Lbl | symbol = this.UNFIXED
-    protected readonly edges :Iterable<Tree<Lbl, Lf>>
 
-    [Symbol.iterator] :()=> Iterator<Tree<Lbl, Lf>> =
-        this.edges[Symbol.iterator]
+    ;[Symbol.iterator] :()=> Iterator<Tree<Lbl, Lf> | Lbl> =
+        ()=> this.edges[Symbol.iterator]()
     //… should be [lowbar@ITER] one day,
     //  but TypeScript's intelligence is limited nowadays.
 
     constructor(
-        edges :Iterable<Tree<Lbl, Lf> | Lbl> = [],
+        protected readonly edges :Iterable<Tree<Lbl, Lf> | Lbl> = [],
         fixLbl? :Lbl,
     ) {
         const hasFixLbl = 1 < arguments.length
@@ -126,7 +127,7 @@ export default class Tree<Lbl, Lf extends Lbl> {
 
         const lbl = this.label
         const walkIter = walker(0 as Int)
-        
+
         return new Tree(genor() as Iterable<Tree<Out, OutLf> | Out>)
     }
 
