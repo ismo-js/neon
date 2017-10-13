@@ -3,9 +3,12 @@
     "license": "LGPL-3.0",
     "version": "0.1.0",
     "dependencies": {
-        "@types/reflect-metadata": "0.0.5",
-        "neon-lowbar": "~0.1.0",
         "reflect-metadata": "^0.1.10",
+        "neon-lowbar": "~0.1.0",
         "xstream": "^11.0.0"
+    },
+    "devDependencies": {
+        "@types/reflect-metadata": "0.0.5",
+        "ava": "^0.22.0"
     }
 }
