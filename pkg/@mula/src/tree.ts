@@ -49,12 +49,13 @@ export default class Tree<Lbl, Lf extends Lbl> {
             tgt :Tree<Lbl, Lf>,
             prop :any,
         ) :any {
-            const propI = tgt.normalizeI(prop)
-            
-            if (isInt(prop)) {
-                return undefined
-            } else return tgt[prop]
-            //…TODO Proper error management by looking up the prototype tree for prop
+            if (!this.has(tgt, prop))
+                throw new TypeError(`"${prop}" is not a property on "${tgt.constructor.name}"`)
+
+            const i = tgt.normalizeI(prop)!
+            if (isInt(i)) return tgt.getByI(i)
+
+            return tgt[prop]
         }
 
         has<Prop extends keyof Tree<Lbl, Lf>>(
@@ -65,9 +66,23 @@ export default class Tree<Lbl, Lf extends Lbl> {
             tgt :Tree<Lbl, Lf>,
             prop :any
         ) :boolean {
-            return true
-                  || isInt(tgt.normalizeI(prop)!)
-            //…TODO
+            if (isInt(tgt.normalizeI(prop)!)) return true
+
+            for (
+                let proto = tgt;
+                proto;
+                proto = O.getPrototypeOf(proto)
+            ) {
+                const props = [
+                    ...O.getOwnPropertyNames(proto),
+                    ...O.getOwnPropertySymbols(proto),
+                ]
+
+                if (props.includes(prop))
+                    return true
+            }
+
+            return false
         }
     }
 
@@ -82,6 +97,7 @@ export default class Tree<Lbl, Lf extends Lbl> {
     //  store other tree's unfixed symbols in trees in derived classes
     protected handler = new Tree.Handler<Lbl, Lf>() 
     protected lbl_c :Lbl | symbol = this.UNFIXED
+    protected edges_c :Tree<Lbl, Lf>[] = []
 
     ;[Symbol.iterator] :()=> Iterator<Tree<Lbl, Lf> | Lbl> =
         ()=> this.edges[Symbol.iterator]()
@@ -112,16 +128,23 @@ export default class Tree<Lbl, Lf extends Lbl> {
         return [...this].length as Int
     }
 
+    getByI(
+        i :Int
+    ) :Tree<Lbl, Lf> {
+        if (i < this.edges_c.length) return this.edges_c[i]
+        
+        return void 0 //TODO
+    }
+
     skirt<Out, OutLf extends Out>(
         walker :Walker<Lbl, Lf, Out, OutLf>
     ) :Tree<Out, OutLf> {
         function* genor() {
-            let value :Tree<Out, OutLf> | ((lbl: Lbl)=> Out) | undefined
-            let done :boolean = true
-            do {
-                if (!done) yield value
-                ; ({done, value} = walkIter.next())
-            } while (!done)
+            let value :Tree<Out, OutLf> | ((lbl :Lbl)=> Out) | undefined
+            for (let {done} = {value} = walkIter.next()
+                ; !done
+                ; {done, value} = walkIter.next()
+            ) yield value;
             return (value! as (lbl: Lbl)=> Out)(lbl)
         }
 
@@ -132,8 +155,13 @@ export default class Tree<Lbl, Lf extends Lbl> {
     }
 
     protected normalizeI(
-        iParam :Int,
+        iParam :Int | string | symbol,
     ) :Int | null {
+        const relI = "number" === typeof iParam
+            ? iParam
+            : "symbol" === typeof iParam
+            ? null
+            : parseInt(iParam as string)
         const absI = Math.abs(iParam)
         const normI = 0 > iParam
             ? (absI > this.length

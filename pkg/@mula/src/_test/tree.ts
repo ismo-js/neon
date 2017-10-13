@@ -14,14 +14,13 @@ import {
 class TreeTst {
     @enm(true)
     leafIsEmpty(t :T) {
-        const leaf: Conifer<string> =
-            Tree.leaf("platin")
+        const leaf: Conifer<string> = Tree.leaf("platin")
 
         t.is(leaf.length, 0)
     }
 
     @enm(true)
-    tripleLbl_Length(t :T) {
+    tripleLbl_Len(t :T) {
         type Cs = Conifer<string>
         const trip: Cs[] = ["alpha", "beta", "gamma"]
             .map(Tree.leaf.bind(Tree))
