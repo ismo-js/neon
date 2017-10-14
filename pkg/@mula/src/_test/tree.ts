@@ -29,5 +29,6 @@ class TreeTst {
         t.is(tree.length, 3)
         t.is(tree.label, "platin")
         t.is(tree[2].label, "gamma")
+        t.is(tree[0].label, "alpha")
     }
 }

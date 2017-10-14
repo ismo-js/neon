@@ -68,10 +68,9 @@ export default class Tree<Lbl, Lf extends Lbl> {
         ) :boolean {
             if (isInt(tgt.normalizeI(prop)!)) return true
 
-            for (
-                let proto = tgt;
-                proto;
-                proto = O.getPrototypeOf(proto)
+            for (let proto = tgt
+                ; proto
+                ; proto = O.getPrototypeOf(proto)
             ) {
                 const props = [
                     ...O.getOwnPropertyNames(proto),
@@ -95,7 +94,8 @@ export default class Tree<Lbl, Lf extends Lbl> {
     protected UNFIXED = Symbol("{ unfixed value placeholder }")
     //… not static to enable to:
     //  store other tree's unfixed symbols in trees in derived classes
-    protected handler = new Tree.Handler<Lbl, Lf>() 
+    protected handler = new Tree.Handler<Lbl, Lf>()
+    protected iter :Iterator<Tree<Lbl, Lf> | Lbl>
     protected lbl_c :Lbl | symbol = this.UNFIXED
     protected edges_c :Tree<Lbl, Lf>[] = []
 
@@ -111,6 +111,8 @@ export default class Tree<Lbl, Lf extends Lbl> {
         const hasFixLbl = 1 < arguments.length
 
         if (hasFixLbl) this.lbl_c = fixLbl!
+        this.iter = edges[Symbol.iterator]()
+
         return new Px(this, this.handler)
     }
 
@@ -131,9 +133,19 @@ export default class Tree<Lbl, Lf extends Lbl> {
     getByI(
         i :Int
     ) :Tree<Lbl, Lf> {
-        if (i < this.edges_c.length) return this.edges_c[i]
-        
-        return void 0 //TODO
+        const c = this.edges_c
+        let done :boolean
+        let value :Tree<Lbl, Lf> | Lbl
+
+        for ({done, value} = this.iter.next()
+            ; !done && i >= c.length
+            ; {done, value} = this.iter.next()
+        ) c[c.length] = value as Tree<Lbl, Lf>
+            
+        if (done && this.UNFIXED === this.lbl_c)
+            this.lbl_c = value as Lbl
+
+        return c[i]
     }
 
     skirt<Out, OutLf extends Out>(
