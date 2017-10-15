@@ -28,7 +28,7 @@ export interface MapIterator<In, Out, Res> {
 // walker over a `Tree<In, InLf>`; yieldin a `Tree<Out, OutLf>`:
 export type Walker<In, InLf extends In, Out, OutLf extends Out> =
     (lvl :Int)=> MapIterator<Tree<In, InLf>,
-          Tree<Out, OutLf>,
+          Iterable<Tree<Out, OutLf>>,
           ((lbl :In)=> Out) | undefined>
 
 export type Conifer<Lbl> = Tree<Lbl, Lbl>
@@ -96,13 +96,24 @@ export default class Tree<Lbl, Lf extends Lbl> {
     //  store other tree's unfixed symbols in trees in derived classes
     protected handler = new Tree.Handler<Lbl, Lf>()
     protected iter :Iterator<Tree<Lbl, Lf> | Lbl>
+    protected done :boolean = false
+
     protected lbl_c :Lbl | symbol = this.UNFIXED
     protected edges_c :Tree<Lbl, Lf>[] = []
 
-    ;[Symbol.iterator] :()=> Iterator<Tree<Lbl, Lf> | Lbl> =
-        ()=> this.edges[Symbol.iterator]()
-    //… should be [lowbar@ITER] one day,
-    //  but TypeScript's intelligence is limited nowadays.
+    //should be [lowbar@ITER] one day
+    ;*[Symbol.iterator]() {
+        for (let i = 0 as Int,
+              val :Tree<Lbl, Lf> | undefined,
+              direction: boolean | undefined
+            ; val = this.getByI(i)
+            ; i = false as boolean === direction
+                ? i-1 as Int
+                : i+1 as Int
+        ) direction = yield this.getByI(i) 
+
+        return this.label
+    } 
 
     constructor(
         protected readonly edges :Iterable<Tree<Lbl, Lf> | Lbl> = [],
@@ -112,6 +123,8 @@ export default class Tree<Lbl, Lf extends Lbl> {
 
         if (hasFixLbl) this.lbl_c = fixLbl!
         this.iter = edges[Symbol.iterator]()
+        //… should be [lowbar@ITER] one day,
+        //  but TypeScript's intelligence is limited nowadays.
 
         return new Px(this, this.handler)
     }
@@ -120,9 +133,10 @@ export default class Tree<Lbl, Lf extends Lbl> {
         if (this.UNFIXED !== this.lbl_c)
             return this.lbl_c as Lbl
         
-        let r: Tree<Lbl, Lf> | Lbl
+        let r: Tree<Lbl, Lf> | Lbl | undefined
         for (r of this);
-        //… iterates over and reads the end result as label:
+        //… iterates over and reads the end result as label
+
         return r! as Lbl
     }
 
@@ -131,39 +145,48 @@ export default class Tree<Lbl, Lf extends Lbl> {
     }
 
     getByI(
-        i :Int
-    ) :Tree<Lbl, Lf> {
+        i :Int,
+    ) :Tree<Lbl, Lf> | undefined {
         const c = this.edges_c
-        let done :boolean
-        let value :Tree<Lbl, Lf> | Lbl
+        let done :boolean = this.done
+        let value :Tree<Lbl, Lf> | Lbl | undefined
 
-        for ({done, value} = this.iter.next()
+        for (
             ; !done && i >= c.length
             ; {done, value} = this.iter.next()
-        ) c[c.length] = value as Tree<Lbl, Lf>
+        ) if (value) c[c.length] = value as Tree<Lbl, Lf>
             
-        if (done && this.UNFIXED === this.lbl_c)
-            this.lbl_c = value as Lbl
+        if (done) {
+            this.done = true
+            if (this.UNFIXED === this.lbl_c)
+                this.lbl_c = value as Lbl
+        }
 
-        return c[i]
+        return i < c.length
+            ? c[i]
+            : undefined
     }
 
     skirt<Out, OutLf extends Out>(
         walker :Walker<Lbl, Lf, Out, OutLf>
     ) :Tree<Out, OutLf> {
+        type OutTree = Tree<Out, OutLf>
+
         function* genor() {
-            let value :Tree<Out, OutLf> | ((lbl :Lbl)=> Out) | undefined
+            let value :Iterable<OutTree> | ((lbl :Lbl)=> Out) | undefined
+
             for (let {done} = {value} = walkIter.next()
                 ; !done
                 ; {done, value} = walkIter.next()
-            ) yield value;
-            return (value! as (lbl: Lbl)=> Out)(lbl)
+            ) yield* value! as Iterable<OutTree>
+
+            return (value! as (lbl: Lbl)=> Out)(self.label)
         }
 
-        const lbl = this.label
+        const self = this
         const walkIter = walker(0 as Int)
 
-        return new Tree(genor() as Iterable<Tree<Out, OutLf> | Out>)
+        return new Tree(genor() as Iterable<OutTree | Out>)
     }
 
     protected normalizeI(
@@ -172,10 +195,14 @@ export default class Tree<Lbl, Lf extends Lbl> {
         const relI = "number" === typeof iParam
             ? iParam
             : "symbol" === typeof iParam
-            ? null
+            ? Number.NaN
             : parseInt(iParam as string)
-        const absI = Math.abs(iParam)
-        const normI = 0 > iParam
+
+        if (Number.NaN === relI) return null
+
+        /*
+        const absI = Math.abs(relI)
+        const normI = 0 > relI
             ? (absI > this.length
                 ? null
                 : (this.length - absI) as Int
@@ -184,7 +211,8 @@ export default class Tree<Lbl, Lf extends Lbl> {
                 ? null
                 : absI as Int
             )
+        */
         
-        return normI
+        return relI as Int //normI
     }
 }

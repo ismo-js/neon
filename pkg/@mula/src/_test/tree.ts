@@ -26,9 +26,9 @@ class TreeTst {
             .map(Tree.leaf.bind(Tree))
         const tree: Cs = new Tree(trip, "platin")
         
-        t.is(tree.length, 3)
         t.is(tree.label, "platin")
         t.is(tree[2].label, "gamma")
+        t.is(tree.length, 3)
         t.is(tree[0].label, "alpha")
     }
 }
