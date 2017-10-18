@@ -47,30 +47,26 @@ class TreeTst {
 
     @enm(true)
     iteratorIntf(t :T) {
-        type Cn = Tree<string, "abba" | "baab" | "bibi">
-        const triple: Cn[] = ["baab", "abba", "bibi"] 
+        type Cn = Tree<string, "abba" | "bubu" | "bibi">
+        const triple: Cn[] = ["bubu", "abba", "bibi"] 
             .map(leaf)
-        const tree: Cn = new Tree(triple, "bubu")
+        const tree: Cn = new Tree(triple, "buub")
         const iter = tree[Symbol.iterator]()
+        let value, done
 
-        console.error("==FST")
-        const fst = iter.next(true)
-        t.false(fst.done)
-        t.is(tree.edges_c.length, 1)
-        t.is((fst.value as Cn).label, "baab")
+        ; ({value} = iter.next(true))
+        t.is((value as Cn).label, "bubu")
 
-        console.error("==SND")
-        const snd = iter.next(true)
-        //t.false(tree.done, "After snd…")
-        //t.false(snd.done)
-        t.is(tree.edges_c.length, 2)
-        t.is((snd.value as Cn).label, "abba")
+        ; ({value} = iter.next(true))
+        t.is((value as Cn).label, "abba")
 
-        console.error("==3RD")
-        t.is(iter.next(false).value.label, "baab")
-        t.is(iter.next().value.label, "abba")
-        t.is(iter.next().value.label, "bibi")
-        t.true(iter.next().done)
+        t.is((iter.next(false).value as Cn).label, "bubu")
+        t.is((iter.next(true).value as Cn).label, "abba")
+        t.is((iter.next().value as Cn).label, "bibi")
+
+        let {value: lbl} = {done} = iter.next()
+        t.true(done)
+        t.is(lbl, "buub")
     }
     
     @enm(true)

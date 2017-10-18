@@ -50,7 +50,7 @@ export default class Tree<Lbl, Lf extends Lbl> {
             prop :any,
         ) :any {
             if (!this.has(tgt, prop))
-                void 0//throw new TypeError(`"${prop}" is not a property on "${tgt.constructor.name}"`)
+                throw new TypeError(`"${prop}" is not a property on "${tgt.constructor.name}"`)
 
             const i = tgt.normalizeI(prop)!
             if (isInt(i)) return tgt.getByI(i)
@@ -95,17 +95,17 @@ export default class Tree<Lbl, Lf extends Lbl> {
     //… not static to enable to:
     //  store other tree's unfixed symbols in trees in derived classes
     protected handler = new Tree.Handler<Lbl, Lf>()
-    /*protected*/ iter :Iterator<Tree<Lbl, Lf> | Lbl>
-    /*protected*/ done :boolean = false
+    protected iter :Iterator<Tree<Lbl, Lf> | Lbl>
+    protected done :boolean = false
 
     protected lbl_c :Lbl | symbol = this.UNFIXED
-    /*protected*/ edges_c :Tree<Lbl, Lf>[] = []
+    protected edges_c :Tree<Lbl, Lf>[] = []
 
     //should be [lowbar@ITER] one day
     ;*[Symbol.iterator]() {
         for (let i = 0 as Int,
               val :Tree<Lbl, Lf> | undefined,
-              direction :boolean | undefined
+              direction :boolean | undefined = true
             ; -1 < i && (val = this.getByI(i))
             ; i = false as boolean === direction
                 ? i-1 as Int
@@ -133,11 +133,10 @@ export default class Tree<Lbl, Lf extends Lbl> {
         if (this.UNFIXED !== this.lbl_c)
             return this.lbl_c as Lbl
         
-        let r: Tree<Lbl, Lf> | Lbl | undefined
-        for (r of this);
+        for (let r of this);
         //… iterates over and reads the end result as label
 
-        return r! as Lbl
+        return this.lbl_c as any as Lbl
     }
 
     get length() :Int {
@@ -151,17 +150,16 @@ export default class Tree<Lbl, Lf extends Lbl> {
         let done :boolean = this.done
         let value :Tree<Lbl, Lf> | Lbl | undefined
 
-        console.error("GET @", this.label, ":", i)
         for (
             ; !done
                   && (!value || (c[c.length] = value as Tree<Lbl, Lf>))
                   && i >= c.length
-            ; {done, value} = (console.error("[NEXT]", i, c.length), this.iter.next())
+            ; {done, value} = this.iter.next()
         ) 
             
-        console.error("-->", (c[i] || {label: "<<UNDEF>>"}).label)
         if (done) {
             this.done = true
+
             if (this.UNFIXED === this.lbl_c)
                 this.lbl_c = value as Lbl
         }
