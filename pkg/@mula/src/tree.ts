@@ -175,12 +175,17 @@ export default class Tree<Lbl, Lf extends Lbl> {
         type OutTree = Tree<Out, OutLf>
 
         function* genor() {
-            let value :Iterable<OutTree> | ((lbl :Lbl)=> Out) | undefined
+            let value
+                :OutTree | Iterable<OutTree> | ((lbl :Lbl)=> Out) | undefined
 
             for (let {done} = {value} = walkIter.next()
                 ; !done
                 ; {done, value} = walkIter.next()
-            ) yield* value! as Iterable<OutTree>
+            ) if (value! instanceof Tree)
+                yield value! as OutTree
+            else if (value && (value as any)[ITER])
+                yield* value! as Iterable<OutTree>
+            else continue
 
             return (value! as (lbl: Lbl)=> Out)(self.label)
         }

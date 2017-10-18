@@ -12,6 +12,8 @@ import {
 
 const leaf = Tree.leaf.bind(Tree)
 
+type Cn = Tree<string, "abib" | "abba" | "bubu" | "bibi" | "abba" | "bbab">
+
 @tst(test)
 class TreeTst {
     @enm(true)
@@ -35,11 +37,10 @@ class TreeTst {
     }
 
     @enm(true)
-    tripleNegI(t :T) {
-        type Cn = Tree<string, "abba" | "baab">
-        const triple: Cn[] = ["baab", "abba"]//, "abba"] 
+    tupelNegI(t :T) {
+        const tupel: Cn[] = ["baab", "abba"]
             .map(leaf)
-        const tree: Cn = new Tree(triple, "baba")
+        const tree: Cn = new Tree(tupel, "baba")
 
         t.is(tree.length, 2)
         t.is(tree[-2].label, "baab")
@@ -47,10 +48,9 @@ class TreeTst {
 
     @enm(true)
     iteratorIntf(t :T) {
-        type Cn = Tree<string, "abba" | "bubu" | "bibi">
         const triple: Cn[] = ["bubu", "abba", "bibi"] 
             .map(leaf)
-        const tree: Cn = new Tree(triple, "buub")
+        const tree: Cn = new Tree(triple, "bu.ub")
         const iter = tree[Symbol.iterator]()
         let value, done
 
@@ -66,17 +66,39 @@ class TreeTst {
 
         let {value: lbl} = {done} = iter.next()
         t.true(done)
-        t.is(lbl, "buub")
+        t.is(lbl, "bu.ub")
     }
     
     @enm(true)
     getByI(t :T) {
-        type Cn = Tree<string, "abba" | "baab">
-        const triple: Cn[] = ["baab", "abba"]//, "abba"] 
+        const triple :Cn[] = ["bbab", "abba", "abib"] 
             .map(leaf)
-        const tree :Cn = new Tree(triple, "baba")
+        const tree :Cn = new Tree(triple, "ba.ab")
 
-        //t.is(tree[0].label, "baab")
         t.is(tree[1].label, "abba")
+        t.is(tree[0].label, "bbab")
+        t.is(tree[2].label, "abib")
+    }
+
+    @enm(true)
+    skirt1(t :T) {
+        type Cnum = Conifer<number>
+
+        const triple :Cn[] = ["bubu", "bibi", "abib"]  
+            .map(leaf)
+        const boob :Cn = new Tree(triple, "bo.ob")
+        const frtw = boob.skirt(function *() {
+            let point, lf = ""
+            
+            do {
+                lf = yield lf.length
+                    ? [lf.codePointAt(0), lf.codePointAt(2)]
+                    : undefined
+            } while (lf)
+            
+            return ()=> 4.2
+        })
+
+        t.is(frtw.label, 4.2)
     }
 }
