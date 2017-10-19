@@ -50,7 +50,8 @@ export default class Tree<Lbl, Lf extends Lbl> {
             prop :any,
         ) :any {
             if (!this.has(tgt, prop))
-                throw new TypeError(`"${prop}" is not a property on "${tgt.constructor.name}"`)
+                throw new TypeError(`\
+                      "${prop}" is not a property on "${tgt.constructor.name}"`)
 
             const i = tgt.normalizeI(prop)!
             if (isInt(i)) return tgt.getByI(i)
@@ -106,12 +107,12 @@ export default class Tree<Lbl, Lf extends Lbl> {
     ;*[Symbol.iterator]() {
         for (let i = 0 as Int,
               val :Tree<Lbl, Lf> | undefined,
-              direction :boolean | undefined = true
+              dirc :boolean | undefined = true
             ; -1 < i && (val = this.getByI(i))
-            ; i = false as boolean === direction
+            ; i = false as boolean === dirc
                 ? i-1 as Int
                 : i+1 as Int
-        ) direction = yield val 
+        ) dirc = yield val
 
         return this.lbl_c as any as Lbl
     } 
@@ -156,7 +157,7 @@ export default class Tree<Lbl, Lf extends Lbl> {
                   && (!value || (c[c.length] = value as Tree<Lbl, Lf>))
                   && i >= c.length
             ; {done, value} = this.iter.next()
-        ) 
+        );
             
         if (done) {
             this.done = true
@@ -177,7 +178,7 @@ export default class Tree<Lbl, Lf extends Lbl> {
         type OutTree = Tree<Out, OutLf>
         type Lbler = (lbl :Lbl)=> Out
 
-        function* genor() {
+        function *genor() {
             let value
                   :OutTree | Iterable<OutTree> | Lbler | undefined =
                 walkIter.next().value
@@ -185,8 +186,9 @@ export default class Tree<Lbl, Lf extends Lbl> {
             for (let done = false, srcDone, srcVal
                 ; !done
                 ; {done: srcDone, value: srcVal} = srcIter.next()
-                , {done, value} =
-                    walkIter.next(srcDone ? undefined : srcVal as SrcTree)
+                , {done, value} = srcDone
+                    ? walkIter.next(undefined)
+                    : walkIter.next(srcVal as SrcTree)
             ) if (value! instanceof Tree)
                 yield value! as OutTree
             else if (value && (value as any)[ITER])
@@ -194,9 +196,12 @@ export default class Tree<Lbl, Lf extends Lbl> {
             else continue
 
             if ("function" !== typeof value)
-                throw new TypeError()
+                throw new TypeError(`\
+                      Skirt label transformer is not a function!)`)
             
-            ; (value as Lbler)(self.label)
+            let lbl = (value as Lbler)(self.label)
+
+            return lbl
         }
 
         const self = this

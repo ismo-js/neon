@@ -88,19 +88,23 @@ class TreeTst {
             .map(leaf)
         const boob :Cn = new Tree(triple, "bo.ob")
         const frtw = boob.skirt(function *() {
-            let point, lf = ""
+            let point, lfLbl = ""
             
             do {
-                lf = yield lf.length
-                    ? [lf.codePointAt(0), lf.codePointAt(2)]
+                let e = yield lfLbl.length
+                    ? [lfLbl.codePointAt(0), lfLbl.codePointAt(2)]
+                        .map(leaf)
                     : undefined
-            } while (lf)
+                
+                lfLbl = (e || {}).label || ""
+            } while (lfLbl)
             
             return ()=> 4.2
         })
 
         t.is(frtw.length, 6)
         t.is(frtw[0].label, 0x62)
+        t.is(frtw[99], undefined)
         t.is(frtw.label, 4.2)
     }
 }
