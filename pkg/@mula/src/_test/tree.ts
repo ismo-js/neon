@@ -99,6 +99,8 @@ class TreeTst {
             return ()=> 4.2
         })
 
+        t.is(frtw.length, 6)
+        t.is(frtw[0].label, 0x62)
         t.is(frtw.label, 4.2)
     }
 }

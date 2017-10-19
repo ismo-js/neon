@@ -27,7 +27,7 @@ export interface MapIterator<In, Out, Res> {
 
 // walker over a `Tree<In, InLf>`; yieldin a `Tree<Out, OutLf>`:
 export type Walker<In, InLf extends In, Out, OutLf extends Out> =
-    (lvl :Int)=> MapIterator<Tree<In, InLf>,
+    (lvl :Int)=> MapIterator<Tree<In, InLf> | undefined,
           Iterable<Tree<Out, OutLf>>,
           ((lbl :In)=> Out) | undefined>
 
@@ -66,7 +66,8 @@ export default class Tree<Lbl, Lf extends Lbl> {
             tgt :Tree<Lbl, Lf>,
             prop :any
         ) :boolean {
-            if (isInt(tgt.normalizeI(prop)!)) return true
+            if (isInt(tgt.normalizeI(prop)!))
+                return true
 
             for (let proto = tgt
                 ; proto
@@ -112,7 +113,7 @@ export default class Tree<Lbl, Lf extends Lbl> {
                 : i+1 as Int
         ) direction = yield val 
 
-        return this.label
+        return this.lbl_c as any as Lbl
     } 
 
     constructor(
@@ -172,26 +173,35 @@ export default class Tree<Lbl, Lf extends Lbl> {
     skirt<Out, OutLf extends Out>(
         walker :Walker<Lbl, Lf, Out, OutLf>
     ) :Tree<Out, OutLf> {
+        type SrcTree = Tree<Lbl, Lf>
         type OutTree = Tree<Out, OutLf>
+        type Lbler = (lbl :Lbl)=> Out
 
         function* genor() {
             let value
-                :OutTree | Iterable<OutTree> | ((lbl :Lbl)=> Out) | undefined
+                  :OutTree | Iterable<OutTree> | Lbler | undefined =
+                walkIter.next().value
 
-            for (let {done} = {value} = walkIter.next()
+            for (let done = false, srcDone, srcVal
                 ; !done
-                ; {done, value} = walkIter.next()
+                ; {done: srcDone, value: srcVal} = srcIter.next()
+                , {done, value} =
+                    walkIter.next(srcDone ? undefined : srcVal as SrcTree)
             ) if (value! instanceof Tree)
                 yield value! as OutTree
             else if (value && (value as any)[ITER])
                 yield* value! as Iterable<OutTree>
             else continue
 
-            return (value! as (lbl: Lbl)=> Out)(self.label)
+            if ("function" !== typeof value)
+                throw new TypeError()
+            
+            ; (value as Lbler)(self.label)
         }
 
         const self = this
         const walkIter = walker(0 as Int)
+        const srcIter = this[Symbol.iterator]()
 
         return new Tree(genor() as Iterable<OutTree | Out>)
     }
