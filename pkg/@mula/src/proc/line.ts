@@ -4,7 +4,11 @@ import {
 } from "neon-lowbar"
 
 import Config from "front/config"
-import Tree from "./tree"
+import {
+    default as Tree,
+    Conifer,
+} from "tree"
+//…TODO Fully migrate to new `tree`
 import {Lvl} from "msg/proto"
 import Msg from "msg/syntax"
 
@@ -13,14 +17,14 @@ import Msg from "msg/syntax"
 export const reducInit :Partial<Reduc> = {
     lineI: 0 as Int,
     indentLvl: 0 as Int,
-    rootTree: new Tree<Int[]>([]),
+    rootTree: new Tree([]),
     msgs: [] as Msg[],
 }
 
 export interface Reduc {
     lineI :Int
     indentLvl :Int
-    rootTree :Tree<Int[]>
+    rootTree :Conifer<Int[]>
     msgs :Msg[]
     cfg :Config
 }

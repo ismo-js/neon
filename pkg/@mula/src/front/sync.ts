@@ -27,9 +27,16 @@ export function parse(
     if ("string" === typeof input)
         return parse32(str2arr32(input), config)
 
-    if (Array.isArray(input)
-          && input.every(e=> Number.isSafeInteger(e))) {
-        
+    if ("function" === typeof (input as any)[Symbol.iterator]) {
+        [...input].map(e=> {
+            switch (typeof e) {
+                case "number":
+                    return [e]
+                case "object":
+                    if (Array.isArray(e)) return e
+                    throw new Error() //TODO
+            }
+        })
     }
 }
 

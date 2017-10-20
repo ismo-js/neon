@@ -15,4 +15,3 @@ namespace Syntax {
 }
 
 export default Syntax
-export {Lvl}

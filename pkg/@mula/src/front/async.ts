@@ -27,6 +27,12 @@ export type CharStmLs = Stm<CharLs>[] | Stm<CharLs>
 export type ReadIn = string | Buffer
 export type ReadNext = (input :ReadIn)=> void
 
+enum ReadLisNames {
+    next = "data",
+    error = "error",
+    complete = "finish",
+}
+
 export class ReadObservable implements Observable<ReadIn> {
     constructor(
         readonly rd :Readable,
@@ -43,24 +49,24 @@ export class ReadObservable implements Observable<ReadIn> {
     subscribe(
         next :Listener<ReadIn> | ReadNext, 
         error? :(err :any)=> void,
-        fin? :()=> void,
+        complete? :()=> void,
     ) :Subscr {
         const rd = this.rd
-        const ober = 2 > arguments.length
-            ? {
-                next,
-                error,
-                complete: fin,
-            }
+        const obver = 2 > arguments.length
+            ? {next, error, complete}
             : next as Listener<ReadIn>
-
-        rd.addListener("data", ober.next as ReadNext)
-        rd.addListener("error", ober.error!)
-        rd.addListener("finish", ober.complete!)
+        const each = (O.entries(obver) as [string, Function][])
+            .map(([k, lis]): [string, Function]=> [
+                ReadLisNames[k as any],
+                lis,
+            ])
+            .forEach
+            
+        each(([name, lis])=> rd.addListener(name, lis))
 
         return {
             unsubscribe() {
-                rd.removeListener("data", ober)
+                each(([name, lis])=> rd.removeListener(name, lis))
             }
         }
     }
