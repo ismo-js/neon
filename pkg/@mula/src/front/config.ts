@@ -14,7 +14,8 @@ import Msg from "msg/config"
 
 // ---
 
-export type CharLs = Int32Array | (Int32Array | Int|number)[] | string
+export type CharLs = Int32Array | (Int|number)[] | string
+export type CharNest = CharLs | CharLs[]
 
 export abstract class ConfigProto {
     readonly indentLength :Int|number = 4
