@@ -6,12 +6,16 @@
     <|header>
         <|h1 @title> Die Partie
         <|dl #header-overview .bulleted>
-            <|dt>Author
-            <|dd @author |a=://fj.frankl.biz/ @webpage> F.J. Frankl
+            <|dt> Author
+            <|dd @author |a ://fj.frankl.biz/ @webpage> F.J. Frankl
+
+    <|nav>
+        <|ul |*li>
 
     <|section>
         <|h1 #h-sommerkummer> Sommerkummer
-        <|$each |p>
-            An einem warmen Sommertage kam eine Partie in Frage,
+        <|*+br>
+            An einem warmen Sommertage
+                  kam eine <b>Partie</> in Frage,
             doch war der Gedank' nur vage,
             spielt man doch ungern ohne Gage…
