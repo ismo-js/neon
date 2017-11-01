@@ -41,8 +41,11 @@ export default abstract class Proto extends Error
         readonly lvl :Lvl,
         readonly subj :Int = 0 as Int,
     ) {
-        //TODO move message defintion out of super call, to an assignment
-        super(`{ \
+        super()
+    }
+
+    get message() {
+       return `{ \
             @\`mula\` \
             ${new.target.type} \
             ${new.target.lvlText[lvl]} (${lvl.toString(0x10)}): \
@@ -51,6 +54,6 @@ export default abstract class Proto extends Error
                 ((new.target as any).Subj[subj] as number)
                     .toString(0x10)
             } \
-        }`)
+        }`
     }
 }

@@ -8,8 +8,11 @@
         <|dl #header-overview .bulleted>
             <|dt> Author
             <|dd @author
-             |meta @name "f-j--frankl"
-             /a ://fj.frankl.biz/ @webpage>
+             |meta @name
+                "f-j--frankl"
+             /a @webpage
+                ://fj.frankl.biz/ @webpage
+            >
                 F.J. Frankl
 
     <|nav>

@@ -36,11 +36,13 @@ export default class Config extends ConfigProto {
             indentLength: Config.valiLength(indentLength, 0x10 as Int),
             rootLvl: Config.valiLength(rootLvl, 0x100 as Int),
         }
-        const x = ([] as Msg[]).concat(...O.entries(asser).map(
-            ([k, bool])=> bool
-                ? []
-                : [new Msg(k as keyof ConfigProto, Lvl.red)],
-        ))
+        const x = ([] as Msg[]).concat(
+            ...O.entries(asser).map(
+                ([k, bool])=> bool
+                    ? []
+                    : [new Msg(k as keyof ConfigProto, Lvl.red)],
+            )
+        )
     }
 
     protected static valiLength(
