@@ -197,7 +197,7 @@ export default class Tree<Lbl, Lf extends Lbl> {
 
             if ("function" !== typeof value)
                 throw new TypeError(`\
-                      Skirt label transformer is not a function!)`)
+                      Skirt label transformer is not a function!`)
             
             let lbl = (value as Lbler)(self.label)
 

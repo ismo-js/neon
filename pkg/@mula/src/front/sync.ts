@@ -10,6 +10,9 @@ import {
     CharNest,
     default as Config,
 } from "./config"
+import {
+    Chars,
+} from "proc/line"
 
 // ---
 
@@ -21,12 +24,16 @@ export function parse(
     if (config.msgs.some(msg=> 0 < msg.lvl))
         return config
         //…TODO What to return?
+}
 
+function concatNest32(
+    input :CharNest,
+) :Int32Array {
     if (input instanceof Int32Array)
-        return parse32(input, config)
+        return input
 
     if ("string" === typeof input)
-        return parse32(str2arr(input), config)
+        return str2arr(input)
 
     if ("function" === typeof (input as any)[Symbol.iterator]) {
         const pointsNest = [...input].map(e=> {
@@ -41,14 +48,14 @@ export function parse(
                         return e as Int[]
                     if (e instanceof Int32Array)
                         return [...e] as Int[]
-                    else
-                        throw new Error()
+                    throw new Error()
                 default:
                     throw new Error() //TODO
             }
         })
         const points = ([] as Int[])
             .concat(...pointsNest)
+
     }
 }
 

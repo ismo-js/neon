@@ -4,10 +4,6 @@ import {
 } from "neon-lowbar"
 
 import Config from "front/config"
-import {
-    default as Tree,
-    Conifer,
-} from "tree"
 //…TODO Fully migrate to new `tree`
 import {Lvl} from "msg/proto"
 import Msg from "msg/syntax"
@@ -17,33 +13,19 @@ import Msg from "msg/syntax"
 export const reducInit :Partial<Reduc> = {
     lineI: 0 as Int,
     indentLvl: 0 as Int,
-    rootTree: new Tree([]),
+    lines: [],
     msgs: [] as Msg[],
 }
+
+export type Line = [Int, Int[]]
 
 export interface Reduc {
     lineI :Int
     indentLvl :Int
-    rootTree :Conifer<Int[]>
+    lines :Line[]
     msgs :Msg[]
     cfg :Config
 }
-
-/*
-    // Will get replaced by `front/`
-
-    export function parse(
-        str :string,
-    ): Tree<Int[]> {
-        const lineStrs = str.split("\n")
-        const lines = lineStrs.map(
-            lineStr=> Array.from(lineStr, char=> char.codePointAt(0)),
-        )
-        const {rootTree} = lines.reduce(reduc, reducInit) as Reduc
-
-        return rootTree
-    }
-*/
 
 export function reduc(
     pay :Reduc,
@@ -70,8 +52,7 @@ export function reduc(
         ]
         : []
 
-    const lineTree = new Tree(trimmed)
-    const rootTree = pay.rootTree.concat([lineTree], indentLvl)
+    const lines = pay.lines.concat([indentLvl, trimmed])
 
     const msgs = [
         ...pay.msgs,
@@ -81,7 +62,7 @@ export function reduc(
     return {
         lineI,
         indentLvl,
-        rootTree,
+        lines,
         msgs,
         cfg,
     }
@@ -112,7 +93,7 @@ function countIndent(
     }
 }
 
-enum Chars {
+export enum Chars {
     null = 0x00,
     // [control],
     tab = 0x09,
