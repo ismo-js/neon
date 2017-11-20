@@ -1,0 +1,15 @@
+|loc
+      ht: =html
+      _: =://m.dist.audio
+    |ev !gap
+        |loc
+            |ev
+                |span start =1900
+                |perf !entry
+                    Empfang
+                |crowd !x-vip |ht:q> geladene Gäste
+
+            |ev
+                |span start =2000
+                |$host act !#()
+                |perf !live |ht:i> Doors

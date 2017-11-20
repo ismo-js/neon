@@ -47,7 +47,7 @@ export default class Config extends ConfigProto {
 
     protected static valiLength(
         val :number | undefined,
-        max :Int = INF,
+        max :Int = INF as Int,
     ) {
         return isInt(val!)
               && 1 === Math.sign(val!)
