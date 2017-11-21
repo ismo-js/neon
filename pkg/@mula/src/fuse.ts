@@ -37,11 +37,11 @@ function mix(
     const getDesc = O.getOwnPropertyDescriptor
     const setDesc = O.defineProperty
 
-    for (let prop of getProps(mixin.prototype))
+    for (let prop of getProps(mixin!.prototype))
         setDesc(
             mixRes.prototype,
             prop,
-            getDesc(mixin.prototype, prop),
+            getDesc(mixin!.prototype, prop),
         )
 
     return mixRes
@@ -128,14 +128,14 @@ namespace FuseHdm {
             ph :string,
             cb :Cb<string[]>,
         ) {
-            console.log(`F–Readin ${ph}…`)
+            console.log(`F–Readin dir ${ph}…`)
     
             cb(
                 0,
                 [
+                    ".",
+                    "..",
                     "alpha",
-                    "beta",
-                    "gamma",
                 ],
             )
         }
@@ -144,7 +144,7 @@ namespace FuseHdm {
             ph :string,
             cb :Cb<Object>,
         ) {
-            console.log(`F–Gettin ${ph}…`)
+            console.log(`F–Gettin attrs of "${ph}"…`)
 
             switch (ph) {
                 case "/":
@@ -152,34 +152,65 @@ namespace FuseHdm {
                         0,
                         {
                             mtime: 420*20*4*7,
-                            atime: Date.now(),
+                            atime: Date.now()-1337,
                             ctime: 420*20*4*7,
                             nlink: 1,
                             size: 100,
                             mode: 0o777,
                             uid: 420,
                             gid: 68,
+                            dev: 0,
+                            ino: 0,
                         },
                     )
                 return; case "/alpha":
                     cb(
                         0,
                         {
-                            mtime: Date.now(),
-                            atime: Date.now(),
-                            ctime: Date.now(),
+                            mtime: Date.now()-420,
+                            atime: Date.now()-420,
+                            ctime: Date.now()-420,
                             nlink: 23,
                             size: 7,
                             mode: 0o204,
                             uid: 420,
                             gid: 68,
+                            dev: 0,
+                            ino: 0,
                         },
                     )
  
-                return; case "/beta":
-
-                return; case "/gamma":
+                default:
+                    cb(Errors.noEnt)
             }
+        }
+
+        open(
+            ph :string,
+            flags :any,
+            cb :Cb<Int>,
+        ) {
+            console.log(`F–Openin "${ph}" {${flags}}…`)
+
+            cb(0, 42 as Int)
+        }
+
+        read(
+            ph :string,
+            fDesc :Int,
+            buffer :Buffer,
+            length :Int,
+            pos :Int,
+            cb :Cb<Int>,
+        ) {
+            if ("/" === ph) {
+                console.log(`F–Readin at root…`)
+                cb(Errors.noEnt)
+                return
+            }
+
+            console.log(`F–Readin at "${ph}"…`)
+            cb(0, 0 as Int)
         }
     }
    
@@ -188,24 +219,24 @@ namespace FuseHdm {
     ) {
         fuse.mount(
             ph,
-            new FuseHdm.Wrapper(),
+            new Wrapper(),
             (err :Error)=> {
                 if (err) throw err
         
-                console.log(`F–"${ph}" mounted.`)
+                console.log(`F–Mounted at "${ph}".`)
             },
         )
 
         process.on("SIGINT", ()=> {
             fuse.unmount(
                 ph,
-                (err: Error)=> console.log(err
-                    ? `F–"${ph}" not unmounted because ${err.message}!`
-                    : `F–"${ph}" unmounted :)`
+                (err: Error)=> console.log(...err
+                    ? [`F–"${ph}" not unmounted! Because: %s`, err]
+                    : [`F–"${ph}" unmounted successfully :)`]
                 )
             )
         })
     }
 }
 
-FuseHdm.init("./mnt")
+FuseHdm.init("./mnt5")
