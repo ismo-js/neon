@@ -1,7 +1,0 @@
-@.Stadlau
-  ` is Station
-    exit, []
-      | .Wiedgasse
-    connection, []
-      | uz.2
-        sz.19
