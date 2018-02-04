@@ -124,7 +124,9 @@ export default class Tree<Lbl, Lf extends Lbl> {
         const hasFixLbl = 1 < arguments.length
 
         if (hasFixLbl) this.lbl_c = fixLbl!
-        this.iter = edges[ITER]()
+        this.iter = edges[Symbol.iterator]()
+        //… should be [lowbar@ITER] one day,
+        //  but TypeScript's intelligence is limited nowadays.
 
         return new Px(this, this.handler)
     }
