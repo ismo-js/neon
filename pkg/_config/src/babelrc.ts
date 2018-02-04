@@ -1,16 +1,16 @@
 function bp(
-    stamps :string[],
-    ...vals :number,
+    stamps :TemplateStringsArray,
+    ...vals :number[],
 ) :string {
     let pre = "@babel/"
     let post = ""
 
-
-    if (Number.isSafeInteger(vals[0])) {
+    if ("number" === typeof vals[0]) {
+        const [stage] = vals
         return pre + "stage-" + stage // !
     }
 
-    return pre + preset.concat(stamps).join("-") + post
+    return pre + ["preset"].concat(stamps).join("-") + post
 }
 
 export const presets :string[][] = [
