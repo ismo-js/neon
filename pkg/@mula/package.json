@@ -1,15 +1,19 @@
 {
-    "name": "neon-mula",
-    "license": "GPL-3.0",
-    "version": "0.1.0",
-    "dependencies": {
-        "reflect-metadata": "^0.1.10",
-        "neon-lowbar": "~0.1.0",
-        "fuse-bindings": "^2.11.2",
-        "xstream": "^11.0.0"
-    },
-    "devDependencies": {
-        "@types/reflect-metadata": "0.0.5",
-        "ava": "^0.22.0"
-    }
+  "name": "neon-mula",
+  "license": "GPL-3.0",
+  "version": "0.1.0",
+  "dependencies": {
+    "reflect-metadata": "^0.1.10",
+    "neon-lowbar": "~0.1.0",
+    "fuse-bindings": "^2.11.2",
+    "xstream": "^11.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.39",
+    "@babel/preset-env": "^7.0.0-beta.39",
+    "@babel/preset-stage-0": "^7.0.0-beta.39",
+    "@babel/preset-typescript": "^7.0.0-beta.39",
+    "@types/reflect-metadata": "0.0.5",
+    "ava": "^0.22.0"
+  }
 }

@@ -6,7 +6,7 @@
         "outDir": "lib/",
 
         "module": "commonjs",
-        "target": "es7",
+        "target": "es6",
         "lib": ["es7"],
 
         "strict": true,
@@ -26,6 +26,7 @@
     "exclude": [
         "node_modules",
         "***/*.old",
-        "***/*.pre"
+        "***/*.pre",
+        "lib/"
     ]
 }
