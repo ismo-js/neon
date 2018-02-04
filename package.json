@@ -1,7 +1,6 @@
 {
     "name": "neon-base",
     "private": true,
-    "license": "LGPL-3.0",
     "devDependencies": {
     },
     "dependencies": {
