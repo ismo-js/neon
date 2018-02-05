@@ -31,6 +31,9 @@ Not too much done yet; not runnable `:^p`
 
 ##### *`(≡)`* Contents:
 
+>   *(!)* If you are currently on the repository's main pain,
+>   click to make the following [relative links functional](/doc/index.md)
+
 +   ~~[ʟowʙar  *(`neon-lowbar`)*](@lowbar/index.md)~~
     ∷ General helper library
 +   [sounᴅ *(`neon-sound`)*](@sound/index.md)
