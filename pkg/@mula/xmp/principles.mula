@@ -1,0 +1,72 @@
+|header
+    |h1 |code> muʟa
+    |p> A mark-up language — <code>^</>Metadata first
+
+|*section
+    |*_
+        |h1> Principles
+
+        |ul |*li
+            Valid, well-indented, plus well-escaped <i ^@related-to>HTML</i>
+              is also valid <i>muʟa</i>.
+
+    |*_
+        |h1> Features
+
+        |h2> Syntax
+        |ul |*li
+            Auto-closing pipe tags (directly opened by <code>&"|"</>)
+              and elements (<code>&"|"</> delimeted tag attachments)
+            Line encapsulation (<code>*</>)
+              and seperation (<code>*_</>)
+
+
+    |*_
+        |h1> Words
+
+        |h2> <b>CNT</> — Content Context
+        |dl
+            |di
+                |small
+                    Code points,
+                    except <code>&"< & |";</>
+
+            |di
+                |code> &#x26;<var> ENT </var>
+                |small
+                    Ampersand
+            |dd> Entity sequence
+
+            |di
+                |code> &#x3c;<var> TAG </var>&#x3e;
+                |small
+                    Angle bracket(s)
+            |dd> Angle Tag
+
+            |di>
+                |code> &#x7c;<var> TAG </var>&x3e;<super>*</>
+                |small
+                    Pipe, optionally closed by closing angle bracket
+            |dd> Pipe Tag
+
+        |h2> <b>TAG</> — Tag Context
+
+        |h2> <b>ELM</> — Element Context
+
+        |h2> <b>ITM</> — Item Context
+        |dl
+            |di
+                |code> ^@<var> URI &"|" IDN </var>
+            |dd> Item prop
+
+            |di
+                |code> ^.<var> URI </var>
+            |dd> Item type
+
+            |di
+                |code> ^#<var> URI </var>
+            |dd> Item id
+
+            |di
+                |code> ^!<var> IDN </var>
+            |dd> Item reference
