@@ -4,39 +4,38 @@ neon *(`neon-lang`)*
 ===
 ***The `neon^` Language Tool Chain, plus *EcmaScript* Transpilation Tooling***
 
->   **(→)** bringing typed functional programming to the *Web+ES*-Platform
+>   *(→)* bringing typed functional programming to the *Web+ES*-Platform
 
 
-## ~~[Ħ]~~ Project
+## ~ Project
 
-(… mainly written in *TypeScript*)
-
-+ *Author(s):*
-    - Jakob Schnell @probitlabs
-        * :e-mail: <jakob.schnell@univie.ac.at>
-+ *License:*
-<br/>**LGPL-3.0**
-
-
-## ~~[Ħ]~~ State
-
-*Build-up phase:* not too much done yet; not runnable `:(`
++   *Author(s)* ∷
+    -   J Schnell [@probitlabs](https://github.com/probitlabs)
+        *   :e-mail: <jk.sn@probit.link>
++   *License*
+    ∷ **GPL-3.0**
++   *Language*
+    ∷ mainly **TypeScript**
 
 
-## ~~[Ħ]~~ Overview
+## ~ State
+
+—**Build-up phase**—
+
+Not too much done yet; not runnable `:^p`
+
+
+## ~ Overview
 
 `neon^` aims to bring typed functional programming to the *Web+ES*-Platform.
 
 ##### *`(≡)`* Contents:
 
-+ ~~[ʟowʙar  *(`neon-lowbar`)*](@lowbar/index.md)~~
-<br/>(General helper library)
-<br/><small>&nbsp; &nbsp; &nbsp; ~%~</small>
-+ [sounᴅ *(`neon-sound`)*](@sound/index.md)
-<br/>(Typings for EcmaScript runtimes)
-<br/>‹ …[SUBCONTENTS](@sound/index.md#features) ›
-<br/><small>&nbsp; &nbsp; &nbsp; ~%~</small>
-+ ~~[sᴛurm *(`neon-sturm`)*](@sturm/index.md)~~
-<br/><small>&nbsp; &nbsp; &nbsp; ~%~</small>
-+ ~~[front *(`neon-front`)*]~~
-<br/>(The pre-alpha staged compiler front-end for `*.neon`)
++   ~~[ʟowʙar  *(`neon-lowbar`)*](@lowbar/index.md)~~
+    ∷ General helper library
++   [sounᴅ *(`neon-sound`)*](@sound/index.md)
+    ∷ Typings for EcmaScript runtimes
++   [sᴛurm *(`neon-sturm`)*](@sturm/index.md)
+    ∷ Sturmy streaming
++   ~~[front *(`neon-front`)*]~~
+    ∷ The pre-alpha staged compiler front-end for `*.neon`
