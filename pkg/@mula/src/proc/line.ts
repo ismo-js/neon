@@ -7,8 +7,8 @@ import {
 type UniArray = Int32Array
 
 export class Indentable {
-    static lvl :unique symbol
-    static isHanging :unique symbol
+    static readonly lvl :unique symbol
+    static readonly isHanging :unique symbol
 
     lvl :Int
     isHanging :boolean = false
