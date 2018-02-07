@@ -1,0 +1,23 @@
+{
+  "name": "plugin-transform-typescript-declare",
+  "description": "Transform TypeScript into Declarations",
+  "version": "0.1.0",
+  "main": "lib/main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ismo-js/neon.git"
+  },
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ismo-js/neon/issues"
+  },
+  "dependencies": {
+    "@babel/plugin-syntax-typescript": "^7.0.0-beta.39"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.0.0-beta.39"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.39"
+  }
+}
