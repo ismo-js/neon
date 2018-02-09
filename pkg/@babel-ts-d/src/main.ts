@@ -1,13 +1,18 @@
 import synTs from "@babel/plugin-syntax-typescript"
 import {
-    //types as typ,
-} from "@babel/plugin-syntax-typescript"
+    types as typ,
+} from "@babel/core"
 
 export default ()=> ({
     inherits: synTs,
     visitor: {
-        StringLiteral(p) {
-            throw p.buildCodeFrameError("No strings allowed in here!")
+        BinaryExpression(p) {
+            p.replaceWith(
+                typ.callExpression(
+                    typ.identifier("__binOp"),
+                    [],
+                )
+            )
         },
     },
 })
