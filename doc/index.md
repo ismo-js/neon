@@ -11,7 +11,7 @@ neon *(`neon-lang`)*
 
 +   *Author(s)* ∷
     -   J Schnell [@probitlabs](https://github.com/probitlabs)
-        *   :e-mail: <jk.sn@probit.link>
+        *   :e-mail: <labs@probit.link>
 +   *License*
     ∷ **GPL-3.0**
 +   *Language*

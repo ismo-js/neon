@@ -1,5 +1,5 @@
 {
-  "name": "plugin-transform-typescript-declare",
+  "name": "babel-plugin-transform-typescript-declare",
   "description": "Transform TypeScript into Declarations",
   "version": "0.1.0",
   "main": "lib/main.js",
