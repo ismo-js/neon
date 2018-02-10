@@ -1,15 +1,14 @@
-import synTs from "@babel/plugin-syntax-typescript"
-import {
-    types as typ,
-} from "@babel/core"
+import bSynTs from "@babel/plugin-syntax-typescript"
+import * as bTyp from "@babel/types"
+import bTmp from "@babel/template"
 
 export default ()=> ({
-    inherits: synTs,
+    inherits: bSynTs,
     visitor: {
         BinaryExpression(p) {
             p.replaceWith(
-                typ.callExpression(
-                    typ.identifier("__binOp"),
+                bTyp.callExpression(
+                    bTyp.identifier("__binOp"),
                     [],
                 )
             )
