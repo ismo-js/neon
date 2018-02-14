@@ -1,10 +1,10 @@
 import {O, Pm, Px, Int} from "lowbar/meta"
 import Range from "./range"
-import Fettle from "./fettle"
-import Unit from "./unit"
+
+export const MS :unique symbol = Symbol("Milliseconds")
 
 interface State<Elem> {
-    time :[Unit.ms, Int],
+    time :[typeof MS, Int],
     elem :Elem,
 }
 
