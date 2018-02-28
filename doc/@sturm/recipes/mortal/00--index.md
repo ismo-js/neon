@@ -2,13 +2,37 @@
 
 ```ts
 class Fettle {
-    SLEEPING: unique symbol =
-        Symbol("{stream fettle—sleeping}")
-    DEAD: unique symbol =
+    static readonly UNBRED: unique symbol =
+        Symbol("{stm fettle—unbred}")
+    static readonly AWAKE: unique symbol =
+        Symbol("{stm fettle—awake}")
+    static readonly SLEEPING: unique symbol =
+        Symbol("{stm fettle—sleeping}")
+    static readonly DEAD: unique symbol =
         Symbol("{stream fettle—dead}")
-    UNBRED: unique symbol =
-        Symbol("{stream fettle—unbred}")
+
+    static readonly fettle: unqiue symbol =
+        Symbol("stm fettle :=")
 }
 
-type Mortal<A> = $<[Fettle, A]>
+namespace Fettle {
+    type Value = typeof Fettle.UNBRED
+        | typeof Fettle.AWAKE
+        | typeof Fettle.SLEEPING
+        | typeof Fettle.DEAD
+    
+    type Unawake = typeof Fettle.UNBRED
+        | typeof Fettle.SLEEPING
+        | typeof Fettle.DEAD
+}
+
+interface UnawakeMd {
+    [Fettle.fettle]: Fettle.Unawake
+}
+
+interface AwakeMd {
+    [Fettle.fettle]: typeof Fettle.AWAKE
+}
+
+type Mortal<A> = $<[UnawakeMd] | [AwakeMd, A]>
 ```
