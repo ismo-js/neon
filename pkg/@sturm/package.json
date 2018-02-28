@@ -1,4 +1,7 @@
 {
     "name": "@neon/sturm",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "dependencies": {
+        "@ismo/lowbar": "~0.1.0"
+    }
 }

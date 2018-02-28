@@ -1,29 +1,25 @@
-import {O, Pm, Px, Int} from "@ismo/lowbar"
+import {
+    O,
+    Pm,
+    Px,
+    Int,
+} from "@ismo/lowbar"
 
 export class Stm<Elem> {
     constructor() {
         return new Px(this, new StmHand<Elem>())
     }
 
-    [Symbol.toStringTag] :string = "Stm"
+    [Symbol.toStringTag] :string = "Stm (universal stream)"
 }
-
 export default Stm
-
-function inProto<Tgt>(
-    tgt :Tgt,
-    prop :string,
-): prop is keyof Tgt {
-    const proto = O.getPrototypeOf(tgt)
-    return prop in proto
-}
 
 export class StmHand<Elem>
       implements ProxyHandler<Stm<Elem>> {
-    get(
-        tgt :Stm<Elem>,
-        prop :keyof Stm<Elem>,
-    ) :Stm<Elem>[typeof prop] {
+    get<S extends Stm<Elem>>(
+        tgt :S,
+        prop :keyof S,
+    ) :S[typeof prop] {
         return tgt[prop]
     }
 }

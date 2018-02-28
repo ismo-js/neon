@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "dependencies": {
     "reflect-metadata": "^0.1.10",
-    "neon-lowbar": "~0.1.0",
+    "@ismo/lowbar": "~0.1.0",
     "xstream": "^11.0.0"
   },
   "devDependencies": {
@@ -12,7 +12,6 @@
     "@babel/preset-env": "^7.0.0-beta.39",
     "@babel/preset-stage-1": "^7.0.0-beta.39",
     "@babel/preset-typescript": "^7.0.0-beta.39",
-    "babel-plugin-transform-typescript-declare": "~0.1.0",
     "@types/reflect-metadata": "^0.0.5",
     "ava": "^0.22.0"
   }

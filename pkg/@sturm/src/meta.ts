@@ -1,4 +1,4 @@
-import {O, Hint} from "lowbar/meta"
+import {O, Hint} from "@ismo/lowbar"
 
 import {
     Father,
