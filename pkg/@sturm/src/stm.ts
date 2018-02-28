@@ -1,62 +1,14 @@
-import {O, Pm, Px, Int} from "lowbar/meta"
-import Range from "./range"
+import {O, Pm, Px, Int} from "@ismo/lowbar"
 
-export const MS :unique symbol = Symbol("Milliseconds")
-
-interface State<Elem> {
-    time :[typeof MS, Int],
-    elem :Elem,
-}
-
-enum Tag {
-    Pm = "Promise",
-}
-
-export interface Problem {
-    text :string
-}
-
-export default class Stm<Elem>
-      implements Promise<Elem[]> {
+export class Stm<Elem> {
     constructor() {
         return new Px(this, new StmHand<Elem>())
     }
 
-    [Symbol.toStringTag] :Tag.Pm = Tag.Pm
-    fettle :Fettle = Fettle.Mating
-
-    async byIndex(
-        i :Index,
-    ) :Pm<Elem> {
-        return {
-            ...await i,
-        } as Elem
-    }
-
-    async asArray_(): Pm<Elem[]> {
-        await this.freeze_
-    }
-
-    // A promise resolving when stream freezes:
-    get freeze_() :Pm<null> {
-        if (this.isFreezed) {
-            return new Pm<null>((rsv, rjc)=> t)
-        }
-    }
-
-    then<Next>(
-        onRsv :(range :Elem[])=> Next,
-        onRjc :(reason :Problem)=> Next,
-    ) :Pm<Next> {
-        return this.asArray_().then(onRsv, onRjc)
-    }
-
-    catch<Next>(
-        onRjc :(reason :Problem)=> Next,
-    ) :Pm<Next> {
-        return this.asArray_().catch(onRjc)
-    }
+    [Symbol.toStringTag] :string = "Stm"
 }
+
+export default Stm
 
 function inProto<Tgt>(
     tgt :Tgt,
@@ -70,14 +22,8 @@ export class StmHand<Elem>
       implements ProxyHandler<Stm<Elem>> {
     get(
         tgt :Stm<Elem>,
-        prop :string,
-    ) :any {
-
-        const i :Range = Range.parse(prop)
-
-        if (Index)
-            return tgt.byIndex(i)
-        else if (inProto(tgt, prop))
-            return tgt[prop]
+        prop :keyof Stm<Elem>,
+    ) :Stm<Elem>[typeof prop] {
+        return tgt[prop]
     }
 }
