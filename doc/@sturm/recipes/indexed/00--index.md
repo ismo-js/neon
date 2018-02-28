@@ -3,12 +3,12 @@
 ```ts
 @singl class Index {
     static readonly index: unique symbol =
-        Symbol("{stm memory}")
+        Symbol("{stm index}")
 }
 
-interface IndexMd<I> {
+interface IndexMd<I extends Iterable> {
     [Index.index]: I
 }
 
-type Indexed<A, I> = $<[IndexMd<I>, A]>
+type Indexed<A, I extends Iterable> = $<[IndexMd<I>, A]>
 ```

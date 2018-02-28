@@ -16,14 +16,12 @@
 }
 
 namespace Fettle {
-    type Value = typeof Fettle.UNBRED
-        | typeof Fettle.AWAKE
-        | typeof Fettle.SLEEPING
-        | typeof Fettle.DEAD
-    
     type Unawake = typeof Fettle.UNBRED
         | typeof Fettle.SLEEPING
         | typeof Fettle.DEAD
+    
+    type Value = typeof Fettle.AWAKE
+        | Fettle.Unawake
 }
 
 interface UnawakeMd {
