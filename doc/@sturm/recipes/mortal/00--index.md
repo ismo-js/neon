@@ -1,7 +1,7 @@
 # Mortal
 
 ```ts
-class Fettle {
+@singl class Fettle {
     static readonly UNBRED: unique symbol =
         Symbol("{stm fettle—unbred}")
     static readonly AWAKE: unique symbol =
@@ -9,7 +9,7 @@ class Fettle {
     static readonly SLEEPING: unique symbol =
         Symbol("{stm fettle—sleeping}")
     static readonly DEAD: unique symbol =
-        Symbol("{stream fettle—dead}")
+        Symbol("{stm fettle—dead}")
 
     static readonly fettle: unqiue symbol =
         Symbol("stm fettle :=")
