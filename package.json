@@ -1,5 +1,5 @@
 {
-    "name": "neon-base",
+    "name": "@ismo/neon-base",
     "private": true,
     "devDependencies": {
     },
