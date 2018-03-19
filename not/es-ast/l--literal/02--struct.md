@@ -1,1 +1,6 @@
-# Structure Literal
+# Literal Structure
+
+### ==Kinds
+- `Array`
+- `Object`
+- `Template`

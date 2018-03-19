@@ -2,14 +2,12 @@
 
 ### ==Kinds
 - `RegExp`
-- `Key` (boolean / null)
+- `Unique` (boolean / null / undefined)
 - `String`
 - `Numeric`
 
 
 ### ==Effects
-##### @Key `SWITCH [integer]`
----
 ##### @Numeric `ADD [number]`
 ##### @Numeric `SHIFT [integer]`
 ##### @Numeric `REBASE [0 | 1 | 3 | 4]`
