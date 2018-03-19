@@ -1,10 +1,14 @@
-# Primitive Literal
+# Literal
 
 ### ==Kinds
 - `RegExp`
 - `Unique` (boolean / null / undefined)
 - `String`
 - `Numeric`
+---
+- `Array`
+- `Object`
+- `Template`
 
 
 ### ==Effects

@@ -7,7 +7,7 @@
 -   –> [@@@](./kind/i--literal.md)
 
 ##### *(`e`)xpression*:
--   –> [@@@](./kind/e--expr.md)
+-   –> [@@@](./kind/e--expres.md)
 
 ##### *St(`a`)tement*:
 -   –> [@@@](./kind/a--statem.md)
