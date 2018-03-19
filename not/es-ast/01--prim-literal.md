@@ -1,15 +1,13 @@
-# EcmaScript Syntax
+# Primitive Literal
 
-## Literal
-
-####= Kinds
+### ==Kinds
 - `RegExp`
 - `Key` (boolean / null)
 - `String`
 - `Numeric`
 
 
-####= Effects
+### ==Effects
 ##### @Key `SWITCH [integer]`
 ---
 ##### @Numeric `ADD [number]`
@@ -20,7 +18,7 @@
 - `3`: Octal
 - `4`: Hexadecimal
 
-####= Sections
+### ==Sections
 ##### *Prefix*:
 + Type:
     - `char`
