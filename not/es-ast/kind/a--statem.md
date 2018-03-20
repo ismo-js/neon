@@ -1,7 +1,23 @@
 # Statement
 
-+ Variable Decl
+##### Declarations:
++ Variable
     - `var`
     - `let`
     - `const`
-+ Expression Statement
+
+---
+##### Container:
++ Expression
+
+---
+##### Loop:
++ Conditional
++ Iterative
+    - `for (in)`
+    - `for (of)`
+
+---
+##### Meta:
++ Directive
+    *(imprecisely)*
