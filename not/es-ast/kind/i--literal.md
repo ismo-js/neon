@@ -1,6 +1,6 @@
 # Literal
 
-### ==Kinds
+### == Kinds
 - `RegExp`
 - `Unique` (boolean / null / undefined)
 - `String`
@@ -11,7 +11,7 @@
 - `Template`
 
 
-### ==Effects
+### == Effects
 ##### @Numeric `ADD [number]`
 ##### @Numeric `SHIFT [integer]`
 ##### @Numeric `REBASE [0 | 1 | 3 | 4]`
