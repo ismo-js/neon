@@ -1,7 +1,7 @@
 # Literal
 
 ### == Kinds
-- `RegExp`
+- `Regexp`
 - `Unique` (boolean / null / undefined)
 - `String`
 - `Numeric`
@@ -11,16 +11,7 @@
 - `Template`
 
 
-### == Effects
-##### @Numeric `ADD [number]`
-##### @Numeric `SHIFT [integer]`
-##### @Numeric `REBASE [0 | 1 | 3 | 4]`
-- `0`: Decimal
-- `1`: Binary
-- `3`: Octal
-- `4`: Hexadecimal
-
-### ==Sections
+### == Sections
 ##### *Prefix*:
 + Type:
     - `char`
@@ -30,7 +21,7 @@
 ##### *Value*:
 + Type:
     - `boolean | null` *(for `Key`)*
-    - `char[]` *(for `RegeExp | String`)*
+    - `char[]` *(for `Regexp | String`)*
 
 ##### *Suffix*:
 + Type:
