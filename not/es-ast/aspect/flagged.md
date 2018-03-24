@@ -1,6 +1,6 @@
 # Flagged
 
-An entity that can be associated with one or multiple flags. That flag set is keyed by integers representing *Uni*code points of letters; and is optionally filled with integers or otherwise seens as Boolean flag.
+An entity that can be associated with one or multiple flags. That flag set is keyed by integers representing *Uni*code points of letters; and is optionally filled with an integer to each key or otherwise the key respresents a Boolean flag.
 
 ### == Known Flag Keys
 + `n`: Arbitrary precicsion integer
@@ -11,7 +11,12 @@ An entity that can be associated with one or multiple flags. That flag set is ke
 + `e`: Exponent
     <∷> `Integer`
     <$> used for:
-    - `Numeric`
+    - decimal (!) `Numeric`
+
++ `.`: Fractional Part
+    <∷> `Integer`
+    <$> used for:
+    - decimal (!) `Numeric`
 
 ---
 
