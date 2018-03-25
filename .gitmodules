@@ -7,3 +7,6 @@
 [submodule "sub/b-life@typescript-etc"]
 	path = sub/b-life@typescript-etc
 	url = https://github.com/beyond-life/typescript-etc
+[submodule "sub/probit@law"]
+	path = sub/probit@law
+	url = https://github.com/probitlabs/law.git
