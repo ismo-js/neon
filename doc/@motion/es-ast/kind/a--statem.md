@@ -1,23 +1,26 @@
-# Statement
+![neon^](https://placehold.it/120/c2ff23/ff23c2?text=neon^)
 
-##### Declarations:
+# (Aspect:) Statement
+---
+
+#### Declarations:
 + Variable
     - `var`
     - `let`
     - `const`
 
 ---
-##### Container:
+#### Container:
 + Expression
 
 ---
-##### Loop:
+#### Loop:
 + Conditional
 + Iterative
     - `for (in)`
     - `for (of)`
 
 ---
-##### Meta:
+#### Meta:
 + Directive
     *(imprecisely)*

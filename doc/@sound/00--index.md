@@ -1,30 +1,34 @@
 ![#ffff23](https://placehold.it/120/c2ff23/ff23c2?text=neon^)
 
-sounᴅ *(`neon-sound`)*
-===
-***Runtime-typed *EcmaScript* ***
+# sounᴅ
+## `neon-sound`
+### Runtime-typed *EcmaScript*
 
 >   **(→)** bringing types to *EcmaScript*
+---
 
-## ~~[Ħ]~~ Providing
+## ~~ Providing
+
 + ``` @ty`` ```
 + ` @intf `
 
 … et cetera
 
-## ~~[Ħ]~~ Project
+## ~~ Project
 
 (… written in *TypeScript*)
 
 >   [*`(→)`* `^neon` Project Overview](../index.md)
 
 
-## ~~[Ħ]~~ State
+## ~~ State
 
-*Build-up phase:* not too much done yet; not runnable `:(`
+—*Not active*—
+
+Not too much done yet; currenctly not runnable
 
 
-## ~~[Ħ]~~ Introduction
+## ~~ Introduction
 
 *TypeScript* extends *EcmaScript* syntactically
  — by type definitions as well as future *ES* inspired sugar —
@@ -43,12 +47,12 @@ plus semantically
 * <span id="facit1">‹`*`›:</span>
 The «compiler» is just a validating *Babel* plug-in, which uses the statically available information to perform type checks.
 
-## ~~[Ħ]~~ Featueres
+## ~~ Featueres
 
 * Types
-    + [Interface types](./types/inter.md)
-    + [Class types](./types/class.md)
-    + [Dynamic types](./types/dynam.md)
+    + [Interface types](./decorator-typing-concepts/types/inter.md)
+    + [Class types](./decorator-typing-concepts/types/class.md)
+    + [Dynamic types](./decorator-typing-concepts/types/dynam.md)
 
 ---
 
