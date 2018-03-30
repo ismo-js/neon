@@ -1,4 +1,0 @@
-node: u block
-$container:
-    -   slot: con
-            -   node: u expres
