@@ -1,5 +1,12 @@
 {
-    "name": "@neon/sturm",
+    "name": "@ismo/sturm",
+    "description": "Sturmy Streaming in Functional Predicates",
+    "license": "GPL-3.0",
+
+    "repository": "ismo-js/neon",
+    "main": "lib/meta.js",
+    "types": "lib/meta.d.ts",
+
     "version": "0.1.0",
     "dependencies": {
         "@ismo/lowbar": "~0.1.0"

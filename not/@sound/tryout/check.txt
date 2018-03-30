@@ -1,0 +1,19 @@
+Setoid
+* ==
+Semigroup
+* +
+Monoid
+* null
+
+[Foldable
+[Traversable
+
+Functor
+* .>
+Apply
+* :>
+(Applicative
+Chain
+Monad
+Extend
+Comonad

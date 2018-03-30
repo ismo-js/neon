@@ -1,34 +1,29 @@
-![#ffff23](https://placehold.it/120/c2ff23/ff23c2?text=neon^)
+![neon^](https://placehold.it/360/c2ff23/ff23c2?text=neon^)
+![– sound –](https://placehold.it/360/ff23c2/c2ff23?text=–%20sound%20–)
 
-# sounᴅ
-## `neon-sound`
-### Runtime-typed *EcmaScript*
-
->   **(→)** bringing types to *EcmaScript*
+# <small>(Project:)</small> `@`sounᴅ
+# *Runtime-typed EcmaScript*
+## [npm]`@ismo/sound`
+### —*Overview*—
 ---
 
-## ~~ Providing
+## :hash: Providing
 
 + ``` @ty`` ```
 + ` @intf `
 
 … et cetera
 
-## ~~ Project
 
-(… written in *TypeScript*)
+## :hash: State
 
->   [*`(→)`* `^neon` Project Overview](../index.md)
+—*Not active.*—
+—*Not runnable.*—
 
-
-## ~~ State
-
-—*Not active*—
-
-Not too much done yet; currenctly not runnable
+Not too much done yet.
 
 
-## ~~ Introduction
+## :hash: Introduction
 
 *TypeScript* extends *EcmaScript* syntactically
  — by type definitions as well as future *ES* inspired sugar —
@@ -47,7 +42,7 @@ plus semantically
 * <span id="facit1">‹`*`›:</span>
 The «compiler» is just a validating *Babel* plug-in, which uses the statically available information to perform type checks.
 
-## ~~ Featueres
+## :hash: Featueres
 
 * Types
     + [Interface types](./decorator-typing-concepts/types/inter.md)

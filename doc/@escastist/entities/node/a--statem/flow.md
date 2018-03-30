@@ -1,4 +1,4 @@
-# (Node:) \#a Statement
+# <small>(Node:)</small> \#a Statement
 ### —*Flow Control*—
 ---
 

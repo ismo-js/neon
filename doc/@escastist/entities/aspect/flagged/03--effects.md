@@ -1,4 +1,4 @@
-# (Aspect:) Flagged
+# <small>(Aspect:)</small> Flagged
 ### —*Description*—
 ---
 

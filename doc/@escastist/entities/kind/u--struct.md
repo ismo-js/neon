@@ -1,2 +1,2 @@
-# (Kind:) \#u Structure
+# <small>(Kind:)</small> \#u Structure
 ---

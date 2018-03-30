@@ -1,3 +1,3 @@
-# (Aspect:) Key Tagged
+# <small>(Aspect:)</small> Key Tagged
 ### —*Description*—
 ---

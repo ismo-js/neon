@@ -1,2 +1,2 @@
-# (Kind:) \#a Statement
+# <small>(Kind:)</small> \#a Statement
 ---

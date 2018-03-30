@@ -1,4 +1,4 @@
-# (Kind:) \#i Literal
+# <small>(Kind:)</small> \#i Literal
 ---
 
 ### == Kinds

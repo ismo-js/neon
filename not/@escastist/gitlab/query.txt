@@ -1,0 +1,4 @@
+tree, and [
+    //probitlabs@gitlab.com/topgroup/sub1/master/~/src/**
+    //probitlabs@gitlab.com/topgroup/sub2/devel/~/pkg/@mula/**
+]

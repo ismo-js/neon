@@ -10,3 +10,6 @@
 [submodule "sub/probit@law"]
 	path = sub/probit@law
 	url = https://github.com/probitlabs/law.git
+[submodule "sub/github@ignore"]
+	path = sub/github@ignore
+	url = https://github.com/github/gitignore.git

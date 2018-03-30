@@ -1,2 +1,2 @@
-# (Kind:) \#o Typing
+# <small>(Kind:)</small> \#o Typing
 ---

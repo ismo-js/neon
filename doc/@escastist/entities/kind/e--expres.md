@@ -1,2 +1,2 @@
-# (Kind:) \#e Expression
+# <small>(Kind:)</small> \#e Expression
 ---

@@ -1,0 +1,40 @@
+body {
+    background-color: rgb(16, 16, 16);
+    margin: 0;
+    padding: 0;
+    font-family: "Source Sans Pro";
+}
+
+ef-viewset {
+    display: flex;
+    flex-direction: row;
+    margin: 1em;
+
+    background-color: rgba(255, 255, 255, 0.125);
+
+}
+
+ef-view {
+    display: flex;
+    flex-direction: column;
+}
+ef-view::before {
+    content: "[=] View";
+}
+
+ef-tree {
+    display: flex;
+    flex-direction: column;
+}
+ef-tree ef-tree {
+    margin-left: 2em;
+}
+
+ef-bubble {
+    display: inline-block;
+    border-radius: 0.3em;
+    min-width: 1em;
+
+    background-color: rgba(255, 255, 255, 0.875);
+    text-align: center;
+}
